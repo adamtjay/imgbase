@@ -9,7 +9,8 @@ import {
   CameraRoll,
   Image,
   Dimensions,
-  ScrollView
+  ScrollView,
+  Alert
     } from 'react-native';
 import { Constants } from 'expo';
 
@@ -25,11 +26,20 @@ export default class App extends Component {
     return (
       <Provider store={store}>
 
-      <ScrollView style={styles.container}>
-        {photos
-          ? this._renderPhotos(photos)
-          : <Text style={styles.paragraph}>Fetching photos...</Text>}
-      </ScrollView>
+
+        <ScrollView style={styles.container} >
+
+          <Button
+  onPress={() => {
+    Alert.alert('You tapped the button!');
+  }}
+  title="Press Me"
+/>
+
+          {photos
+            ? this._renderPhotos(photos)
+            : <Text style={styles.paragraph}>Fetching photos...</Text>}
+        </ScrollView>
 
     </Provider>
 
@@ -56,6 +66,7 @@ export default class App extends Component {
 //     })
 //   }
 // </ScrollView>
+
     );
   }
 
@@ -68,6 +79,8 @@ export default class App extends Component {
           resizeMode="contain"
           style={ styles.resimg }
         />
+
+
       );
     }
     return images;
