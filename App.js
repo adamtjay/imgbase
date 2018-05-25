@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { CameraRoll, Image, ScrollView, StyleSheet, Text } from 'react-native';
+import { CameraRoll,
+          Image,
+          ScrollView,
+          StyleSheet,
+          Text } from 'react-native';
 import { Constants } from 'expo';
 
 export default class App extends Component {
@@ -21,12 +25,9 @@ export default class App extends Component {
     for (let { node: photo } of photos.edges) {
       images.push(
         <Image
-          onHover={function(){console.log('hey')}}
           source={photo.image}
           resizeMode="contain"
-          style={{ height: 400, width: 280, resizeMode: 'contain'
-              , display: 'inline', marginTop: 10
-            }}
+          style={ styles.resimg }
         />
       );
     }
@@ -46,6 +47,17 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
+  resimg: {
+    height: 400,
+    width: 280,
+    resizeMode: 'contain',
+    display: 'flex',
+    marginTop: 10,
+    marginLeft: 0,
+    borderWidth: 1,
+    padding: '50%',
+    paddingTop: '50%',
+  },
   container: {
     flex: 1,
     paddingTop: Constants.statusBarHeight,
