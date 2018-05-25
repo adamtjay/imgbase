@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import { CameraRoll,
-          Image,
-          ScrollView,
-          StyleSheet,
-          Text } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableHighlight,
+  Modal,
+  StyleSheet,
+  Button,
+  CameraRoll,
+  Image,
+  Dimensions,
+  ScrollView
+    } from 'react-native';
 import { Constants } from 'expo';
 
 export default class App extends Component {
@@ -17,6 +24,30 @@ export default class App extends Component {
           ? this._renderPhotos(photos)
           : <Text style={styles.paragraph}>Fetching photos...</Text>}
       </ScrollView>
+
+//       <ScrollView
+//   contentContainerStyle={styles.scrollView}>
+//   {
+//     this.state.photos.map((p, i) => {
+//       return (
+//         <TouchableHighlight
+//           style={{opacity: i === this.state.index ? 0.5 : 1}}
+//           key={i}
+//           underlayColor='transparent'
+//           onPress={() => this.setIndex(i)}
+//         >
+//           <Image
+//             style={{
+//               width: width/3,
+//               height: width/3
+//             }}
+//             source={{uri: p.node.image.uri}}
+//           />
+//         </TouchableHighlight>
+//       )
+//     })
+//   }
+// </ScrollView>
     );
   }
 
@@ -56,7 +87,6 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     borderWidth: 1,
     padding: '50%',
-    paddingTop: '50%',
   },
   container: {
     flex: 1,
