@@ -13,17 +13,25 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
+import { Provider } from 'react-redux'
+import store from './store';
+
+
 export default class App extends Component {
   state = { photos: null };
 
   render() {
     let { photos } = this.state;
     return (
+      <Provider store={store}>
+
       <ScrollView style={styles.container}>
         {photos
           ? this._renderPhotos(photos)
           : <Text style={styles.paragraph}>Fetching photos...</Text>}
       </ScrollView>
+
+    </Provider>
 
 //       <ScrollView
 //   contentContainerStyle={styles.scrollView}>
