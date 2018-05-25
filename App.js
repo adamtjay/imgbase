@@ -19,7 +19,18 @@ import store from './store';
 
 
 export default class App extends Component {
-  state = { photos: null };
+  constructor(props) {
+    super(props);
+
+    this.state = { photos: null };
+
+  }
+
+
+
+  _onImgPress = () => {
+      Alert.alert('TouchableHighlight works');
+    }
 
   render() {
     let { photos } = this.state;
@@ -30,11 +41,11 @@ export default class App extends Component {
         <ScrollView style={styles.container} >
 
           <Button
-  onPress={() => {
-    Alert.alert('You tapped the button!');
-  }}
-  title="Press Me"
-/>
+            onPress={() => {
+              Alert.alert('You tapped the button!');
+            }}
+            title="Press Me"
+          />
 
           {photos
             ? this._renderPhotos(photos)
@@ -74,11 +85,13 @@ export default class App extends Component {
     let images = [];
     for (let { node: photo } of photos.edges) {
       images.push(
-        <Image
-          source={photo.image}
-          resizeMode="contain"
-          style={ styles.resimg }
-        />
+        <TouchableHighlight onPress={this._onImgPress} >
+          <Image
+            source={photo.image}
+            resizeMode="contain"
+            style={ styles.resimg }
+          />
+      </TouchableHighlight>
 
 
       );
@@ -93,7 +106,7 @@ export default class App extends Component {
   }
 
   async _getPhotosAsync() {
-    let photos = await CameraRoll.getPhotos({ first: 40 });
+    let photos = await CameraRoll.getPhotos({ first: 20 });
     this.setState({ photos });
   }
 }
