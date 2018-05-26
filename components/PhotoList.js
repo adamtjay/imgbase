@@ -15,10 +15,17 @@ import {
 import { Constants } from 'expo';
 
 export default class PhotoList extends Component {
-  state = { photos: null };
+  constructor(props) {
+    super(props);
 
-  _onImgPress = () => {
-      Alert.alert('TouchableHighlight works!');
+    this.state = { photos: null };
+
+    this._onImgPress = this._onImgPress.bind(this);
+    }
+    
+  _onImgPress(e) {
+      console.log(e.target);
+      Alert.alert(`TouchableHighlight working (${e.target})`);
     }
 
   render() {
@@ -43,14 +50,19 @@ export default class PhotoList extends Component {
       console.log('** Photo data: **\n', photo);
 
       images.push(
+
         <TouchableHighlight onPress={this._onImgPress} key={photo.image.filename} >
+          <View style={ styles.imgContainer }>
+            <View style={ styles.touchable }> </View>
                   <Image
                     key={photo.image.filename}
                     source={photo.image}
                     resizeMode="contain"
                     style={ styles.resimg }
                   />
+                </View>
               </TouchableHighlight>
+
       );
     }
     return images;
@@ -69,6 +81,19 @@ export default class PhotoList extends Component {
 }
 
 const styles = StyleSheet.create({
+  imgContainer: {
+    width: 600,
+    display: 'block',
+    resizeMode: 'contain',
+    display: 'flex',
+    marginTop: 20,
+  },
+  touchable: {
+    backgroundColor: 'red',
+    // width: 50,
+    // right: -300,
+    // display: 'flex',
+  },
   resimg: {
     height: 420,
     width: 300,
