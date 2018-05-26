@@ -14,31 +14,25 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-import PhotoView from './components/PhotoView';
-
-
 import { Provider } from 'react-redux'
 import store from './store';
 
+
+import PhotoList from './components/PhotoList';
 
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { photos: null };
-
   }
 
-
-
-
   render() {
-    let { photos } = this.state;
+
     return (
       <Provider store={store}>
 
-          <PhotoView />
+          <PhotoList />
 
     </Provider>
 

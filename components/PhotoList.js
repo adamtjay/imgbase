@@ -14,11 +14,11 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-export default class PhotoView extends Component {
+export default class PhotoList extends Component {
   state = { photos: null };
 
   _onImgPress = () => {
-      Alert.alert('TouchableHighlight works');
+      Alert.alert('TouchableHighlight works!');
     }
 
   render() {
@@ -59,7 +59,7 @@ export default class PhotoView extends Component {
   }
 
   async _getPhotosAsync() {
-    let photos = await CameraRoll.getPhotos({ first: 40 });
+    let photos = await CameraRoll.getPhotos({ first: 20 });
     this.setState({ photos });
   }
 }
