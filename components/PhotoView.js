@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import {
-  // React,
-  // Component,
   View,
   Text,
   TouchableHighlight,
@@ -11,15 +9,21 @@ import {
   CameraRoll,
   Image,
   Dimensions,
-  ScrollView
+  ScrollView,
+  Alert
     } from 'react-native';
 import { Constants } from 'expo';
 
 export default class PhotoView extends Component {
   state = { photos: null };
 
+  _onImgPress = () => {
+      Alert.alert('TouchableHighlight works');
+    }
+
   render() {
     let { photos } = this.state;
+
     return (
 
       <ScrollView style={styles.container}>
@@ -36,11 +40,13 @@ export default class PhotoView extends Component {
     let images = [];
     for (let { node: photo } of photos.edges) {
       images.push(
-        <Image
-          source={photo.image}
-          resizeMode="contain"
-          style={ styles.resimg }
-        />
+        <TouchableHighlight onPress={this._onImgPress} >
+                  <Image
+                    source={photo.image}
+                    resizeMode="contain"
+                    style={ styles.resimg }
+                  />
+              </TouchableHighlight>
       );
     }
     return images;
