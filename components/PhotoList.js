@@ -39,9 +39,13 @@ export default class PhotoList extends Component {
   _renderPhotos(photos) {
     let images = [];
     for (let { node: photo } of photos.edges) {
+
+      console.log('** Photo data: **\n', photo);
+
       images.push(
-        <TouchableHighlight onPress={this._onImgPress} >
+        <TouchableHighlight onPress={this._onImgPress} key={photo.image.filename} >
                   <Image
+                    key={photo.image.filename}
                     source={photo.image}
                     resizeMode="contain"
                     style={ styles.resimg }
@@ -66,8 +70,8 @@ export default class PhotoList extends Component {
 
 const styles = StyleSheet.create({
   resimg: {
-    height: 400,
-    width: 280,
+    height: 420,
+    width: 300,
     resizeMode: 'contain',
     display: 'flex',
     marginTop: 10,
@@ -88,5 +92,3 @@ const styles = StyleSheet.create({
     color: '#34495e',
   },
 });
-
-// module.exports = PhotoView;
