@@ -10,7 +10,8 @@ import {
   Image,
   Dimensions,
   ScrollView,
-  Alert
+  Alert,
+  TextInput
     } from 'react-native';
 import { Constants } from 'expo';
 
@@ -22,7 +23,7 @@ export default class PhotoList extends Component {
 
     this._onImgPress = this._onImgPress.bind(this);
     }
-    
+
   _onImgPress(e) {
       console.log(e.target);
       Alert.alert(`TouchableHighlight working (${e.target})`);
@@ -60,6 +61,7 @@ export default class PhotoList extends Component {
                     resizeMode="contain"
                     style={ styles.resimg }
                   />
+                  <TextInput value={'TextInput'} style={ styles.textarea } numberOfLines={4}/>
                 </View>
               </TouchableHighlight>
 
@@ -81,27 +83,35 @@ export default class PhotoList extends Component {
 }
 
 const styles = StyleSheet.create({
+  textarea: {
+    maxWidth: 320,
+    marginLeft: 35,
+    marginTop: 10,
+    marginBottom: 10,
+    textAlign: 'center',
+    borderWidth: 1,
+    borderRadius: 20,
+  },
   imgContainer: {
-    width: 600,
+    width: 400,
     display: 'block',
-    resizeMode: 'contain',
     display: 'flex',
     marginTop: 20,
+    marginLeft: 4,
+    borderWidth: 1,
+    borderRadius: 20,
   },
   touchable: {
-    backgroundColor: 'red',
-    // width: 50,
-    // right: -300,
-    // display: 'flex',
+    // backgroundColor: 'red',
+
   },
   resimg: {
-    height: 420,
-    width: 300,
+    height: 320,
+    width: 250,
     resizeMode: 'contain',
     display: 'flex',
     marginTop: 10,
     marginLeft: 0,
-    borderWidth: 1,
     padding: '50%',
   },
   container: {
