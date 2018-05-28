@@ -40,6 +40,8 @@ export default class ViewPhoto extends Component {
       <TouchableHighlight onPress={this._onImgPress} >
         <View style={ styles.imgContainer }>
 
+          <View style={ styles.checkbox } > </View>
+
           <Image
             source={this.testurl}
             resizeMode="contain"
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
   },
-  touchable: {
+  checkbox: {
     // backgroundColor: 'red',
 
   },
