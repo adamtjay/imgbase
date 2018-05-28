@@ -18,7 +18,8 @@ import { Provider } from 'react-redux'
 import store from './store';
 
 
-import PhotoList from './components/PhotoList';
+import PhotosList from './components/PhotosList';
+import ViewPhoto from './components/ViewPhoto';
 
 
 export default class App extends Component {
@@ -32,7 +33,9 @@ export default class App extends Component {
     return (
       <Provider store={store}>
 
-          <PhotoList />
+          <PhotosList />
+          {/* <ViewPhoto /> */}
+
 
     </Provider>
 

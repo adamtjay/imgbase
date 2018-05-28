@@ -15,7 +15,7 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-export default class PhotoList extends Component {
+export default class PhotosList extends Component {
   constructor(props) {
     super(props);
 
@@ -32,6 +32,8 @@ export default class PhotoList extends Component {
   render() {
     let { photos } = this.state;
 
+
+
     return (
 
       <ScrollView style={styles.container}>
@@ -46,6 +48,8 @@ export default class PhotoList extends Component {
 
   _renderPhotos(photos) {
     let images = [];
+    let testurl = { 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' };
+
     for (let { node: photo } of photos.edges) {
 
       console.log('** Photo data: **\n', photo);
@@ -54,7 +58,6 @@ export default class PhotoList extends Component {
 
         <TouchableHighlight onPress={this._onImgPress} key={photo.image.filename} >
           <View style={ styles.imgContainer }>
-            <View style={ styles.touchable }> </View>
                   <Image
                     key={photo.image.filename}
                     source={photo.image}
@@ -62,8 +65,9 @@ export default class PhotoList extends Component {
                     style={ styles.resimg }
                   />
                   <TextInput value={'TextInput'} style={ styles.textarea } numberOfLines={4}/>
-                </View>
-              </TouchableHighlight>
+              </View>
+          </TouchableHighlight>
+
 
       );
     }
