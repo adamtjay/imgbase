@@ -24,6 +24,7 @@ export default class ViewPhoto extends Component {
     this._onImgPress = this._onImgPress.bind(this);
     }
 
+    // Image source={} prop is looking for an obj with uri property in it
     testurl = { 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' };
 
   _onImgPress(e) {
