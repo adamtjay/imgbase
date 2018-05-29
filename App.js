@@ -14,9 +14,6 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-import { Provider } from 'react-redux'
-import store from './store';
-
 
 import PhotosList from './components/PhotosList';
 import ViewPhoto from './components/ViewPhoto';
@@ -29,15 +26,12 @@ export default class App extends Component {
   }
 
   render() {
+    
+    {/* <ViewPhoto /> */}
 
     return (
-      <Provider store={store}>
 
           <PhotosList />
-          {/* <ViewPhoto /> */}
-
-
-    </Provider>
 
     );
   }
