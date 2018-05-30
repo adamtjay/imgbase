@@ -1,4 +1,4 @@
-## Title: imgBase
+## imgBase
 
 Turn the images & videos on your phone into a searchable database
 
@@ -6,7 +6,7 @@ Turn the images & videos on your phone into a searchable database
 
 ## Project Overview
 
--  Technologies: React Native (JS for iOS/Android), & Django REST API (Python) ( * [link to Python server repo](https://github.com/aj812/imgbasepython))
+-  Technologies: React Native [JS for iOS/Android], & Django REST API [Python] ( [Python server repo](https://github.com/aj812/imgbasepython) )
 -  Add tags/keywords to your Camera Roll media quickly & conveniently, save them to your imgBase
 -  Search the imgBase by keyword(s) to find your images/videos
 
