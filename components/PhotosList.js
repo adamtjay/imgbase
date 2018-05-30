@@ -36,17 +36,20 @@ export default class PhotosList extends Component {
     }
 
   updateActiveArr(photo) {
-    console.log('updating active: ', photo.image.uri)
+    console.log('updating active: ', this.state.activePhotos.length, photo.image.uri)
     this.state.activePhotos.map(statephoto => {
       statephoto.image.uri === photo.image.uri
-          ? console.log('already found, removing from activestate')
-          : console.log('img is new, add to activestate')
-            let newActive = this.state.activePhotos.concat(photo)
-            this.setState({
-              activePhotos: newActive
-             })
+          ? console.log('* img exists in state, removing from activestate *')
+          //remove from the active state array
+          : console.log('* img is new, add to activestate *')
     })
+this.setState({ activePhotos: [...this.state.activePhotos, photo] })
 
+
+    // let newActive = this.state.activePhotos.concat(photo);
+    // this.setState({
+    //   activePhotos: newActive
+    //  })
     // console.log('activestate: ', this.state.activePhotos)
   }
 
