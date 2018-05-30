@@ -26,14 +26,9 @@ export default class PhotosList extends Component {
       activePhotos: []
      };
 
-    this._onImgPress = this._onImgPress.bind(this);
     this.updateActiveArr = this.updateActiveArr.bind(this);
     }
 
-  _onImgPress(e) {
-      console.log(e.target);
-      Alert.alert(`TouchableHighlight working (${e.target})`);
-    }
 
   updateActiveArr(photo) {
     let alreadyExists = 0;
@@ -46,11 +41,10 @@ export default class PhotosList extends Component {
           })
           // if the photo already exists in state, don't update state
           if (alreadyExists === 0) {
-          this.setState({
-               activePhotos: [...this.state.activePhotos, photo]
-             })
+            this.setState({
+                 activePhotos: [...this.state.activePhotos, photo]
+               })
            }
-
     }
 
 

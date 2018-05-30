@@ -24,17 +24,17 @@ export default class ViewPhoto extends Component {
     this._onImgPress = this._onImgPress.bind(this);
     }
 
-  _onImgPress(e) {
+  _onImgPress() {
 
       // add img objs to active array in PhotosList state
       this.props.updateActiveArr(this.props.resphoto);
 
       // Alert.alert(`TouchableHighlight working (${e.target})`);
-      Alert.alert(`Touchable working (${this.props.resphoto.image.uri})`);
+      // Alert.alert(`Touchable working (${this.props.resphoto.image.uri})`);
     }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     // let { photo } = this.props.resphoto;
 
     return (
