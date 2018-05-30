@@ -15,28 +15,23 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-import NavigationBar from 'react-native-navbar';
-
 export default class Navbar extends Component {
 
     render() {
 
-      // const rightButtonConfig = {
-      //   title: 'Next',
-      //   handler: () => alert('hello!'),
-      // };
 
       return (
 
-        <View style={ styles.navbar } >
+       <View style={ styles.navbar } >
+       {/* <View style={{position: 'absolute', top: 0, flex: 1, alignSelf: 'stretch', right: 0, left: 0}}> */}
 
-          <NavigationBar style={ styles.navigation }
-            title={{ title: 'Main' }}
-            leftButton={{ title: 'Left' }}
-            rightButton={{ title: 'Right' }}
-          />
+          <Text style={ styles.navlink }> <Text style={ styles.navitem }> Active: </Text> {this.props.activePhotosLen} </Text>
 
-          {/* rightButton={rightButtonConfig} */}
+          <Text style={ styles.navlink }> <Text style={ styles.navitem }> NavLink2 </Text> </Text>
+
+          <Text style={ styles.navlink }> <Text style={ styles.navitem }> NavLink3 </Text> </Text>
+
+          <Text style={ styles.navlink }> <Text style={ styles.navitem }> NavLink4 </Text> </Text>
 
       </View>
 
@@ -46,15 +41,33 @@ export default class Navbar extends Component {
 }
 
 const styles = StyleSheet.create({
-  navigation: {
-    backgroundColor: 'white',
+  navitem: {
+    // top: 20,
+    // flexDirection: 'column',
+    // justifyContent: 'center',
+  },
+  navlink: {
+    // top: 5,
+    // marginTop: 12,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   navbar: {
-    backgroundColor: 'white',
-    paddingLeft: 50,
-    paddingRight: 50,
-    borderWidth: 1,
+    position: 'absolute',
+    alignSelf: 'stretch',
+    height: 30,
+    // paddingLeft: 50,
+    // paddingRight: 50,
+    marginLeft: 12,
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'stretch',
     borderRadius: 20,
+    // backgroundColor: 'white',
+    // borderWidth: 1,
   }
 })

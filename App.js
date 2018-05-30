@@ -14,7 +14,6 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-
 import PhotosList from './components/PhotosList';
 import SinglePhotoView from './components/SinglePhotoView';
 import Navbar from './components/partials/Navbar';
@@ -29,8 +28,7 @@ export default class App extends Component {
   render() {
 
     return (
-
-      <PhotosList />
+          <PhotosList />
 
       // <SinglePhotoView />
 

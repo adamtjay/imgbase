@@ -60,12 +60,13 @@ export default class PhotosList extends Component {
 
         {/* <Text>   activePhotos: {this.state.activePhotos.length}</Text> */}
 
-        <Navbar />
+        <Navbar activePhotosLen={this.state.activePhotos.length} />
 
+<View style={{flex: 1, marginTop: 25}}>
         {photos
           ? this._renderPhotos(photos)
           : <Text style={styles.paragraph}>Fetching photos...</Text>}
-
+</View>
       </ScrollView>
 
 
