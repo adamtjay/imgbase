@@ -17,6 +17,23 @@ import { Constants } from 'expo';
 
 export default class Navbar extends Component {
 
+    render() {
+      return (
 
+        <View style={ styles.navbar } >
+
+          <Text>Navbar</Text>
+
+      </View>
+
+      )
+    }
 
 }
+
+const styles = StyleSheet.create({
+  navbar: {
+    width: 450,
+    borderWidth: 1,
+  }
+})

@@ -16,6 +16,7 @@ import {
 import { Constants } from 'expo';
 
 import ViewPhoto from './partials/ViewPhoto';
+import Navbar from './partials/Navbar';
 
 export default class PhotosList extends Component {
   constructor(props) {
@@ -57,7 +58,9 @@ export default class PhotosList extends Component {
 
       <ScrollView style={styles.container}>
 
-        <Text>   activePhotos: {this.state.activePhotos.length}</Text>
+        {/* <Text>   activePhotos: {this.state.activePhotos.length}</Text> */}
+
+        <Navbar />
 
         {photos
           ? this._renderPhotos(photos)

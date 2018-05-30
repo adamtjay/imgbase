@@ -16,6 +16,7 @@ import {
 import { Constants } from 'expo';
 
 import ViewPhoto from './partials/ViewPhoto';
+import Navbar from './partials/Navbar';
 
 
 export default class SinglePhotoView extends Component {

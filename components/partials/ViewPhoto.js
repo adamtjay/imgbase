@@ -50,7 +50,7 @@ export default class ViewPhoto extends Component {
                     resizeMode="contain"
                     style={ styles.resimg }
                   />
-                  <TextInput value={'TextInput'} style={ styles.textarea } numberOfLines={4}/>
+                  <TextInput value={'Text Input'} style={ styles.textarea } numberOfLines={4}/>
               </View>
           </TouchableHighlight>
 
