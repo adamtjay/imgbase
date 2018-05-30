@@ -21,15 +21,34 @@ export default class PhotosList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { photos: null };
+    this.state = {
+      photos: null,
+      activePhotos: []
+     };
 
     this._onImgPress = this._onImgPress.bind(this);
+    this.updateActiveArr = this.updateActiveArr.bind(this);
     }
 
   _onImgPress(e) {
       console.log(e.target);
       Alert.alert(`TouchableHighlight working (${e.target})`);
     }
+
+  updateActiveArr(photo) {
+    console.log('updating active: ', photo.image.uri)
+    this.state.activePhotos.map(statephoto => {
+      statephoto.image.uri === photo.image.uri
+          ? console.log('already found, removing from activestate')
+          : console.log('img is new, add to activestate')
+            let newActive = this.state.activePhotos.concat(photo)
+            this.setState({
+              activePhotos: newActive
+             })
+    })
+
+    // console.log('activestate: ', this.state.activePhotos)
+  }
 
   render() {
     let { photos } = this.state;
@@ -54,12 +73,14 @@ export default class PhotosList extends Component {
 
     for (let { node: photo } of photos.edges) {
 
-      console.log('** Photo data: **\n', photo);
+      // console.log('** Photo data: **\n', photo);
 
       images.push(
 
-        <ViewPhoto resphoto={photo} key={photo.image.filename}/>
-
+        <ViewPhoto
+          resphoto={photo}
+          updateActiveArr={this.updateActiveArr}
+          key={photo.image.filename}/>
       );
     }
     return images;

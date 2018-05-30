@@ -25,8 +25,12 @@ export default class ViewPhoto extends Component {
     }
 
   _onImgPress(e) {
-      console.log(e.target);
-      Alert.alert(`TouchableHighlight working (${e.target})`);
+
+      // add img objs to active array in PhotosList state
+      this.props.updateActiveArr(this.props.resphoto);
+
+      // Alert.alert(`TouchableHighlight working (${e.target})`);
+      Alert.alert(`Touchable working (${this.props.resphoto.image.uri})`);
     }
 
   render() {
@@ -36,7 +40,9 @@ export default class ViewPhoto extends Component {
     return (
 
 
-         <TouchableHighlight onPress={this._onImgPress} key={this.props.resphoto.image.filename} >
+         <TouchableHighlight
+           datapath={this.props.resphoto.image.uri}
+           onPress={this._onImgPress} key={this.props.resphoto.image.filename} >
           <View style={ styles.imgContainer }>
                   <Image
                     key={this.props.resphoto.image.filename}
