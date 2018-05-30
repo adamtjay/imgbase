@@ -25,13 +25,12 @@ export default class ViewPhoto extends Component {
     }
 
   _onImgPress() {
-
       // add img objs to active array in PhotosList state
       this.props.updateActiveArr(this.props.resphoto);
-
-      // Alert.alert(`TouchableHighlight working (${e.target})`);
       // Alert.alert(`Touchable working (${this.props.resphoto.image.uri})`);
     }
+
+
 
   render() {
     // console.log(this.props);
@@ -41,7 +40,6 @@ export default class ViewPhoto extends Component {
 
 
          <TouchableHighlight
-           datapath={this.props.resphoto.image.uri}
            onPress={this._onImgPress} key={this.props.resphoto.image.filename} >
           <View style={ styles.imgContainer }>
                   <Image
@@ -51,6 +49,7 @@ export default class ViewPhoto extends Component {
                     style={ styles.resimg }
                   />
                   <TextInput value={'Text Input'} style={ styles.textarea } numberOfLines={4}/>
+                  <Button title={'View'} onPress={this.renderLargeView} > </Button>
               </View>
           </TouchableHighlight>
 

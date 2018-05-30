@@ -14,10 +14,11 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-import MainView from './components/MainView';
+import PhotosList from './PhotosList';
+import SinglePhotoView from './SinglePhotoView';
 
 
-export default class App extends Component {
+export default class MainView extends Component {
   constructor(props) {
     super(props);
 
@@ -27,7 +28,9 @@ export default class App extends Component {
 
     return (
 
-      <MainView />
+          <PhotosList />
+
+      // <SinglePhotoView />
 
     );
   }
