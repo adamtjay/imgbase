@@ -36,22 +36,23 @@ export default class PhotosList extends Component {
     }
 
   updateActiveArr(photo) {
+    let alreadyExists = 0;
     console.log('updating active: ', this.state.activePhotos.length, photo.image.uri)
     this.state.activePhotos.map(statephoto => {
+      // check current state vs clicked photo to see if it's already there
       statephoto.image.uri === photo.image.uri
-          ? console.log('* img exists in state, removing from activestate *')
-          //remove from the active state array
-          : console.log('* img is new, add to activestate *')
-    })
-this.setState({ activePhotos: [...this.state.activePhotos, photo] })
+          ? alreadyExists = 1
+          : alreadyExists = 0
+          })
+          // if the photo already exists in state, don't update state
+          if (alreadyExists === 0) {
+          this.setState({
+               activePhotos: [...this.state.activePhotos, photo]
+             })
+           }
 
+    }
 
-    // let newActive = this.state.activePhotos.concat(photo);
-    // this.setState({
-    //   activePhotos: newActive
-    //  })
-    // console.log('activestate: ', this.state.activePhotos)
-  }
 
   render() {
     let { photos } = this.state;
@@ -61,9 +62,13 @@ this.setState({ activePhotos: [...this.state.activePhotos, photo] })
     return (
 
       <ScrollView style={styles.container}>
+
+        <Text>   activePhotos: {this.state.activePhotos.length}</Text>
+
         {photos
           ? this._renderPhotos(photos)
           : <Text style={styles.paragraph}>Fetching photos...</Text>}
+
       </ScrollView>
 
 
