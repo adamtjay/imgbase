@@ -19,7 +19,9 @@ export default class ViewPhoto extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {  };
+    this.state = {
+      isActive: false
+     };
 
     this._onImgPress = this._onImgPress.bind(this);
     }
@@ -30,6 +32,9 @@ export default class ViewPhoto extends Component {
       // Alert.alert(`Touchable working (${this.props.resphoto.image.uri})`);
     }
 
+renderLargeView() {
+
+}
 
 
   render() {
@@ -48,8 +53,16 @@ export default class ViewPhoto extends Component {
                     resizeMode="contain"
                     style={ styles.resimg }
                   />
-                  <TextInput value={'Text Input'} style={ styles.textarea } numberOfLines={4}/>
-                  <Button title={'View'} onPress={this.renderLargeView} > </Button>
+
+                  {this.props.activePhotos.map(statephoto => {
+                    if (statephoto.image.filename === this.props.resphoto.image.filename) { this.state.isActive = true }
+                  }) }
+
+                  { this.state.isActive
+                    ? <TextInput value={'Text Input'} style={ styles.textarea } numberOfLines={4}/>
+                    : this.state.isActive }
+
+                  {/* <Button title={'View'} onPress={this.renderLargeView} > </Button> */}
               </View>
           </TouchableHighlight>
 

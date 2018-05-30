@@ -62,13 +62,12 @@ export default class PhotosList extends Component {
 
         <Navbar activePhotosLen={this.state.activePhotos.length} />
 
-<View style={{flex: 1, marginTop: 25}}>
-        {photos
-          ? this._renderPhotos(photos)
-          : <Text style={styles.paragraph}>Fetching photos...</Text>}
-</View>
+        <View style={{flex: 1, marginTop: 25}}>
+          {photos
+            ? this._renderPhotos(photos)
+            : <Text style={styles.paragraph}>Fetching photos...</Text>}
+        </View>
       </ScrollView>
-
 
     );
   }
@@ -85,9 +84,10 @@ export default class PhotosList extends Component {
 
         <ViewPhoto
           resphoto={photo}
+          activePhotos={this.state.activePhotos}
           updateActiveArr={this.updateActiveArr}
           key={photo.image.filename}/>
-      );
+        );
     }
     return images;
   }
