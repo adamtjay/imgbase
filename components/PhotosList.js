@@ -32,12 +32,12 @@ export default class PhotosList extends Component {
 
   updateActiveArr(photo) {
     let alreadyExists = 0;
-    console.log('updating active: ', this.state.activePhotos.length, photo.image.uri)
+    console.log('updating active: ', this.state.activePhotos.length, photo.image.filename)
+
     this.state.activePhotos.map(statephoto => {
       // check current state vs clicked photo to see if it's already there
-      statephoto.image.uri === photo.image.uri
-          ? alreadyExists = 1
-          : alreadyExists = 0
+      console.log(photo.image.filename === statephoto.image.filename ? 'match' : 'no match')
+      if (statephoto.image.uri === photo.image.uri) { alreadyExists = 1 }
           })
           // if the photo already exists in state, don't update state
           if (alreadyExists === 0) {
