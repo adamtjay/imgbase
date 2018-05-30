@@ -45,25 +45,27 @@ renderLargeView() {
 
 
          <TouchableHighlight
-           onPress={this._onImgPress} key={this.props.resphoto.image.filename} >
-          <View style={ styles.imgContainer }>
-                  <Image
-                    key={this.props.resphoto.image.filename}
-                    source={this.props.resphoto.image}
-                    resizeMode="contain"
-                    style={ styles.resimg }
-                  />
+           onPress={this._onImgPress}
+           key={this.props.resphoto.image.filename} >
 
-                  {this.props.activePhotos.map(statephoto => {
-                    if (statephoto.image.filename === this.props.resphoto.image.filename) { this.state.isActive = true }
-                  }) }
+            <View style={ this.state.isActive ? styles.activeContainer : styles.imgContainer } >
+                    <Image
+                      key={this.props.resphoto.image.filename}
+                      source={this.props.resphoto.image}
+                      resizeMode="contain"
+                      style={ styles.resimg }
+                    />
 
-                  { this.state.isActive
-                    ? <TextInput value={'Text Input'} style={ styles.textarea } numberOfLines={4}/>
-                    : this.state.isActive }
+                    {this.props.activePhotos.map(statephoto => {
+                      if (statephoto.image.filename === this.props.resphoto.image.filename) { this.state.isActive = true }
+                    }) }
 
-                  {/* <Button title={'View'} onPress={this.renderLargeView} > </Button> */}
-              </View>
+                    { this.state.isActive
+                      ? <TextInput value={'Text Input'} style={ styles.textarea } numberOfLines={4}/>
+                      : this.state.isActive }
+
+                    {/* <Button title={'View'} onPress={this.renderLargeView} > </Button> */}
+                </View>
           </TouchableHighlight>
 
 )}
@@ -74,7 +76,6 @@ const styles = StyleSheet.create({
     maxWidth: 320,
     marginLeft: 35,
     marginTop: 10,
-    marginBottom: 10,
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
@@ -87,7 +88,20 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     borderWidth: 1,
     borderRadius: 20,
+    paddingBottom: 15,
   },
+  activeContiner: {
+    backgroundColor: 'red',
+    width: 400,
+    display: 'block',
+    display: 'flex',
+    marginTop: 20,
+    marginLeft: 4,
+    borderWidth: 1,
+    borderRadius: 20,
+    paddingBottom: 15,
+  },
+
   touchable: {
     // backgroundColor: 'red',
 
