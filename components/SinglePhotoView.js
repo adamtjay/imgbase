@@ -17,63 +17,49 @@ import { Constants } from 'expo';
 
 import ViewPhoto from './partials/ViewPhoto';
 
-export default class PhotosList extends Component {
+
+export default class SinglePhotoView extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { photos: null };
+    this.state = {  };
 
     this._onImgPress = this._onImgPress.bind(this);
     }
+
+    // Image source={} prop is looking for an obj with uri property in it
+    testurl = { 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' };
 
   _onImgPress(e) {
       console.log(e.target);
       Alert.alert(`TouchableHighlight working (${e.target})`);
     }
 
+
+
   render() {
-    let { photos } = this.state;
 
-
+    let testphoto = {
+        "group_name": "All Photos",
+        "image": {
+            "filename": "IMG_5461.PNG",
+            "height": 2208,
+            "isStored": true,
+            "playableDuration": 0,
+            "uri": "assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG",
+            "width": 1242,
+          },
+        "location": {},
+        "timestamp": 1527164685,
+        "type": "ALAssetTypePhoto",
+      }
 
     return (
 
-      <ScrollView style={styles.container}>
-        {photos
-          ? this._renderPhotos(photos)
-          : <Text style={styles.paragraph}>Fetching photos...</Text>}
-      </ScrollView>
+      <ViewPhoto resphoto={testphoto} />
 
 
     );
-  }
-
-  _renderPhotos(photos) {
-    let images = [];
-    let testurl = { 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' };
-
-    for (let { node: photo } of photos.edges) {
-
-      console.log('** Photo data: **\n', photo);
-
-      images.push(
-
-        <ViewPhoto resphoto={photo} key={photo.image.filename}/>
-
-      );
-    }
-    return images;
-  }
-
-  componentDidMount() {
-    this._getPhotosAsync().catch(error => {
-      console.error(error);
-    });
-  }
-
-  async _getPhotosAsync() {
-    let photos = await CameraRoll.getPhotos({ first: 20 });
-    this.setState({ photos });
   }
 }
 
@@ -96,7 +82,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
   },
-  touchable: {
+  checkbox: {
     // backgroundColor: 'red',
 
   },

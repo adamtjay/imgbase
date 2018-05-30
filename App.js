@@ -16,7 +16,8 @@ import { Constants } from 'expo';
 
 
 import PhotosList from './components/PhotosList';
-import ViewPhoto from './components/ViewPhoto';
+import SinglePhotoView from './components/SinglePhotoView';
+import Navbar from './components/partials/Navbar';
 
 
 export default class App extends Component {
@@ -26,12 +27,12 @@ export default class App extends Component {
   }
 
   render() {
-    
-    {/* <ViewPhoto /> */}
 
     return (
 
-          <PhotosList />
+      <PhotosList />
+
+      // <SinglePhotoView />
 
     );
   }

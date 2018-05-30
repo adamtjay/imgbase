@@ -15,13 +15,11 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-import ViewPhoto from './partials/ViewPhoto';
-
-export default class PhotosList extends Component {
+export default class ViewLargePhoto extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { photos: null };
+    this.state = {  };
 
     this._onImgPress = this._onImgPress.bind(this);
     }
@@ -32,49 +30,25 @@ export default class PhotosList extends Component {
     }
 
   render() {
-    let { photos } = this.state;
-
-
+    console.log(this.props);
+    // let { photo } = this.props.resphoto;
 
     return (
 
-      <ScrollView style={styles.container}>
-        {photos
-          ? this._renderPhotos(photos)
-          : <Text style={styles.paragraph}>Fetching photos...</Text>}
-      </ScrollView>
 
+         <TouchableHighlight onPress={this._onImgPress} key={this.props.resphoto.image.filename} >
+          <View style={ styles.imgContainer }>
+                  <Image
+                    key={this.props.resphoto.image.filename}
+                    source={this.props.resphoto.image}
+                    resizeMode="contain"
+                    style={ styles.resimg }
+                  />
+                  <TextInput value={'TextInput'} style={ styles.textarea } numberOfLines={4}/>
+              </View>
+          </TouchableHighlight>
 
-    );
-  }
-
-  _renderPhotos(photos) {
-    let images = [];
-    let testurl = { 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' };
-
-    for (let { node: photo } of photos.edges) {
-
-      console.log('** Photo data: **\n', photo);
-
-      images.push(
-
-        <ViewPhoto resphoto={photo} key={photo.image.filename}/>
-
-      );
-    }
-    return images;
-  }
-
-  componentDidMount() {
-    this._getPhotosAsync().catch(error => {
-      console.error(error);
-    });
-  }
-
-  async _getPhotosAsync() {
-    let photos = await CameraRoll.getPhotos({ first: 20 });
-    this.setState({ photos });
-  }
+)}
 }
 
 const styles = StyleSheet.create({

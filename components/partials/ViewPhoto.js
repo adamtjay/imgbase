@@ -24,36 +24,31 @@ export default class ViewPhoto extends Component {
     this._onImgPress = this._onImgPress.bind(this);
     }
 
-    // Image source={} prop is looking for an obj with uri property in it
-    testurl = { 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' };
-
   _onImgPress(e) {
       console.log(e.target);
       Alert.alert(`TouchableHighlight working (${e.target})`);
     }
 
-
-
   render() {
+    console.log(this.props);
+    // let { photo } = this.props.resphoto;
 
     return (
 
-      <TouchableHighlight onPress={this._onImgPress} >
-        <View style={ styles.imgContainer }>
 
-          <View style={ styles.checkbox } > </View>
+         <TouchableHighlight onPress={this._onImgPress} key={this.props.resphoto.image.filename} >
+          <View style={ styles.imgContainer }>
+                  <Image
+                    key={this.props.resphoto.image.filename}
+                    source={this.props.resphoto.image}
+                    resizeMode="contain"
+                    style={ styles.resimg }
+                  />
+                  <TextInput value={'TextInput'} style={ styles.textarea } numberOfLines={4}/>
+              </View>
+          </TouchableHighlight>
 
-          <Image
-            source={this.testurl}
-            resizeMode="contain"
-            style={ styles.resimg }
-            />
-
-        </View>
-    </TouchableHighlight>
-
-    );
-  }
+)}
 }
 
 const styles = StyleSheet.create({
@@ -75,7 +70,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
   },
-  checkbox: {
+  touchable: {
     // backgroundColor: 'red',
 
   },
