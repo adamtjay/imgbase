@@ -29,6 +29,8 @@ export default class ViewLargePhoto extends Component {
       Alert.alert(`TouchableHighlight working (${e.target})`);
     }
 
+    
+
   render() {
     console.log(this.props);
     // let { photo } = this.props.resphoto;

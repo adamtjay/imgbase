@@ -92,10 +92,28 @@ export default class PhotosList extends Component {
     return images;
   }
 
+  fetchTest() {
+    fetch('https://imgbase-api.herokuapp.com/api/media/1/?format=json', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify({
+      //   firstParam: 'yourValue',
+      //   secondParam: 'yourOtherValue',
+      // }),
+    }).then(res => res.json())
+    .then(data => console.log(data))
+  }
+
+
   componentDidMount() {
-    this._getPhotosAsync().catch(error => {
-      console.error(error);
-    });
+      this.fetchTest();
+
+      this._getPhotosAsync().catch(error => {
+        console.error(error);
+      });
   }
 
   async _getPhotosAsync() {
