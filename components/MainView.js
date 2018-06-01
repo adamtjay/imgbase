@@ -15,6 +15,7 @@ import {
 import { Constants } from 'expo';
 
 import CameraPhotosList from './CameraPhotosList';
+import ImgbasePhotosList from './ImgbasePhotosList';
 
 import ViewLargePhoto from './partials/ViewLargePhoto';
 import Navbar from './partials/nav/Navbar';
@@ -81,7 +82,9 @@ export default class MainView extends Component {
 
         <ScrollView style={ styles.maincontainer }>
 
-          <CameraPhotosList />
+          {/* <CameraPhotosList /> */}
+          <ImgbasePhotosList />
+
 
         </ScrollView>
 
