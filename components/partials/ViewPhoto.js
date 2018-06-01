@@ -66,7 +66,7 @@ renderLargeView() {
                       if (statephoto.image.filename === this.props.resphoto.image.filename) { this.state.isActive = true }
                     }) }
 
-                    { this.state.isActive
+                    { this.state.isActive && !this.props.fromImgbase
                       ? <Text name="removeactive" onPress={() => Alert.alert('Remove pressed') } style={ styles.removeactive } > X </Text>
                       : this.state.isActive }
 
