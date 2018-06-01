@@ -57,6 +57,8 @@ export default class ImgbasePhotosList extends Component {
 
       <ScrollView style={styles.container}>
 
+        <TextInput placeholder={'Search Tags'} style={ styles.searchbox }/>
+
         <View style={{flex: 1, marginTop: 25}}>
           {/* <Text> {this.state.activePhotos.length} </Text> */}
 
@@ -93,20 +95,24 @@ export default class ImgbasePhotosList extends Component {
     return images;
   }
 
-  // fetchTest() {
-  //   fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     // body: JSON.stringify({
-  //     //   firstParam: 'yourValue',
-  //     //   secondParam: 'yourOtherValue',
-  //     // }),
-  //   }).then(res => res.json())
-  //   .then(data => console.log(data))
-  // }
+
+  fetchPhotos() {
+    fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify({
+      //   firstParam: 'yourValue',
+      //   secondParam: 'yourOtherValue',
+      // }),
+    }).then(res => res.json())
+      // .then(data => console.log(data))
+      // .then(data =>
+      //     JSON.stringify(data).map(photo => console.log('test', photo))
+      // )
+  }
 
   // postTest() {
   //   fetch('https://imgbase-api.herokuapp.com/api/media?format=json', {
@@ -125,7 +131,7 @@ export default class ImgbasePhotosList extends Component {
 
 
   componentDidMount() {
-      // this.fetchTest();
+      this.fetchPhotos();
       // this.postTest();
 
       this._getPhotosAsync().catch(error => {
@@ -140,6 +146,17 @@ export default class ImgbasePhotosList extends Component {
 }
 
 const styles = StyleSheet.create({
+  searchbox: {
+    top: 20,
+    textAlign: 'center',
+    borderWidth: 1,
+    borderRadius: 20,
+    width: 300,
+    left: 55,
+    height: 50,
+    backgroundColor: 'white',
+    fontSize: 18,
+  },
   textarea: {
     maxWidth: 320,
     marginLeft: 35,

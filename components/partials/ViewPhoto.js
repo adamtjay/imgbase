@@ -64,7 +64,7 @@ renderLargeView() {
                     }) }
 
                     { this.state.isActive
-                      ? <TextInput value={'Add Tags'} style={ styles.textarea } numberOfLines={4}/>
+                      ? <TextInput placeholder={'Add Tags'} style={ styles.textarea } numberOfLines={4}/>
                       : this.state.isActive }
 
                 </View>
@@ -78,10 +78,13 @@ const styles = StyleSheet.create({
   textarea: {
     maxWidth: 320,
     marginLeft: 35,
-    marginTop: 10,
+    marginTop: 15,
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
+    fontSize: 18,
+    backgroundColor: 'white',
+    height: 30,
   },
   imgContainer: {
     width: 400,
