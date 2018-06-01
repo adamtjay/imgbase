@@ -33,15 +33,13 @@ export default class ViewLargePhoto extends Component {
 
   render() {
 
-    const resphoto = JSON.parse(this.props.resphoto);
+      const resphoto = JSON.parse(this.props.resphoto);
 
-    console.log('viewlargephoto props: ', resphoto);
-
-    // let { photo } = this.props.resphoto;
+      console.log('viewlargephoto props: ', resphoto);
 
     return (
 
-      <View>
+      <View style={ styles.maincontainer }>
       { resphoto
         ?
       <TouchableHighlight onPress={this._onImgPress} key={resphoto.filename} >
@@ -64,9 +62,12 @@ export default class ViewLargePhoto extends Component {
 }
 
 const styles = StyleSheet.create({
+  maincontainer: {
+    top: 40,
+  },
   textarea: {
     maxWidth: 320,
-    marginLeft: 35,
+    marginLeft: 75,
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'center',
@@ -74,11 +75,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   imgContainer: {
-    width: 400,
+    width: 500,
     display: 'block',
     display: 'flex',
     marginTop: 20,
-    marginLeft: 4,
+    // marginLeft: 4,
+    right: 45,
     borderWidth: 1,
     borderRadius: 20,
   },
@@ -87,13 +89,15 @@ const styles = StyleSheet.create({
 
   },
   resimg: {
-    height: 320,
-    width: 250,
+    top: 30,
+    height: 480,
+    width: 450,
     resizeMode: 'contain',
     display: 'flex',
     marginTop: 10,
     marginLeft: 0,
     padding: '50%',
+    // borderWidth: 1,
   },
   container: {
     flex: 1,

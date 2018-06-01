@@ -10,14 +10,15 @@ import {
   Image,
   Dimensions,
   ScrollView,
-  Alert
+  Alert,
     } from 'react-native';
 import { Constants } from 'expo';
 
 import PhotosList from './PhotosList';
-import SinglePhotoView from './SinglePhotoView';
 
 import ViewLargePhoto from './partials/ViewLargePhoto';
+import Navbar from './partials/nav/Navbar';
+import Menu from './screens/Menu';
 
 
 export default class MainView extends Component {
@@ -66,19 +67,48 @@ export default class MainView extends Component {
 
     const { photo } = this.state;
 
+    // singlephoto props needs to be an object w/ uri property, that's then JSON stringified
+    const testphoto = JSON.stringify({ 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' })
+
     return (
 
-          // <PhotosList />
+      // <Menu />
 
-<View>
-        {photo.length > 1
-        ? <ViewLargePhoto resphoto={photo} />
-        : <Text>Loading</Text> }
-        />
-</View>
-      // <ViewLargePhoto resphoto={this.state.photo} />
-      // <SinglePhotoView />
+     <ScrollView>
+
+        <Navbar  />
+
+        <ScrollView style={ styles.maincontainer }>
+
+          <PhotosList />
+
+        </ScrollView>
+
+    </ScrollView>
+
+
+
+  /* <ScrollView >
+
+    <Navbar  />
+
+    <ScrollView style={ styles.maincontainer }>
+
+              {photo.length > 1
+              ? <ViewLargePhoto resphoto={testphoto} />
+              : <Text>Loading</Text> }
+              />
+
+        </ScrollView>
+
+  </ScrollView> */
 
     );
   }
 }
+
+const styles = StyleSheet.create({
+  maincontainer: {
+    top: 50,
+  }
+})

@@ -15,6 +15,8 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
+
+
 export default class ViewPhoto extends Component {
   constructor(props) {
     super(props);
@@ -41,12 +43,13 @@ renderLargeView() {
     // console.log(this.props);
     // let { photo } = this.props.resphoto;
 
+
     return (
 
+      <TouchableHighlight
+        onPress={this._onImgPress}
+        key={this.props.resphoto.image.filename} >
 
-         <TouchableHighlight
-           onPress={this._onImgPress}
-           key={this.props.resphoto.image.filename} >
 
             <View style={ this.state.isActive ? styles.activeContainer : styles.imgContainer } >
                     <Image
@@ -64,8 +67,8 @@ renderLargeView() {
                       ? <TextInput value={'Text Input'} style={ styles.textarea } numberOfLines={4}/>
                       : this.state.isActive }
 
-                    {/* <Button title={'View'} onPress={this.renderLargeView} > </Button> */}
                 </View>
+
           </TouchableHighlight>
 
 )}
@@ -91,7 +94,6 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   activeContiner: {
-    backgroundColor: 'red',
     width: 400,
     display: 'block',
     display: 'flex',

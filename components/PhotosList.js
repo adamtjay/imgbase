@@ -16,7 +16,7 @@ import {
 import { Constants } from 'expo';
 
 import ViewPhoto from './partials/ViewPhoto';
-import Navbar from './partials/Navbar';
+import Navbar from './partials/nav/Navbar';
 
 export default class PhotosList extends Component {
   constructor(props) {
@@ -60,13 +60,17 @@ export default class PhotosList extends Component {
 
         {/* <Text>   activePhotos: {this.state.activePhotos.length}</Text> */}
 
-        <Navbar activePhotosLen={this.state.activePhotos.length} />
-
         <View style={{flex: 1, marginTop: 25}}>
+          <Text> {this.state.activePhotos.length} </Text>
+
+
           {photos
             ? this._renderPhotos(photos)
             : <Text style={styles.paragraph}>Fetching photos...</Text>}
+
         </View>
+
+
       </ScrollView>
 
     );
@@ -92,20 +96,20 @@ export default class PhotosList extends Component {
     return images;
   }
 
-  fetchTest() {
-    fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      // body: JSON.stringify({
-      //   firstParam: 'yourValue',
-      //   secondParam: 'yourOtherValue',
-      // }),
-    }).then(res => res.json())
-    .then(data => console.log(data))
-  }
+  // fetchTest() {
+  //   fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     // body: JSON.stringify({
+  //     //   firstParam: 'yourValue',
+  //     //   secondParam: 'yourOtherValue',
+  //     // }),
+  //   }).then(res => res.json())
+  //   .then(data => console.log(data))
+  // }
 
   // postTest() {
   //   fetch('https://imgbase-api.herokuapp.com/api/media?format=json', {
@@ -124,7 +128,7 @@ export default class PhotosList extends Component {
 
 
   componentDidMount() {
-      this.fetchTest();
+      // this.fetchTest();
       // this.postTest();
 
       this._getPhotosAsync().catch(error => {
