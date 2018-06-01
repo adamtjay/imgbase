@@ -14,7 +14,7 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-import PhotosList from './PhotosList';
+import CameraPhotosList from './CameraPhotosList';
 
 import ViewLargePhoto from './partials/ViewLargePhoto';
 import Navbar from './partials/nav/Navbar';
@@ -74,13 +74,14 @@ export default class MainView extends Component {
 
       // <Menu />
 
+
      <ScrollView>
 
         <Navbar  />
 
         <ScrollView style={ styles.maincontainer }>
 
-          <PhotosList />
+          <CameraPhotosList />
 
         </ScrollView>
 
@@ -88,20 +89,20 @@ export default class MainView extends Component {
 
 
 
-  /* <ScrollView >
-
-    <Navbar  />
-
-    <ScrollView style={ styles.maincontainer }>
-
-              {photo.length > 1
-              ? <ViewLargePhoto resphoto={testphoto} />
-              : <Text>Loading</Text> }
-              />
-
-        </ScrollView>
-
-  </ScrollView> */
+  // <ScrollView >
+  //
+  //   <Navbar  />
+  //
+  //   <ScrollView style={ styles.maincontainer }>
+  //
+  //             {photo.length > 1
+  //             ? <ViewLargePhoto resphoto={photo} />
+  //             : <Text>Loading</Text> }
+  //             />
+  //
+  //       </ScrollView>
+  //
+  // </ScrollView>
 
     );
   }

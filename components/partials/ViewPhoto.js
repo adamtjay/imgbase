@@ -64,7 +64,7 @@ renderLargeView() {
                     }) }
 
                     { this.state.isActive
-                      ? <TextInput value={'Text Input'} style={ styles.textarea } numberOfLines={4}/>
+                      ? <TextInput value={'Add Tags'} style={ styles.textarea } numberOfLines={4}/>
                       : this.state.isActive }
 
                 </View>

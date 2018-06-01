@@ -39,24 +39,31 @@ export default class ViewLargePhoto extends Component {
 
     return (
 
-      <View style={ styles.maincontainer }>
+      <ScrollView style={ styles.maincontainer }>
       { resphoto
         ?
       <TouchableHighlight onPress={this._onImgPress} key={resphoto.filename} >
-       <View style={ styles.imgContainer }>
+       <ScrollView style={ styles.imgContainer }>
+         
                <Image
                  key={resphoto.filename}
                  source={resphoto}
                  resizeMode="contain"
                  style={ styles.resimg }
                />
-               <TextInput value={'TextInput'} style={ styles.textarea } numberOfLines={4}/>
-           </View>
+
+               { resphoto
+                 ? <TextInput value={'Add Tags'} style={ styles.textarea } numberOfLines={4}/>
+                 : resphoto}
+
+           </ScrollView>
+
        </TouchableHighlight>
+
 
        : <Text>Loading</Text>
      }
-   </View>
+   </ScrollView>
 
 )}
 }
@@ -66,10 +73,10 @@ const styles = StyleSheet.create({
     top: 40,
   },
   textarea: {
+    zIndex: 5,
     maxWidth: 320,
-    marginLeft: 75,
+    marginLeft: 35,
     marginTop: 10,
-    marginBottom: 10,
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,

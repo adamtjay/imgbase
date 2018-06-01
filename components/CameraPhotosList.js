@@ -18,7 +18,7 @@ import { Constants } from 'expo';
 import ViewPhoto from './partials/ViewPhoto';
 import Navbar from './partials/nav/Navbar';
 
-export default class PhotosList extends Component {
+export default class CameraPhotosList extends Component {
   constructor(props) {
     super(props);
 
