@@ -29,26 +29,36 @@ export default class ViewLargePhoto extends Component {
       Alert.alert(`TouchableHighlight working (${e.target})`);
     }
 
-    
+
 
   render() {
-    console.log(this.props);
+
+    const resphoto = JSON.parse(this.props.resphoto);
+
+    console.log('viewlargephoto props: ', resphoto);
+
     // let { photo } = this.props.resphoto;
 
     return (
 
+      <View>
+      { resphoto
+        ?
+      <TouchableHighlight onPress={this._onImgPress} key={resphoto.filename} >
+       <View style={ styles.imgContainer }>
+               <Image
+                 key={resphoto.filename}
+                 source={resphoto}
+                 resizeMode="contain"
+                 style={ styles.resimg }
+               />
+               <TextInput value={'TextInput'} style={ styles.textarea } numberOfLines={4}/>
+           </View>
+       </TouchableHighlight>
 
-         <TouchableHighlight onPress={this._onImgPress} key={this.props.resphoto.image.filename} >
-          <View style={ styles.imgContainer }>
-                  <Image
-                    key={this.props.resphoto.image.filename}
-                    source={this.props.resphoto.image}
-                    resizeMode="contain"
-                    style={ styles.resimg }
-                  />
-                  <TextInput value={'TextInput'} style={ styles.textarea } numberOfLines={4}/>
-              </View>
-          </TouchableHighlight>
+       : <Text>Loading</Text>
+     }
+   </View>
 
 )}
 }

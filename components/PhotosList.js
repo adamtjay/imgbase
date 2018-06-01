@@ -93,7 +93,7 @@ export default class PhotosList extends Component {
   }
 
   fetchTest() {
-    fetch('https://imgbase-api.herokuapp.com/api/media/1/?format=json', {
+    fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -107,9 +107,25 @@ export default class PhotosList extends Component {
     .then(data => console.log(data))
   }
 
+  // postTest() {
+  //   fetch('https://imgbase-api.herokuapp.com/api/media?format=json', {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       firstParam: 'yourValue',
+  //       secondParam: 'yourOtherValue',
+  //     }),
+  //   }).then(res => res.json())
+  //   .then(data => console.log(data))
+  // }
+
 
   componentDidMount() {
       this.fetchTest();
+      // this.postTest();
 
       this._getPhotosAsync().catch(error => {
         console.error(error);
