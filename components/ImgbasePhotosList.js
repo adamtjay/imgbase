@@ -27,17 +27,21 @@ export default class ImgbasePhotosList extends Component {
     this.state = {
       photos: null,
       activePhotos: [],
-      // searchbar: ''
+      searchbar: '',
+      photo: null
      };
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.searchForTags = _.debounce(this.searchForTags, 1200);
+    this.fetchtest = this.fetchTest.bind(this);
     }
 
 
   searchForTags(tagsarray) {
-      console.log('lodash searching: ', tagsarray)
+      // console.log('lodash searching: ', tagsarray)
+
+      this.fetchTest();
     }
 
 
@@ -65,6 +69,38 @@ export default class ImgbasePhotosList extends Component {
                  activePhotos: [...this.state.activePhotos, photo]
                })
            }
+    }
+
+
+    fetchTest() {
+      console.log(`fetching: ${this.state.searchbar}`)
+      fetch('https://imgbase-api.herokuapp.com/api/media/1/?format=json', {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        // console.log('MainView fetch: ', data.tags)
+        // console.log('MainView fetch: ', data.user.id)
+        this.setState({
+          photo: data
+        })
+      console.log('imgbase photo state: ', this.state.photo)
+      }
+    ).catch(err => console.log(err))
+    }
+
+
+    componentDidMount() {
+        // this.fetchPhotos();
+        this.fetchTest();
+
+        this._getPhotosAsync().catch(error => {
+          console.error(error);
+        });
     }
 
 
@@ -120,23 +156,23 @@ export default class ImgbasePhotosList extends Component {
   }
 
 
-  fetchPhotos() {
-    fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      // body: JSON.stringify({
-      //   firstParam: 'yourValue',
-      //   secondParam: 'yourOtherValue',
-      // }),
-    }).then(res => res.json())
-      // .then(data => console.log(data))
-      // .then(data =>
-      //     JSON.stringify(data).map(photo => console.log('test', photo))
-      // )
-  }
+  // fetchPhotos() {
+  //   fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     // body: JSON.stringify({
+  //     //   firstParam: 'yourValue',
+  //     //   secondParam: 'yourOtherValue',
+  //     // }),
+  //   }).then(res => res.json())
+  //     // .then(data => console.log(data))
+  //     // .then(data =>
+  //     //     JSON.stringify(data).map(photo => console.log('test', photo))
+  //     // )
+  // }
 
   // postTest() {
   //   fetch('https://imgbase-api.herokuapp.com/api/media?format=json', {
@@ -153,15 +189,6 @@ export default class ImgbasePhotosList extends Component {
   //   .then(data => console.log(data))
   // }
 
-
-  componentDidMount() {
-      this.fetchPhotos();
-      // this.postTest();
-
-      this._getPhotosAsync().catch(error => {
-        console.error(error);
-      });
-  }
 
   async _getPhotosAsync() {
     let photos = await CameraRoll.getPhotos({ first: 20 });

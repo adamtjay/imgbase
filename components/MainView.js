@@ -59,7 +59,7 @@ export default class MainView extends Component {
 
 
   componentDidMount() {
-      this.fetchTest();
+      // this.fetchTest();
       // this.postTest();
     }
 
