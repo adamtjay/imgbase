@@ -52,6 +52,8 @@ renderLargeView() {
 
 
             <View style={ this.state.isActive ? styles.activeContainer : styles.imgContainer } >
+
+
                     <Image
                       key={this.props.resphoto.image.filename}
                       source={this.props.resphoto.image}
@@ -59,9 +61,15 @@ renderLargeView() {
                       style={ styles.resimg }
                     />
 
+
                     {this.props.activePhotos.map(statephoto => {
                       if (statephoto.image.filename === this.props.resphoto.image.filename) { this.state.isActive = true }
                     }) }
+
+                    { this.state.isActive
+                      ? <Text name="removeactive" onPress={() => Alert.alert('Remove pressed') } style={ styles.removeactive } > X </Text>
+                      : this.state.isActive }
+
 
                     { this.state.isActive
                       ? <TextInput placeholder={'Add Tags'} style={ styles.textarea } numberOfLines={4}/>
@@ -75,6 +83,17 @@ renderLargeView() {
 }
 
 const styles = StyleSheet.create({
+  removeactive: {
+    zIndex: 50,
+    width: 20,
+    height: 20,
+    // backgroundColor: 'white',
+    borderWidth: 1,
+    borderRadius: 10,
+    top: 20,
+    right: 20,
+    position: 'absolute',
+  },
   textarea: {
     maxWidth: 320,
     marginLeft: 35,
