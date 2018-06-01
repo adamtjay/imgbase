@@ -82,8 +82,8 @@ export default class MainView extends Component {
 
         <ScrollView style={ styles.maincontainer }>
 
-          <CameraPhotosList />
-          {/* <ImgbasePhotosList /> */}
+          {/* <CameraPhotosList /> */}
+          <ImgbasePhotosList />
 
 
         </ScrollView>

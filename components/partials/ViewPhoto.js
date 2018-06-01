@@ -71,8 +71,12 @@ renderLargeView() {
                       : this.state.isActive }
 
 
-                    { this.state.isActive
-                      ? <TextInput placeholder={'Add Tags'} style={ styles.textarea } numberOfLines={4}/>
+                    { this.state.isActive && !this.props.fromImgbase
+                      ? <TextInput name="addtags" placeholder={'Add Tags'} style={ styles.addtags } numberOfLines={4}/>
+                      : this.state.isActive }
+
+                    { this.props.fromImgbase
+                      ? <TextInput name="edittags" placeholder={'Edit Tags'} style={ styles.addtags } numberOfLines={4}/>
                       : this.state.isActive }
 
                 </View>
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
     right: 20,
     position: 'absolute',
   },
-  textarea: {
+  addtags: {
     maxWidth: 320,
     marginLeft: 35,
     marginTop: 15,

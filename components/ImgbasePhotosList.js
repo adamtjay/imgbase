@@ -86,6 +86,7 @@ export default class ImgbasePhotosList extends Component {
       images.push(
 
         <ViewPhoto
+          fromImgbase={true}
           resphoto={photo}
           activePhotos={this.state.activePhotos}
           updateActiveArr={this.updateActiveArr}
