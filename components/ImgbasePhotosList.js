@@ -15,6 +15,8 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
+import _ from 'lodash';
+
 import ViewPhoto from './partials/ViewPhoto';
 import Navbar from './partials/nav/Navbar';
 
@@ -24,12 +26,29 @@ export default class ImgbasePhotosList extends Component {
 
     this.state = {
       photos: null,
-      activePhotos: []
+      activePhotos: [],
+      // searchbar: ''
      };
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.searchForTags = _.debounce(this.searchForTags, 1200);
     }
 
+
+  searchForTags(tagsarray) {
+      console.log('lodash searching: ', tagsarray)
+    }
+
+
+  handleChange(e) {
+    // console.log(e);
+      this.setState({
+        searchbar: e
+      })
+      this.searchForTags(e) // currently using event value, no state
+    // this.searchForTags(this.state.searchbar)
+    }
 
   updateActiveArr(photo) {
     let alreadyExists = 0;
@@ -57,7 +76,11 @@ export default class ImgbasePhotosList extends Component {
 
       <ScrollView style={styles.container}>
 
-        <TextInput placeholder={'Search Tags'} style={ styles.searchbox }/>
+        <TextInput name={"searchbar"}
+              // value={this.state.searchbar}
+             onChangeText={this.handleChange}
+             placeholder={'Search Tags'}
+             style={ styles.searchbox }/>
 
         <View style={{flex: 1, marginTop: 25}}>
           {/* <Text> {this.state.activePhotos.length} </Text> */}

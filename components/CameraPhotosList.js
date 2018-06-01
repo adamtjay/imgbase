@@ -15,6 +15,8 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
+import { Spinner } from 'react-native-material-kit';
+
 import ViewPhoto from './partials/ViewPhoto';
 import Navbar from './partials/nav/Navbar';
 
@@ -64,9 +66,10 @@ export default class CameraPhotosList extends Component {
           <Text> {this.state.activePhotos.length} </Text>
 
 
+
           {photos
             ? this._renderPhotos(photos)
-            : <Text style={styles.paragraph}>Fetching photos...</Text>}
+            : <Text style={styles.paragraph}></Text>}
 
         </View>
 
