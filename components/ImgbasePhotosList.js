@@ -27,7 +27,7 @@ export default class ImgbasePhotosList extends Component {
     this.state = {
       photos: null,
       activePhotos: [],
-      searchbar: [],
+      searchbar: '',
       photo: null
      };
 
@@ -48,7 +48,7 @@ export default class ImgbasePhotosList extends Component {
   handleChange(e) {
     // console.log(e);
       this.setState({
-        searchbar: [e]
+        searchbar: e
       })
       this.searchForTags(e) // currently using event value, no state
     // this.searchForTags(this.state.searchbar)
@@ -73,20 +73,15 @@ export default class ImgbasePhotosList extends Component {
 
 
     queryBySearchTerms(terms) {
-      // takes inputted array & splits through to make sure each word is individually tagged
-      testarr = ['test', 'hello', 'testing fifth', 'another one', 'each word gets split up']
+      // takes inputted string & splits through to make sure each word is individually tagged
+      teststr = 'new test hello testing fifth'
       kwarray = []
-      testarr.forEach(str => {
-        piece = str.split(" ")
+        piece = teststr.split(" ")
         piece.forEach(str => {
-          // console.log('str: ', str)
           kwarray.push(str)
         })
-      })
       console.log('kwarray :', kwarray)
-      console.log(`searching terms: ${terms}`)
-
-      // console.log(`searching terms: ${this.state.searchbar}`)
+      console.log(`searched terms: ${terms}`)
 
       // create querystring by looping through kw array, add tags to each, then join
       for (let i=0; i<kwarray.length; i++) {
@@ -94,6 +89,7 @@ export default class ImgbasePhotosList extends Component {
       }
       querystring = kwarray.join('')
       // console.log('querystring: ', querystring)
+
       console.log('fetching: ', `https://imgbase-api.herokuapp.com/api/media/search?${querystring}`)
       fetch(`https://imgbase-api.herokuapp.com/api/media/search?${querystring}`, {
         method: 'GET',
