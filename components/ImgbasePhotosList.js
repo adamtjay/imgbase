@@ -27,28 +27,28 @@ export default class ImgbasePhotosList extends Component {
     this.state = {
       photos: null,
       activePhotos: [],
-      searchbar: '',
+      searchbar: [],
       photo: null
      };
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.searchForTags = _.debounce(this.searchForTags, 1200);
-    this.fetchtest = this.fetchTest.bind(this);
+    this.searchForTags = _.debounce(this.searchForTags, 2000);
+    this.queryBySearchTerms = this.queryBySearchTerms.bind(this);
     }
 
 
   searchForTags(tagsarray) {
       // console.log('lodash searching: ', tagsarray)
 
-      this.fetchTest();
+      this.queryBySearchTerms(tagsarray);
     }
 
 
   handleChange(e) {
     // console.log(e);
       this.setState({
-        searchbar: e
+        searchbar: [e]
       })
       this.searchForTags(e) // currently using event value, no state
     // this.searchForTags(this.state.searchbar)
@@ -72,7 +72,7 @@ export default class ImgbasePhotosList extends Component {
     }
 
 
-    fetchTest() {
+    queryBySearchTerms(terms) {
       // takes inputted array & splits through to make sure each word is individually tagged
       testarr = ['test', 'hello', 'testing fifth', 'another one', 'each word gets split up']
       kwarray = []
@@ -84,7 +84,9 @@ export default class ImgbasePhotosList extends Component {
         })
       })
       console.log('kwarray :', kwarray)
-      console.log(`searching terms: ${this.state.searchbar}`)
+      console.log(`searching terms: ${terms}`)
+
+      // console.log(`searching terms: ${this.state.searchbar}`)
 
       // create querystring by looping through kw array, add tags to each, then join
       for (let i=0; i<kwarray.length; i++) {
@@ -102,8 +104,6 @@ export default class ImgbasePhotosList extends Component {
       })
       .then(res => res.json())
       .then(data => {
-        // console.log('MainView fetch: ', data.tags)
-        // console.log('MainView fetch: ', data.user.id)
         this.setState({
           photo: data
         })
@@ -115,7 +115,7 @@ export default class ImgbasePhotosList extends Component {
 
     componentDidMount() {
         // this.fetchPhotos();
-        this.fetchTest();
+        this.queryBySearchTerms();
 
         this._getPhotosAsync().catch(error => {
           console.error(error);
