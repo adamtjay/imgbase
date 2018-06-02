@@ -74,39 +74,41 @@ export default class ImgbasePhotosList extends Component {
 
     queryBySearchTerms(terms) {
       // takes inputted string & splits through to make sure each word is individually tagged
-      teststr = 'new test hello testing fifth'
-      kwarray = []
-        piece = teststr.split(" ")
-        piece.forEach(str => {
-          kwarray.push(str)
-        })
-      console.log('kwarray :', kwarray)
-      console.log(`searched terms: ${terms}`)
+      if (terms) { //only fetch when search terms exist
+            kwarray = []
+            lowercaseterms = terms.toLowerCase()
+            piece = lowercaseterms.split(" ")
+            piece.forEach(str => {
+              kwarray.push(str)
+            })
+          console.log('kwarray :', kwarray)
+          console.log(`searched terms: ${terms}`)
 
-      // create querystring by looping through kw array, add tags to each, then join
-      for (let i=0; i<kwarray.length; i++) {
-        kwarray[i] = 'tags[]=' + kwarray[i] + '&';
-      }
-      querystring = kwarray.join('')
-      // console.log('querystring: ', querystring)
+          // create querystring by looping through kw array, add tags to each, then join
+          for (let i=0; i<kwarray.length; i++) {
+            kwarray[i] = 'tags[]=' + kwarray[i] + '&';
+          }
+          querystring = kwarray.join('')
+          // console.log('querystring: ', querystring)
 
-      console.log('fetching: ', `https://imgbase-api.herokuapp.com/api/media/search?${querystring}`)
-      fetch(`https://imgbase-api.herokuapp.com/api/media/search?${querystring}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          photo: data
-        })
-    console.log('imgbase photo state: ', this.state.photo)
-      }
-    ).catch(err => console.log(err))
-    }
+        console.log('fetching: ', `https://imgbase-api.herokuapp.com/api/media/search?${querystring}`)
+          fetch(`https://imgbase-api.herokuapp.com/api/media/search?${querystring}`, {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            }
+          })
+          .then(res => res.json())
+          .then(data => {
+            this.setState({
+              photo: data
+            })
+        console.log('imgbase photo state: ', this.state.photo)
+          }
+        ).catch(err => console.log(err))
+    } // end if(terms)
+  }
 
 
     componentDidMount() {
