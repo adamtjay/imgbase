@@ -37,33 +37,28 @@ export default class ImgbasePhotosList extends Component {
     this.queryBySearchTerms = this.queryBySearchTerms.bind(this);
     }
 
-
-  searchForTags(tagsarray) {
-      // console.log('lodash searching: ', tagsarray)
-
-      this.queryBySearchTerms(tagsarray);
-    }
-
-
   handleChange(e) {
-    // console.log(e);
       this.setState({
         searchbar: e
       })
       this.searchForTags(e) // currently using event value, no state
-    // this.searchForTags(this.state.searchbar)
     }
+
+    searchForTags(tagsarray) {
+        // console.log('lodash searching: ', tagsarray)
+        this.queryBySearchTerms(tagsarray);
+      }
 
   updateActiveArr(photo) {
     let alreadyExists = 0;
     console.log('updating active: ', this.state.activePhotos.length, photo.image.filename)
 
     this.state.activePhotos.map(statephoto => {
-      // check current state vs clicked photo to see if it's already there
+      // * check current state vs clicked photo to see if it's already there
       console.log(photo.image.filename === statephoto.image.filename ? 'match' : 'no match')
       if (statephoto.image.uri === photo.image.uri) { alreadyExists = 1 }
           })
-          // if the photo already exists in state, don't update state
+          // * if the photo already exists in state, don't update activephotos state
           if (alreadyExists === 0) {
             this.setState({
                  activePhotos: [...this.state.activePhotos, photo]
@@ -73,25 +68,25 @@ export default class ImgbasePhotosList extends Component {
 
 
     queryBySearchTerms(terms) {
-      // takes inputted string & splits through to make sure each word is individually tagged
-      if (terms) { //only fetch when search terms exist
+      // * takes inputted string & splits through to make sure each word is individually tagged
+      if (terms) {     // * only fetch when searchbar terms exist
             kwarray = []
             lowercaseterms = terms.toLowerCase()
             piece = lowercaseterms.split(" ")
             piece.forEach(str => {
               kwarray.push(str)
             })
-          console.log('kwarray :', kwarray)
-          console.log(`searched terms: ${terms}`)
+          // console.log(`searched terms: ${terms}`)
+          console.log('searchKW array :', kwarray)
 
-          // create querystring by looping through kw array, add tags to each, then join
+          // * create querystring by looping through kw array, add tags to each, then join
           for (let i=0; i<kwarray.length; i++) {
             kwarray[i] = 'tags[]=' + kwarray[i] + '&';
           }
           querystring = kwarray.join('')
-          // console.log('querystring: ', querystring)
+            // console.log('querystring: ', querystring)
 
-        console.log('fetching: ', `https://imgbase-api.herokuapp.com/api/media/search?${querystring}`)
+        console.log('fetching URL: ', `https://imgbase-api.herokuapp.com/api/media/search?${querystring}`)
           fetch(`https://imgbase-api.herokuapp.com/api/media/search?${querystring}`, {
             method: 'GET',
             headers: {
@@ -130,14 +125,11 @@ export default class ImgbasePhotosList extends Component {
       <ScrollView style={styles.container}>
 
         <TextInput name={"searchbar"}
-              // value={this.state.searchbar}
              onChangeText={this.handleChange}
              placeholder={'Search Tags'}
              style={ styles.searchbox }/>
 
         <View style={{flex: 1, marginTop: 25}}>
-          {/* <Text> {this.state.activePhotos.length} </Text> */}
-
 
           {photos
             ? this._renderPhotos(photos)
@@ -173,45 +165,27 @@ export default class ImgbasePhotosList extends Component {
   }
 
 
-  // fetchPhotos() {
-  //   fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     // body: JSON.stringify({
-  //     //   firstParam: 'yourValue',
-  //     //   secondParam: 'yourOtherValue',
-  //     // }),
-  //   }).then(res => res.json())
-  //     // .then(data => console.log(data))
-  //     // .then(data =>
-  //     //     JSON.stringify(data).map(photo => console.log('test', photo))
-  //     // )
-  // }
-
-  // postTest() {
-  //   fetch('https://imgbase-api.herokuapp.com/api/media?format=json', {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       firstParam: 'yourValue',
-  //       secondParam: 'yourOtherValue',
-  //     }),
-  //   }).then(res => res.json())
-  //   .then(data => console.log(data))
-  // }
-
-
   async _getPhotosAsync() {
     let photos = await CameraRoll.getPhotos({ first: 20 });
     this.setState({ photos });
   }
 }
+
+// postTest() {
+//   fetch('https://imgbase-api.herokuapp.com/api/media?format=json', {
+//     method: 'POST',
+//     headers: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       firstParam: 'yourValue',
+//       secondParam: 'yourOtherValue',
+//     }),
+//   }).then(res => res.json())
+//   .then(data => console.log(data))
+// }
+
 
 const styles = StyleSheet.create({
   searchbox: {
