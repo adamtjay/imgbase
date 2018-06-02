@@ -73,7 +73,20 @@ export default class ImgbasePhotosList extends Component {
 
 
     fetchTest() {
+      // takes input array & splits through to make sure each word is individually tagged
+      testarr = ['test', 'hello', 'testing fifth', 'another one']
+      kwarray = []
+      testarr.forEach(str => {
+        piece = str.split(" ")
+        piece.forEach(str => {
+          // console.log('str: ', str)
+          kwarray.push(str)
+        })
+      })
+      console.log('kwarray :', kwarray)
+
       console.log(`fetching: ${this.state.searchbar}`)
+      // fetch('https://imgbase-api.herokuapp.com/api/media/1/?format=json', {
       fetch('https://imgbase-api.herokuapp.com/api/media/1/?format=json', {
         method: 'GET',
         headers: {
@@ -88,7 +101,7 @@ export default class ImgbasePhotosList extends Component {
         this.setState({
           photo: data
         })
-      console.log('imgbase photo state: ', this.state.photo)
+    console.log('imgbase photo state: ', this.state.photo)
       }
     ).catch(err => console.log(err))
     }
