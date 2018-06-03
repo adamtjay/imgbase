@@ -54,7 +54,7 @@ export default class MainMenu extends Component {
 
         <FlatList
           data={[{ link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} style={ styles.menubutton } />, key: '1' },
-                 { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraPhotosList')} style={ styles.menubutton } />, key: '2' },
+                 { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraRollPhotosList')} style={ styles.menubutton } />, key: '2' },
                ]}
           renderItem={ ({item}) => <View> {item.link} </View>}
         />
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   menubutton: {
+    // fontSize: 45,
     padding: 50,
   },
   dividerline: {

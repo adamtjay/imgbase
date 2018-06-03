@@ -19,7 +19,7 @@ import { Spinner } from 'react-native-material-kit';
 
 import ViewPhoto from '../partials/ViewPhoto';
 
-export default class CameraPhotosList extends Component {
+export default class CameraRollPhotosList extends Component {
   static navigationOptions = {
     title: 'Tag New Photos',
   }
@@ -34,6 +34,7 @@ export default class CameraPhotosList extends Component {
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
     this.enableMultiTag = this.enableMultiTag.bind(this);
+    this.uploadToImgBase = this.uploadToImgBase.bind(this);
     }
 
 
@@ -60,6 +61,10 @@ export default class CameraPhotosList extends Component {
       })
     }
 
+    uploadToImgBase() {
+      //upload activephotos state to db
+    }
+
   render() {
     let { photos } = this.state;
 
@@ -68,22 +73,25 @@ export default class CameraPhotosList extends Component {
       <ScrollView style={styles.container}>
         <View style={ styles.dividerline } />
 
+        { this.state.multitag === null
+          ? <Button title="Enable Multi-Tagging" onPress={this.enableMultiTag} style={ styles.multitagtext } />
+          : <Button title="Multi-Tagging" onPress={this.enableMultiTag} style={ styles.multitagtext } /> }
 
-        <Button title="Multi-Tagging" onPress={this.enableMultiTag} style={ styles.multitagtext } />
         { this.state.multitag != null
           ? <View><TextInput name="multitag" placeholder="Add Multi-Tag keywords" style={ styles.multitagsbox }/>
-                  <Text style={{textAlign:'center', top:5, fontSize:12}}>Tag(s) will be applied to all selected photos</Text> </View>
+                  <Text style={{textAlign:'center', top:5, fontSize:12}}>Tag(s) will be applied to all uploaded images</Text> </View>
           : this.state.multitag }
 
         <View style={{flex: 1, marginTop: 25}}>
           <Text style={{textAlign:'center', fontSize:20, fontWeight:'bold'}}> Photos Selected: {this.state.activePhotos.length} </Text>
 
-          <View style={ styles.dividerline } />
-
 
           { this.state.activePhotos.length > 0
-            ? <Button title="Upload to imgBase" onPress={this.uploadToImgBase} style={ styles.uploadbutton } />
+            ? <Button title="&laquo; Upload to imgBase &raquo;" onPress={this.uploadToImgBase} style={ styles.uploadbutton } />
             : this.state.activePhotos }
+
+            <View style={ styles.dividerline } />
+
 
 
           {photos
@@ -179,9 +187,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
-    fontSize: 12,
+    fontSize: 16,
     backgroundColor: 'white',
-    height: 30,
+    height: 40,
   },
   dividerline: {
     borderBottomColor: 'black',
