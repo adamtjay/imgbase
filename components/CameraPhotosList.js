@@ -66,7 +66,6 @@ export default class CameraPhotosList extends Component {
           <Text> {this.state.activePhotos.length} </Text>
 
 
-
           {photos
             ? this._renderPhotos(photos)
             : <Text style={styles.paragraph}></Text>}
