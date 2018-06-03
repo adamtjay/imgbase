@@ -60,6 +60,6 @@ export default class MainMenu extends Component {
 
 const styles = StyleSheet.create({
   maincontainer: {
-      top: 30,
+      top: 10,
     }
 });

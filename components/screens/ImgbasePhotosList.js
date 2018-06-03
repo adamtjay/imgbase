@@ -192,12 +192,13 @@ export default class ImgbasePhotosList extends Component {
 
 const styles = StyleSheet.create({
   searchbox: {
-    top: 20,
+    // top: 20,
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
-    width: 300,
-    left: 55,
+    width: 350,
+    left: 15,
+    top: 10,
     height: 50,
     backgroundColor: 'white',
     fontSize: 18,
@@ -215,10 +216,9 @@ const styles = StyleSheet.create({
     width: 400,
     display: 'block',
     display: 'flex',
-    marginTop: 20,
-    marginLeft: 4,
+    // marginTop: 20,
     borderWidth: 1,
-    borderRadius: 20,
+    // borderRadius: 20,
   },
   touchable: {
     // backgroundColor: 'red',
@@ -231,11 +231,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     marginTop: 10,
     marginLeft: 0,
-    padding: '50%',
+    // padding: '50%',
   },
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
+    // top: 15,
+    // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
   },
   paragraph: {

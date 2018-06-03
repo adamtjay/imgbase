@@ -72,11 +72,11 @@ renderLargeView() {
 
 
                     { this.state.isActive && !this.props.fromImgbase
-                      ? <TextInput name="addtags" placeholder={'Add Tags'} style={ styles.addtags } numberOfLines={4}/>
+                      ? <TextInput name="addtags" placeholder={'Add Tags'} style={ styles.tagsbox } numberOfLines={4}/>
                       : this.state.isActive }
 
                     { this.props.fromImgbase
-                      ? <TextInput name="edittags" placeholder={'Edit Tags'} style={ styles.addtags } numberOfLines={4}/>
+                      ? <TextInput name="edittags" placeholder={'Edit Tags'} style={ styles.tagsbox } numberOfLines={4}/>
                       : this.state.isActive }
 
                 </View>
@@ -98,9 +98,9 @@ const styles = StyleSheet.create({
     right: 20,
     position: 'absolute',
   },
-  addtags: {
-    maxWidth: 320,
-    marginLeft: 35,
+  tagsbox: {
+    maxWidth: 300,
+    marginLeft: 30,
     marginTop: 15,
     textAlign: 'center',
     borderWidth: 1,
@@ -110,11 +110,11 @@ const styles = StyleSheet.create({
     height: 30,
   },
   imgContainer: {
-    width: 400,
+    width: 360,
     display: 'block',
     display: 'flex',
     marginTop: 20,
-    marginLeft: 4,
+    marginLeft: 7.5,
     borderWidth: 1,
     borderRadius: 20,
     paddingBottom: 15,
