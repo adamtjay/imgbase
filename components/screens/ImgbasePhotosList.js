@@ -126,10 +126,16 @@ export default class ImgbasePhotosList extends Component {
 
       <ScrollView style={styles.container}>
 
+        <View style={ styles.dividerline } />
+
+        <Text style={{textAlign:'center', fontSize:20, fontWeight:'bold'}}>imgBase Tag Search</Text>
         <TextInput name={"searchbar"}
              onChangeText={this.handleChange}
-             placeholder={'Search Tags'}
+             placeholder={'Enter Search Keywords'}
              style={ styles.searchbox }/>
+
+         <View style={ styles.bottomdividerline } />
+
 
         <View style={{flex: 1, marginTop: 25}}>
 
@@ -210,6 +216,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
+  },
+  dividerline: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    marginBottom: 15,
+    paddingBottom: 15,
+  },
+  bottomdividerline: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    paddingTop: 10,
+    marginBottom: 15,
+    paddingBottom: 15,
   },
   imgContainer: {
     width: 400,

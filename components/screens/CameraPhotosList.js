@@ -66,6 +66,8 @@ export default class CameraPhotosList extends Component {
     return (
 
       <ScrollView style={styles.container}>
+        <View style={ styles.dividerline } />
+
 
         <Button title="Multi-Tagging" onPress={this.enableMultiTag} style={ styles.multitagtext } />
         { this.state.multitag != null
