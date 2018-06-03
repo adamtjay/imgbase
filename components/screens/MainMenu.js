@@ -11,9 +11,13 @@ import {
   Dimensions,
   ScrollView,
   Alert,
-  TextInput
+  TextInput,
+  List,
+  FlatList,
+  ListItem,
     } from 'react-native';
 import { Constants } from 'expo';
+
 
 import Nav from '../partials/nav/Navbar';
 import { getTheme } from 'react-native-material-kit';
@@ -32,30 +36,22 @@ export default class MainMenu extends Component {
     }
 
 
-
-
   render() {
 
     const theme = getTheme();
-
+    const { navigate } = this.props.navigation;
 
     return (
 
 
       <View style={ styles.maincontainer }>
 
-        <View style={theme.cardStyle}>
-
-          <Image source={{uri : ''}} style={theme.cardImageStyle} />
-          <Text style={theme.cardTitleStyle}>Welcome</Text>
-          <Text style={theme.cardContentStyle}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Mauris sagittis pellentesque lacus eleifend lacinia...
-          </Text>
-
-          <View style={theme.cardMenuStyle}>Blah</View>
-          <Text style={theme.cardActionStyle}>My Action</Text>
-        </View>
+        <FlatList
+          data={[{ link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} /> },
+                 { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraPhotosList')} /> },
+               ]}
+          renderItem={ ({item}) => <View> {item.link} </View>}
+        />
 
    </View>
 

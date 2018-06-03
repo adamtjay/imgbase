@@ -12,8 +12,6 @@ import {
   ScrollView,
   Alert,
   TextInput,
-  // FlatList,
-  // ListItem,
     } from 'react-native';
 import { Constants } from 'expo';
 
@@ -23,6 +21,9 @@ import ViewPhoto from '../partials/ViewPhoto';
 import Navbar from '../partials/nav/Navbar';
 
 export default class ImgbasePhotosList extends Component {
+  static navigationOptions = {
+    title: 'imgBase Search',
+  }
   constructor(props) {
     super(props);
 
@@ -74,7 +75,7 @@ export default class ImgbasePhotosList extends Component {
       if (terms) {     // * only fetch when searchbar terms exist
             kwarray = []
             lowercaseterms = terms.toLowerCase()
-            piece = lowercaseterms.replace(/[^a-zA-Z ]/g, "").split(" ")
+            piece = lowercaseterms.replace(/[^a-zA-Z0-9]/g, "").split(" ")
             piece.forEach(str => {
               kwarray.push(str)
             })

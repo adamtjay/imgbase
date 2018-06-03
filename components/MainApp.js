@@ -15,7 +15,7 @@ import {
 import { Constants } from 'expo';
 import { createStackNavigator } from 'react-navigation';
 
-import CameraPhotosList from './CameraPhotosList';
+import CameraPhotosList from './screens/CameraPhotosList';
 import ImgbasePhotosList from './screens/ImgbasePhotosList';
 
 import ViewLargePhoto from './partials/ViewLargePhoto';
@@ -26,16 +26,17 @@ import MainMenu from './screens/MainMenu';
 const AppNavigator = createStackNavigator({
   MainMenu: { screen: MainMenu },
   ImgBaseList: { screen: ImgbasePhotosList },
-}, {
+  CameraPhotosList: { screen: CameraPhotosList },
+  }, {
   navigationOptions: {
     headerStyle: {
-      marginTop: Constants.statusBarHeight
+      // marginTop: Constants.statusBarHeight
     }
   }
 })
 
 
-export default class MainView extends Component {
+export default class MainApp extends Component {
   constructor(props) {
     super(props);
 
@@ -45,30 +46,30 @@ export default class MainView extends Component {
 
   }
 
-  fetchTest() {
-    fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      // body: JSON.stringify({
-      //   firstParam: 'yourValue',
-      //   secondParam: 'yourOtherValue',
-      // }),
-    })
-    .then(res => res.json())
-    .then(data => {
-      // console.log('MainView fetch: ', data.tags)
-      // console.log('MainView fetch: ', data.user.id)
-      console.log('MainView fetch: ', data)
-      this.setState({
-        photo: JSON.stringify(data)
-      })
-      // return data;
-    }
-    )
-  }
+  // fetchTest() {
+  //   fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     // body: JSON.stringify({
+  //     //   firstParam: 'yourValue',
+  //     //   secondParam: 'yourOtherValue',
+  //     // }),
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     // console.log('MainView fetch: ', data.tags)
+  //     // console.log('MainView fetch: ', data.user.id)
+  //     console.log('MainView fetch: ', data)
+  //     this.setState({
+  //       photo: JSON.stringify(data)
+  //     })
+  //     // return data;
+  //   }
+  //   )
+  // }
 
 
   componentDidMount() {
@@ -86,40 +87,7 @@ export default class MainView extends Component {
 
     return (
 
-      // <Menu />
-
       <AppNavigator />
-
-    //  <ScrollView>
-    //
-    //     <Navbar  />
-    //
-    //     <ScrollView style={ styles.maincontainer }>
-    //
-    //       {/* <CameraPhotosList /> */}
-    //       <ImgbasePhotosList />
-    //
-    //
-    //     </ScrollView>
-    //
-    // </ScrollView>
-
-
-
-  // <ScrollView >
-  //
-  //   <Navbar  />
-  //
-  //   <ScrollView style={ styles.maincontainer }>
-  //
-  //             {photo.length > 1
-  //             ? <ViewLargePhoto resphoto={photo} />
-  //             : <Text>Loading</Text> }
-  //             />
-  //
-  //       </ScrollView>
-  //
-  // </ScrollView>
 
     );
   }
@@ -127,6 +95,6 @@ export default class MainView extends Component {
 
 const styles = StyleSheet.create({
   maincontainer: {
-    top: 50,
+    paddingTop: Constants.statusBarHeight,
   }
 })

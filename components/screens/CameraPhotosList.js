@@ -17,10 +17,13 @@ import { Constants } from 'expo';
 
 import { Spinner } from 'react-native-material-kit';
 
-import ViewPhoto from './partials/ViewPhoto';
-import Navbar from './partials/nav/Navbar';
+import ViewPhoto from '../partials/ViewPhoto';
+import Navbar from '../partials/nav/Navbar';
 
 export default class CameraPhotosList extends Component {
+  static navigationOptions = {
+    title: 'Tag New Photos',
+  }
   constructor(props) {
     super(props);
 
@@ -60,10 +63,8 @@ export default class CameraPhotosList extends Component {
 
       <ScrollView style={styles.container}>
 
-        {/* <Text>   activePhotos: {this.state.activePhotos.length}</Text> */}
-
         <View style={{flex: 1, marginTop: 25}}>
-          <Text> {this.state.activePhotos.length} </Text>
+          <Text style={{fontWeight: 'bold'}}> Photos Selected: {this.state.activePhotos.length} </Text>
 
 
           {photos
@@ -178,7 +179,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
   },
   paragraph: {
