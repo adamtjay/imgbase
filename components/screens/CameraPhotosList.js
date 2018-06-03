@@ -28,10 +28,12 @@ export default class CameraPhotosList extends Component {
 
     this.state = {
       photos: null,
-      activePhotos: []
+      activePhotos: [],
+      multitag: null,
      };
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
+    this.enableMultiTag = this.enableMultiTag.bind(this);
     }
 
 
@@ -52,18 +54,34 @@ export default class CameraPhotosList extends Component {
            }
     }
 
+    enableMultiTag() {
+      this.setState({
+        multitag: ''
+      })
+    }
 
   render() {
     let { photos } = this.state;
-
-
 
     return (
 
       <ScrollView style={styles.container}>
 
+        <Button title="Multi-Tagging" onPress={this.enableMultiTag} style={ styles.multitagtext } />
+        { this.state.multitag != null
+          ? <View><TextInput name="multitag" placeholder="Add Multi-Tag keywords" style={ styles.multitagsbox }/>
+                  <Text style={{textAlign:'center', top:5, fontSize:12}}>Tag(s) will be applied to all selected photos</Text> </View>
+          : this.state.multitag }
+
         <View style={{flex: 1, marginTop: 25}}>
-          <Text style={{fontWeight: 'bold'}}> Photos Selected: {this.state.activePhotos.length} </Text>
+          <Text style={{textAlign:'center', fontSize:20, fontWeight:'bold'}}> Photos Selected: {this.state.activePhotos.length} </Text>
+
+          <View style={ styles.dividerline } />
+
+
+          { this.state.activePhotos.length > 0
+            ? <Button title="Upload to imgBase" onPress={this.uploadToImgBase} style={ styles.uploadbutton } />
+            : this.state.activePhotos }
 
 
           {photos
@@ -145,6 +163,30 @@ export default class CameraPhotosList extends Component {
 }
 
 const styles = StyleSheet.create({
+  uploadbutton: {
+    textAlign: 'center',
+    fontSize: 25,
+  },
+  multitagtext: {
+    textAlign: 'center',
+    fontSize: 25,
+  },
+  multitagsbox: {
+    maxWidth: 300,
+    marginLeft: 40,
+    textAlign: 'center',
+    borderWidth: 1,
+    borderRadius: 20,
+    fontSize: 12,
+    backgroundColor: 'white',
+    height: 30,
+  },
+  dividerline: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    marginBottom: 15,
+    paddingBottom: 15,
+  },
   textarea: {
     maxWidth: 320,
     marginLeft: 35,

@@ -45,9 +45,16 @@ export default class MainMenu extends Component {
 
       <View style={ styles.maincontainer }>
 
+        <View style={ styles.dividerline } />
+
+        <Text style={ styles.maintext}> imgBase </Text>
+        <Text style={ styles.secondarytext}> &laquo; Turn your photos into a searchable database &raquo; </Text>
+
+        <View style={ styles.dividerline } />
+
         <FlatList
-          data={[{ link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} />, key: '1' },
-                 { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraPhotosList')} />, key: '2' },
+          data={[{ link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} style={ styles.menubutton } />, key: '1' },
+                 { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraPhotosList')} style={ styles.menubutton } />, key: '2' },
                ]}
           renderItem={ ({item}) => <View> {item.link} </View>}
         />
@@ -58,6 +65,25 @@ export default class MainMenu extends Component {
 }
 
 const styles = StyleSheet.create({
+  maintext: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingBottom: 5,
+  },
+  secondarytext: {
+    fontSize: 15,
+    textAlign: 'center',
+    paddingBottom: 20,
+  },
+  menubutton: {
+    padding: 50,
+  },
+  dividerline: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    marginBottom: 15,
+  },
   maincontainer: {
       top: 10,
     }

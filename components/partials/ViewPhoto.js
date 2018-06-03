@@ -34,9 +34,9 @@ export default class ViewPhoto extends Component {
       // Alert.alert(`Touchable working (${this.props.resphoto.image.uri})`);
     }
 
-renderLargeView() {
+  renderLargeView() {
 
-}
+  }
 
 
   render() {
@@ -50,9 +50,7 @@ renderLargeView() {
         onPress={this._onImgPress}
         key={this.props.resphoto.image.filename} >
 
-
             <View style={ this.state.isActive ? styles.activeContainer : styles.imgContainer } >
-
 
                     <Image
                       key={this.props.resphoto.image.filename}
