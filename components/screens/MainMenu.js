@@ -59,6 +59,11 @@ export default class MainMenu extends Component {
           renderItem={ ({item}) => <View> {item.link} </View>}
         />
 
+          <View style={styles.footer}>
+            <Text>Created by Adam Julier</Text>
+            <Text> &laquo; adamtj.com &raquo; </Text>
+          </View>
+
    </View>
 
 )}
@@ -75,6 +80,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
     paddingBottom: 20,
+  },
+  footer: {
+    marginTop: 420,
+    // flex: 1,
+    alignItems: 'center',
   },
   menubutton: {
     padding: 50,

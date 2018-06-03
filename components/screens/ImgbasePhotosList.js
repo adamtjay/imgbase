@@ -128,7 +128,7 @@ export default class ImgbasePhotosList extends Component {
 
         <View style={ styles.dividerline } />
 
-        <Text style={{textAlign:'center', fontSize:20, fontWeight:'bold'}}>imgBase Tag Search</Text>
+        <Text style={{textAlign:'center', fontSize:20, fontWeight:'bold'}}>Search By Tags</Text>
         <TextInput name={"searchbar"}
              onChangeText={this.handleChange}
              placeholder={'Enter Search Keywords'}
