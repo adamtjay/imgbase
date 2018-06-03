@@ -47,8 +47,8 @@ export default class MainMenu extends Component {
       <View style={ styles.maincontainer }>
 
         <FlatList
-          data={[{ link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} /> },
-                 { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraPhotosList')} /> },
+          data={[{ link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} />, key: '1' },
+                 { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraPhotosList')} />, key: '2' },
                ]}
           renderItem={ ({item}) => <View> {item.link} </View>}
         />
