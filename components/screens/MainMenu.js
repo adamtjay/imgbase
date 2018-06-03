@@ -15,10 +15,15 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
+import Nav from '../partials/nav/Navbar';
 import { getTheme } from 'react-native-material-kit';
 
 
-export default class Menu extends Component {
+
+export default class MainMenu extends Component {
+  static navigationOptions = {
+    title: 'Main Menu',
+  }
   constructor(props) {
     super(props);
 

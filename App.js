@@ -14,7 +14,7 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
-import MainView from './components/MainView';
+import MainApp from './components/MainApp';
 
 
 export default class App extends Component {
@@ -27,7 +27,7 @@ export default class App extends Component {
 
     return (
 
-      <MainView />
+      <MainApp />
 
     );
   }

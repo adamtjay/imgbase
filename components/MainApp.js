@@ -13,13 +13,26 @@ import {
   Alert,
     } from 'react-native';
 import { Constants } from 'expo';
+import { createStackNavigator } from 'react-navigation';
 
 import CameraPhotosList from './CameraPhotosList';
-import ImgbasePhotosList from './ImgbasePhotosList';
+import ImgbasePhotosList from './screens/ImgbasePhotosList';
 
 import ViewLargePhoto from './partials/ViewLargePhoto';
 import Navbar from './partials/nav/Navbar';
-import Menu from './screens/Menu';
+import MainMenu from './screens/MainMenu';
+
+
+const AppNavigator = createStackNavigator({
+  MainMenu: { screen: MainMenu },
+  ImgBaseList: { screen: ImgbasePhotosList },
+}, {
+  navigationOptions: {
+    headerStyle: {
+      marginTop: Constants.statusBarHeight
+    }
+  }
+})
 
 
 export default class MainView extends Component {
@@ -75,20 +88,21 @@ export default class MainView extends Component {
 
       // <Menu />
 
+      <AppNavigator />
 
-     <ScrollView>
-
-        <Navbar  />
-
-        <ScrollView style={ styles.maincontainer }>
-
-          {/* <CameraPhotosList /> */}
-          <ImgbasePhotosList />
-
-
-        </ScrollView>
-
-    </ScrollView>
+    //  <ScrollView>
+    //
+    //     <Navbar  />
+    //
+    //     <ScrollView style={ styles.maincontainer }>
+    //
+    //       {/* <CameraPhotosList /> */}
+    //       <ImgbasePhotosList />
+    //
+    //
+    //     </ScrollView>
+    //
+    // </ScrollView>
 
 
 

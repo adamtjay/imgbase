@@ -11,14 +11,16 @@ import {
   Dimensions,
   ScrollView,
   Alert,
-  TextInput
+  TextInput,
+  // FlatList,
+  // ListItem,
     } from 'react-native';
 import { Constants } from 'expo';
 
 import _ from 'lodash';
 
-import ViewPhoto from './partials/ViewPhoto';
-import Navbar from './partials/nav/Navbar';
+import ViewPhoto from '../partials/ViewPhoto';
+import Navbar from '../partials/nav/Navbar';
 
 export default class ImgbasePhotosList extends Component {
   constructor(props) {
