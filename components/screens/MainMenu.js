@@ -53,8 +53,9 @@ export default class MainMenu extends Component {
         <View style={ styles.dividerline } />
 
         <FlatList
-          data={[{ link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} style={ styles.menubutton } />, key: '1' },
-                 { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraRollPhotosList')} style={ styles.menubutton } />, key: '2' },
+          data={[
+                  { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraRollPhotosList')} style={ styles.menubutton } />, key: '1' },
+                  { link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} style={ styles.menubutton } />, key: '2' },
                ]}
           renderItem={ ({item}) => <View> {item.link} </View>}
         />
