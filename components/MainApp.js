@@ -15,12 +15,11 @@ import {
 import { Constants } from 'expo';
 import { createStackNavigator } from 'react-navigation';
 
+import MainMenu from './screens/MainMenu';
 import CameraPhotosList from './screens/CameraPhotosList';
 import ImgbasePhotosList from './screens/ImgbasePhotosList';
 
 import ViewLargePhoto from './partials/ViewLargePhoto';
-import Navbar from './partials/nav/Navbar';
-import MainMenu from './screens/MainMenu';
 
 
 const AppNavigator = createStackNavigator({

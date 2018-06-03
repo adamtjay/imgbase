@@ -18,7 +18,6 @@ import { Constants } from 'expo';
 import _ from 'lodash';
 
 import ViewPhoto from '../partials/ViewPhoto';
-import Navbar from '../partials/nav/Navbar';
 
 export default class ImgbasePhotosList extends Component {
   static navigationOptions = {

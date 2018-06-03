@@ -19,7 +19,6 @@ import {
 import { Constants } from 'expo';
 
 
-import Nav from '../partials/nav/Navbar';
 import { getTheme } from 'react-native-material-kit';
 
 
