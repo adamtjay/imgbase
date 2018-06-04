@@ -28,7 +28,7 @@ const AppNavigator = createStackNavigator({
   Login: { screen: Login },
   Register: { screen: Register },
   MainMenu: { screen: MainMenu },
-  ImgBaseList: { screen: ImgbasePhotosList },
+  ImgbasePhotosList: { screen: ImgbasePhotosList },
   CameraRollPhotosList: { screen: CameraRollPhotosList },
   }, {
   navigationOptions: {

@@ -15,6 +15,7 @@ import {
   List,
   FlatList,
   ListItem,
+  TouchableOpacity,
     } from 'react-native';
 import { Constants } from 'expo';
 
@@ -39,7 +40,6 @@ export default class MainMenu extends Component {
 
   render() {
 
-    const theme = getTheme();
     const { navigate } = this.props.navigation;
 
     return (
@@ -56,8 +56,20 @@ export default class MainMenu extends Component {
 
         <FlatList
           data={[
-                  { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraRollPhotosList')} style={ styles.menubutton } />, key: '1' },
-                  { link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} style={ styles.menubutton } />, key: '2' },
+                  { link:
+                     <TouchableOpacity
+                           style={[styles.buttonLargeContainer, styles.primaryButton]}
+                           onPress={() => navigate("CameraRollPhotosList")} >
+                          <Text style={styles.buttonText}> Tag New Photos </Text>
+                     </TouchableOpacity>
+                      , key: '1' },
+                  { link:
+                    <TouchableOpacity
+                          style={[styles.buttonLargeContainer, styles.primaryButton]}
+                          onPress={() => navigate("ImgbasePhotosList")} >
+                         <Text style={styles.buttonText}> Search My imgBase </Text>
+                    </TouchableOpacity>
+                    , key: '2' },
                   // { link: <Button title={'Logout'} onPress={()=> navigate('logout')} style={ styles.menubutton } />, key: '3' },
 
                ]}
@@ -75,6 +87,22 @@ export default class MainMenu extends Component {
 }
 
 const styles = StyleSheet.create({
+  buttonLargeContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+    width: 300,
+    marginLeft: 40,
+  },
+primaryButton: {
+    backgroundColor: '#a6cbfc',
+    borderRadius: 20,
+  },
+buttonText: {
+    color: 'black',
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 10,
+  },
   maintext: {
     fontSize: 30,
     fontWeight: 'bold',
@@ -87,7 +115,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   footer: {
-    bottom: -450,
+    bottom: -420,
     // marginTop: 200,
     // flex: 1,
     alignItems: 'center',

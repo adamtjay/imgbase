@@ -53,12 +53,12 @@ export default class ImgbasePhotosList extends Component {
 
   updateActiveArr(photo) {
     let alreadyExists = 0;
-    console.log('updating active: ', this.state.activePhotos.length, photo.image.filename)
+    // console.log('updating active: ', photo.fields.filename)
 
     this.state.activePhotos.map(statephoto => {
       // * check current state vs clicked photo to see if it's already there
-      console.log(photo.image.filename === statephoto.image.filename ? 'match' : 'no match')
-      if (statephoto.image.uri === photo.image.uri) { alreadyExists = 1 }
+      console.log(photo.fields.filename === statephoto.fields.filename ? 'match' : 'no match')
+      if (statephoto.fields.uri === photo.fields.uri) { alreadyExists = 1 }
           })
           // * if the photo already exists in state, don't update activephotos state
           if (alreadyExists === 0) {
@@ -142,7 +142,7 @@ export default class ImgbasePhotosList extends Component {
 
           {photos
             ? this._renderPhotos(photos)
-            : <Text style={styles.paragraph}>Waiting for photos...</Text>}
+            : <Text style={styles.paragraph}>Waiting for search...</Text>}
 
         </View>
 
@@ -159,7 +159,7 @@ export default class ImgbasePhotosList extends Component {
     // for (let { node: photo } of photos.edges) {
     photos.map(photo => {
 
-      console.log('** Photo data: **\n', photo);
+      // console.log('** Photo data: **\n', photo);
 
       images.push(
 
@@ -168,7 +168,7 @@ export default class ImgbasePhotosList extends Component {
           resphoto={photo}
           activePhotos={this.state.activePhotos}
           updateActiveArr={this.updateActiveArr}
-          key={photo.filename}/>
+          key={photo.fields.filename}/>
         );
     })
     return images;

@@ -55,9 +55,8 @@ export default class ViewImgBasePhoto extends Component {
 
 
   render() {
-    // console.log(this.props);
     // let { photo } = this.props.resphoto;
-    console.log('props: ', this.props.resphoto.fields)
+    // console.log('props: ', this.props.resphoto.fields)
 
 
     return (
