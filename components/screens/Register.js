@@ -42,10 +42,10 @@ export default class Register extends Component {
         <TextInput name="username" placeholder="Username" style={styles.inputbox} />
 
         <Text style={styles.secondarytext}> Password </Text>
-        <TextInput name="password" placeholder="Password" style={styles.inputbox} />
+        <TextInput name="password" secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
 
         <Text style={styles.secondarytext}> Confirm Password </Text>
-        <TextInput name="confirm_password" placeholder="Confirm Password" style={styles.inputbox} />
+        <TextInput name="confirm_password" secureTextEntry={true} placeholder="Confirm Password" style={styles.inputbox} />
 
           <View style={{marginTop: 20}}>
              <TouchableOpacity

@@ -42,7 +42,7 @@ export default class Login extends Component {
         <TextInput name="username" placeholder="Username" style={styles.inputbox} />
 
         <Text style={styles.secondarytext}> Password </Text>
-        <TextInput name="password" placeholder="Password" style={styles.inputbox} />
+        <TextInput name="password" secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
 
 
           <View style={{marginTop: 20}}>
