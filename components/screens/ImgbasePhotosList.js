@@ -70,7 +70,8 @@ export default class ImgbasePhotosList extends Component {
 
 
     queryBySearchTerms(terms) {
-      // * takes inputted string & splits through to make sure each word is individually tagged
+      this.setState({  photos: '' })
+       // * takes inputted string & splits through to make sure each word is individually tagged
       if (terms) {     // * only fetch when searchbar terms exist
             kwarray = []
             lowercaseterms = terms.toLowerCase()
@@ -141,7 +142,7 @@ export default class ImgbasePhotosList extends Component {
 
           {photos
             ? this._renderPhotos(photos)
-            : <Text style={styles.paragraph}>Fetching photos...</Text>}
+            : <Text style={styles.paragraph}>Waiting for photos...</Text>}
 
         </View>
 

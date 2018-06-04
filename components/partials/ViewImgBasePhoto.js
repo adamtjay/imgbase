@@ -36,6 +36,7 @@ export default class ViewImgBasePhoto extends Component {
     }
 
   filterTagsFromProps() {
+    this.setState({ filteredTags: '' })
     // take tags from props, filter, move that to state, use in inputbox
     kwarray = []
     lowercaseterms = this.props.resphoto.fields.tags.toLowerCase()
@@ -51,6 +52,7 @@ export default class ViewImgBasePhoto extends Component {
   componentDidMount() {
     this.filterTagsFromProps();
   }
+
 
   render() {
     // console.log(this.props);
