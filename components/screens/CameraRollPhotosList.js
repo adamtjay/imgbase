@@ -11,7 +11,8 @@ import {
   Dimensions,
   ScrollView,
   Alert,
-  TextInput
+  TextInput,
+  TouchableOpacity,
     } from 'react-native';
 import { Constants } from 'expo';
 
@@ -87,7 +88,12 @@ export default class CameraRollPhotosList extends Component {
 
 
           { this.state.activePhotos.length > 0
-            ? <Button title="&laquo; Upload to imgBase &raquo;" onPress={this.uploadToImgBase} style={ styles.uploadbutton } />
+            ?              <TouchableOpacity
+                              style={[styles.buttonLargeContainer, styles.primaryButton]}
+                              onPress={() => this.uploadToImgBase} >
+                             <Text style={styles.buttonText}> Upload to imgBase </Text>
+                        </TouchableOpacity>
+
             : this.state.activePhotos }
 
             <View style={ styles.dividerline } />
@@ -173,6 +179,22 @@ export default class CameraRollPhotosList extends Component {
 }
 
 const styles = StyleSheet.create({
+  buttonLargeContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+    width: 300,
+    marginLeft: 40,
+  },
+primaryButton: {
+    backgroundColor: '#a6cbfc',
+    borderRadius: 20,
+  },
+buttonText: {
+    color: 'black',
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 10,
+  },
   uploadbutton: {
     textAlign: 'center',
     fontSize: 25,

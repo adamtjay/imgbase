@@ -72,11 +72,11 @@ const styles = StyleSheet.create({
     marginLeft: 40,
   },
 primaryButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#a6cbfc',
     borderRadius: 20,
   },
 buttonText: {
-    color: 'white',
+    color: 'black',
     fontSize: 20,
     fontWeight: 'bold',
     padding: 10,
