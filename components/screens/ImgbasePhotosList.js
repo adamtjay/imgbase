@@ -17,7 +17,7 @@ import { Constants } from 'expo';
 
 import _ from 'lodash';
 
-import ViewPhoto from '../partials/ViewPhoto';
+import ViewImgBasePhoto from '../partials/ViewImgBasePhoto';
 
 export default class ImgbasePhotosList extends Component {
   static navigationOptions = {
@@ -27,7 +27,7 @@ export default class ImgbasePhotosList extends Component {
     super(props);
 
     this.state = {
-      photos: null,
+      photos: [],
       activePhotos: [],
       searchbar: '',
       photo: null
@@ -99,9 +99,9 @@ export default class ImgbasePhotosList extends Component {
           .then(res => res.json())
           .then(data => {
             this.setState({
-              photo: data
+              photos: data
             })
-        console.log('imgbase photo state: ', this.state.photo)
+        console.log('imgbase photo state: ', this.state.photos)
           }
         ).catch(err => console.log(err))
     } // end if(terms)
@@ -112,9 +112,9 @@ export default class ImgbasePhotosList extends Component {
         // this.fetchPhotos();
         this.queryBySearchTerms();
 
-        this._getPhotosAsync().catch(error => {
-          console.error(error);
-        });
+        // this._getPhotosAsync().catch(error => {
+        //   console.error(error);
+        // });
     }
 
 
@@ -155,29 +155,32 @@ export default class ImgbasePhotosList extends Component {
     let images = [];
     let testurl = { 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' };
 
-    for (let { node: photo } of photos.edges) {
+    // for (let { node: photo } of photos.edges) {
+    photos.map(photo => {
 
-      // console.log('** Photo data: **\n', photo);
+      console.log('** Photo data: **\n', photo);
 
       images.push(
 
-        <ViewPhoto
+        <ViewImgBasePhoto
           fromImgbase={true}
           resphoto={photo}
           activePhotos={this.state.activePhotos}
           updateActiveArr={this.updateActiveArr}
-          key={photo.image.filename}/>
+          key={photo.filename}/>
         );
-    }
+    })
     return images;
   }
 
 
-  async _getPhotosAsync() {
-    let photos = await CameraRoll.getPhotos({ first: 20 });
-    this.setState({ photos });
-  }
-}
+//   async _getPhotosAsync() {
+//     let photos = await CameraRoll.getPhotos({ first: 20 });
+//     this.setState({ photos });
+//   }
+
+
+} // * end Class
 
 // postTest() {
 //   fetch('https://imgbase-api.herokuapp.com/api/media?format=json', {
