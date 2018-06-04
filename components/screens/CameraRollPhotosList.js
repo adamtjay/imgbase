@@ -112,7 +112,7 @@ export default class CameraRollPhotosList extends Component {
 
     for (let { node: photo } of photos.edges) {
 
-      // console.log('** Photo data: **\n', photo);
+      console.log('** CameraRoll Photo data: **\n', photo);
 
       images.push(
 

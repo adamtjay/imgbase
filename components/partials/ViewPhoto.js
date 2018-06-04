@@ -11,10 +11,9 @@ import {
   Dimensions,
   ScrollView,
   Alert,
-  TextInput
+  TextInput,
     } from 'react-native';
 import { Constants } from 'expo';
-
 
 
 export default class ViewPhoto extends Component {
@@ -69,6 +68,8 @@ export default class ViewPhoto extends Component {
                       : this.state.isActive }
 
 
+
+
                     { this.state.isActive && !this.props.fromImgbase
                       ? <TextInput name="addtags" placeholder={'Add Tags'} style={ styles.tagsbox } numberOfLines={4}/>
                       : this.state.isActive }
@@ -76,6 +77,8 @@ export default class ViewPhoto extends Component {
                     { this.props.fromImgbase
                       ? <TextInput name="edittags" placeholder={'Edit Tags'} style={ styles.tagsbox } numberOfLines={4}/>
                       : this.state.isActive }
+
+
 
                 </View>
 

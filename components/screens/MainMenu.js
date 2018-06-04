@@ -21,11 +21,13 @@ import { Constants } from 'expo';
 
 import { getTheme } from 'react-native-material-kit';
 
+import Login from './Login';
 
 
 export default class MainMenu extends Component {
   static navigationOptions = {
     title: 'Main Menu',
+    headerLeft: null,
   }
   constructor(props) {
     super(props);
@@ -56,6 +58,8 @@ export default class MainMenu extends Component {
           data={[
                   { link: <Button title={'Tag New Photos'} onPress={()=> navigate('CameraRollPhotosList')} style={ styles.menubutton } />, key: '1' },
                   { link: <Button title={'Search imgBase'} onPress={()=> navigate('ImgBaseList')} style={ styles.menubutton } />, key: '2' },
+                  // { link: <Button title={'Logout'} onPress={()=> navigate('logout')} style={ styles.menubutton } />, key: '3' },
+
                ]}
           renderItem={ ({item}) => <View> {item.link} </View>}
         />
@@ -83,7 +87,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   footer: {
-    marginTop: 420,
+    bottom: -450,
+    // marginTop: 200,
     // flex: 1,
     alignItems: 'center',
   },
@@ -98,5 +103,8 @@ const styles = StyleSheet.create({
   },
   maincontainer: {
       top: 10,
+      // flex: 1,
+      // alignItems: 'center',
+      // justifyContent: 'center',
     }
 });

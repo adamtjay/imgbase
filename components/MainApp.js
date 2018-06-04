@@ -16,6 +16,8 @@ import { Constants } from 'expo';
 import { createStackNavigator } from 'react-navigation';
 
 import MainMenu from './screens/MainMenu';
+import Login from './screens/Login';
+import Register from './screens/Register';
 import CameraRollPhotosList from './screens/CameraRollPhotosList';
 import ImgbasePhotosList from './screens/ImgbasePhotosList';
 
@@ -23,6 +25,8 @@ import ViewLargePhoto from './partials/ViewLargePhoto';
 
 
 const AppNavigator = createStackNavigator({
+  Login: { screen: Login },
+  Register: { screen: Register },
   MainMenu: { screen: MainMenu },
   ImgBaseList: { screen: ImgbasePhotosList },
   CameraRollPhotosList: { screen: CameraRollPhotosList },
