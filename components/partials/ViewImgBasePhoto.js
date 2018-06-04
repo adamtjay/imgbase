@@ -21,10 +21,12 @@ export default class ViewImgBasePhoto extends Component {
     super(props);
 
     this.state = {
-      isActive: false
+      isActive: false,
+      filteredTags: '',
      };
 
     this._onImgPress = this._onImgPress.bind(this);
+    this.filterTagsFromProps = this.filterTagsFromProps.bind(this);
     }
 
   _onImgPress() {
@@ -33,10 +35,22 @@ export default class ViewImgBasePhoto extends Component {
       // Alert.alert(`Touchable working (${this.props.resphoto.fields.uri})`);
     }
 
-  renderLargeView() {
+  filterTagsFromProps() {
+    // take tags from props, filter, move that to state, use in inputbox
+    kwarray = []
+    lowercaseterms = this.props.resphoto.fields.tags.toLowerCase()
+    filtered = lowercaseterms.replace(/[^a-zA-Z0-9,]/g, "")
+    filteredtags = filtered.split(',').join(' ')
+    // console.log('filtered tags:' , filteredtags)
+    this.setState({
+      filteredTags: filteredtags
+    })
 
   }
 
+  componentDidMount() {
+    this.filterTagsFromProps();
+  }
 
   render() {
     // console.log(this.props);
@@ -70,7 +84,7 @@ export default class ViewImgBasePhoto extends Component {
 
 
                     { this.props.fromImgbase
-                      ? <TextInput name="edittags" value={this.props.resphoto.fields.tags} placeholder={'Edit Tags'} style={ styles.tagsbox } numberOfLines={4}/>
+                      ? <TextInput name="edittags" value={this.state.filteredTags} placeholder={'Edit Tags'} style={ styles.tagsbox } numberOfLines={4}/>
                       : this.state.isActive }
 
 
