@@ -64,6 +64,15 @@ export default class CameraRollPhotosList extends Component {
 
     uploadToImgBase() {
       //upload activephotos state to db
+      this.state.activePhotos.forEach(photo => {
+        const photoObj = {
+          filename: photo.image.filename,
+          mediatype: 'Photo',
+          uri: photo.image.uri,
+          tags: ['tagstest', 'arraytest']
+        }
+        console.log('** UPLOADING: **', photoObj)
+      })
     }
 
   render() {
@@ -90,7 +99,7 @@ export default class CameraRollPhotosList extends Component {
           { this.state.activePhotos.length > 0
             ?              <TouchableOpacity
                               style={[styles.buttonLargeContainer, styles.primaryButton]}
-                              onPress={() => this.uploadToImgBase} >
+                              onPress={this.uploadToImgBase}>
                              <Text style={styles.buttonText}> Upload to imgBase </Text>
                         </TouchableOpacity>
 
