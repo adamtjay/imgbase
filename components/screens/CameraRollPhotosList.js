@@ -35,7 +35,9 @@ export default class CameraRollPhotosList extends Component {
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
     this.enableMultiTag = this.enableMultiTag.bind(this);
-    this.uploadToImgBase = this.uploadToImgBase.bind(this);
+    this.uploadImgsToImgBase = this.uploadImgsToImgBase.bind(this);
+    this.postPhotoToImgBase = this.postPhotoToImgBase.bind(this);
+
     }
 
 
@@ -62,7 +64,7 @@ export default class CameraRollPhotosList extends Component {
       })
     }
 
-    uploadToImgBase() {
+    uploadImgsToImgBase() {
       //upload activephotos state to db
       this.state.activePhotos.forEach(photo => {
         const photoObj = {
@@ -71,9 +73,35 @@ export default class CameraRollPhotosList extends Component {
           uri: photo.image.uri,
           tags: ['tagstest', 'arraytest']
         }
-        console.log('** UPLOADING: **', photoObj)
+        this.postPhotoToImgBase(photoObj);
       })
     }
+
+    postPhotoToImgBase(photo) {
+      //called by uploadImgsToImgBase to post each new img
+      console.log('** UPLOADING: **', photo)
+
+        fetch('http://localhost:8000/api/media', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5MzUyNDkyLCJqdGkiOiJhM2I2YzhiNDYxYmU0MjIxODdlYzQxNGNhZDU3YWY2ZiIsInVzZXJfaWQiOjF9.My7vN58MBu9ZbO3quwZD1gve9emP4NlUE8GOpiv4tCg'
+          },
+          body: JSON.stringify({
+            "filename": photo.filename,
+            "mediatype": photo.mediatype,
+            "tags": [photo.tags],
+            "uri": photo.uri
+          })
+        })
+        .then(res => res.json())
+          .catch(err => console.log(err))
+        // .then(res => console.log(res))
+        .then(data => console.log(data))
+    }
+
+
+
 
   render() {
     let { photos } = this.state;
@@ -99,7 +127,7 @@ export default class CameraRollPhotosList extends Component {
           { this.state.activePhotos.length > 0
             ?              <TouchableOpacity
                               style={[styles.buttonLargeContainer, styles.primaryButton]}
-                              onPress={this.uploadToImgBase}>
+                              onPress={this.uploadImgsToImgBase}>
                              <Text style={styles.buttonText}> Upload to imgBase </Text>
                         </TouchableOpacity>
 
