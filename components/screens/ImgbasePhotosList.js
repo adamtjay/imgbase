@@ -87,7 +87,7 @@ export default class ImgbasePhotosList extends Component {
             kwarray[i] = 'tags[]=' + kwarray[i] + '&';
           }
           querystring = kwarray.join('')
-            // console.log('querystring: ', querystring)
+            console.log('querystring: ', querystring)
 
         console.log('fetching URL: ', `https://imgbase-api.herokuapp.com/api/media/search?${querystring}`)
           fetch(`https://imgbase-api.herokuapp.com/api/media/search?${querystring}`, {

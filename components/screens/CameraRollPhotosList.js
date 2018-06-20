@@ -83,52 +83,23 @@ export default class CameraRollPhotosList extends Component {
       //called by uploadImgsToImgBase to post each new img
       console.log('** UPLOADING: **', photo)
 
-        // fetch('http://localhost:8000/api/media', {
-        //   method: 'POST',
-        //   mode: 'no-cors',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NTEzODU4LCJqdGkiOiI4ODc4NmI4ZDJjYWU0OGVmYWIzMjgyMzMwNGEyODY2YiIsInVzZXJfaWQiOjF9.d5KIRVOeM2j7RtEVwbY-mHbLJU-60cc-UXpl-jnDAFA'
-        //   },
-        //   body: JSON.stringify({
-        //     "filename": photo.filename,
-        //     "mediatype": photo.mediatype,
-        //     // "tags": '',
-        //     "uri": photo.uri
-        //   })
-        // })
+        let data = JSON.stringify({
+          filename: photo.filename,
+          mediatype: photo.mediatype,
+          tags: photo.tags,
+          uri: photo.uri
+        })
 
-        axios.post(`https://jsonplaceholder.typicode.com/users`, { photo })
+        axios.post(`http://localhost:8000/api/media/`, data, {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NTIzODMyLCJqdGkiOiI0ODZlOWRkNDJlOTM0MTM1YjAwZTBiZDVlZDI3MmU4MyIsInVzZXJfaWQiOjF9.WlTNtC0-rYhIz4ygIYfzf5aCj7NRytJWjib6Bi40eu4'
+            }
+         })
           .then(res => {
-            console.log(res);
-            console.log(res.data);
+            // console.log(res);
+            console.log('Data:', res.data);
           })
-
-        // .then(res => console.log(res))
-        // // .then(res => res.json())
-        //   .catch(err => console.log(err))
-        // // .then(res => console.log(res))
-        // .then(data => console.log(data))
-
-    // var settings = {
-    //     "async": true,
-    //     "crossDomain": true,
-    //     "url": "http://localhost:8000/api/media/",
-    //     "method": "POST",
-    //     "headers": {
-    //       "Content-Type": "application/json",
-    //       "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NDM0MDc2LCJqdGkiOiI1ZjQ4MmU1ZjI3MGU0Nzc5YTA3NmZmNzVhZDZiMzc1ZCIsInVzZXJfaWQiOjF9.B3lVONxkNXVTbGK-xqpH4ThEIi_-bPaB2LciEVTMBQ8",
-    //       "Cache-Control": "no-cache",
-    //       "Postman-Token": "825fa3a5-6e6e-409f-b8a6-e79567a996fe"
-    //     },
-    //     "processData": false,
-    //     "data": "{ \"filename\": \"test\",\n\t\"mediatype\": \"test\",\n\t\"tags\": [\"test\"],\n\t\"uri\": \"test\" }"
-    // }
-    //
-    // $.ajax(settings).done(function (response) {
-    //   console.log(response);
-    // });
-
 
     }
 
