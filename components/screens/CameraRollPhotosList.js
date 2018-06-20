@@ -73,7 +73,7 @@ export default class CameraRollPhotosList extends Component {
           filename: photo.image.filename,
           mediatype: 'Photo',
           uri: photo.image.uri,
-          tags: ['tagstest', 'arraytest']
+          tags: ['newtest', 'new']
         }
         this.postPhotoToImgBase(photoObj);
       })
@@ -90,10 +90,10 @@ export default class CameraRollPhotosList extends Component {
           uri: photo.uri
         })
 
-        axios.post(`http://localhost:8000/api/media/`, data, {
+        axios.post(`https://imgbase-api.herokuapp.com/api/media/`, data, {
             headers: {
               "Content-Type": "application/json",
-              "Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NTIzODMyLCJqdGkiOiI0ODZlOWRkNDJlOTM0MTM1YjAwZTBiZDVlZDI3MmU4MyIsInVzZXJfaWQiOjF9.WlTNtC0-rYhIz4ygIYfzf5aCj7NRytJWjib6Bi40eu4'
+              "Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NTI3OTUzLCJqdGkiOiI2NTJkMDJhMWIwZjk0ZmEyODU3ZTk1YTgxZjkxMDViMyIsInVzZXJfaWQiOjN9.bnWS0PBpVxK0Rn7zKV8FaiIyCDUyfzE_1CMBK0Ox_nI'
             }
          })
           .then(res => {
@@ -172,41 +172,8 @@ export default class CameraRollPhotosList extends Component {
     return images;
   }
 
-  // fetchTest() {
-  //   fetch('https://imgbase-api.herokuapp.com/api/media/3/?format=json', {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     // body: JSON.stringify({
-  //     //   firstParam: 'yourValue',
-  //     //   secondParam: 'yourOtherValue',
-  //     // }),
-  //   }).then(res => res.json())
-  //   .then(data => console.log(data))
-  // }
-
-  // postTest() {
-  //   fetch('https://imgbase-api.herokuapp.com/api/media?format=json', {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       firstParam: 'yourValue',
-  //       secondParam: 'yourOtherValue',
-  //     }),
-  //   }).then(res => res.json())
-  //   .then(data => console.log(data))
-  // }
-
 
   componentDidMount() {
-      // this.fetchTest();
-      // this.postTest();
-
       this._getPhotosAsync().catch(error => {
         console.error(error);
       });
