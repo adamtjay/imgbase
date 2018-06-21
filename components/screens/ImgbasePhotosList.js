@@ -75,9 +75,12 @@ export default class ImgbasePhotosList extends Component {
       if (terms) {     // * only fetch when searchbar terms exist
             kwarray = []
             lowercaseterms = terms.toLowerCase()
-            piece = lowercaseterms.replace(/[^a-zA-Z0-9]/g, "").split(" ")
+            console.log('lowercaseterms: ', lowercaseterms)
+            piece = lowercaseterms.split(" ")
             piece.forEach(str => {
-              kwarray.push(str)
+              let filtered = str.replace(/[^a-zA-Z0-9]/g, "")
+              console.log('filtered: ', filtered);
+              kwarray.push(filtered)
             })
           // console.log(`searched terms: ${terms}`)
           console.log('searchKW array :', kwarray)

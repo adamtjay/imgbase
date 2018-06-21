@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AsyncStorage,
   View,
   Text,
   TouchableHighlight,
@@ -93,7 +94,7 @@ export default class CameraRollPhotosList extends Component {
         axios.post(`https://imgbase-api.herokuapp.com/api/media/`, data, {
             headers: {
               "Content-Type": "application/json",
-              "Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NTI3OTUzLCJqdGkiOiI2NTJkMDJhMWIwZjk0ZmEyODU3ZTk1YTgxZjkxMDViMyIsInVzZXJfaWQiOjN9.bnWS0PBpVxK0Rn7zKV8FaiIyCDUyfzE_1CMBK0Ox_nI'
+              "Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NjA0ODY2LCJqdGkiOiI4OTg1NTViZTk1ODc0YWIxOGM4M2M2MDlmM2IzZDJhNiIsInVzZXJfaWQiOjN9.J3H6DM08DpAa05jlnUrXSWRIYD7OuiNlQgw1aE1DEtg'
             }
          })
           .then(res => {
