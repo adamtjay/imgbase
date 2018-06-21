@@ -74,7 +74,7 @@ export default class CameraRollPhotosList extends Component {
           filename: photo.image.filename,
           mediatype: 'Photo',
           uri: photo.image.uri,
-          tags: ['newtest', 'new']
+          tags: ['newthingy', 'newer', 'test']
         }
         this.postPhotoToImgBase(photoObj);
       })
@@ -94,7 +94,7 @@ export default class CameraRollPhotosList extends Component {
         axios.post(`https://imgbase-api.herokuapp.com/api/media/`, data, {
             headers: {
               "Content-Type": "application/json",
-              "Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NjA0ODY2LCJqdGkiOiI4OTg1NTViZTk1ODc0YWIxOGM4M2M2MDlmM2IzZDJhNiIsInVzZXJfaWQiOjN9.J3H6DM08DpAa05jlnUrXSWRIYD7OuiNlQgw1aE1DEtg'
+              "Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NjE2NTg1LCJqdGkiOiIxOTE2OTFkNTI0MWI0NDgxOWJlMTcwNzJjZDI4ODlmNiIsInVzZXJfaWQiOjN9.SPZFU06OwWY6LNVzfHrK6D83hB4Jemr3ZsCWHVIgE7U'
             }
          })
           .then(res => {

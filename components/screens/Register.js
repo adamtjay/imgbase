@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AsyncStorage,
   View,
   Text,
   TouchableHighlight,
@@ -14,6 +15,9 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
+import axios from 'axios';
+// import deviceStorage from '../../services/deviceStorage';
+
 
 export default class Register extends Component {
   static navigationOptions = {
@@ -24,7 +28,41 @@ export default class Register extends Component {
 
     this.state = {  };
 
+
+    this.registerUser = this.registerUser.bind(this);
     }
+
+    registerUser() {
+          let data = JSON.stringify({
+            username: 'new1234565543',
+            password: '123imgbase123',
+            confirm_password: '123imgbase123'
+          })
+
+      axios.post(`http://localhost:8000/api/users/`, data, {
+          headers: {
+            "Content-Type": "application/json",
+          }
+       })
+          .then((res) => {
+            console.log('Res Data: ', res.data)
+            AsyncStorage.setItem("@token", res.data.token)
+              .catch(err => console.log(err))
+        })
+            .catch(err => console.log(err))
+        .then( () =>
+          AsyncStorage.getItem('@token')
+          .then(res => console.log(res))
+            .catch(err => console.log(err))
+      );
+
+        }
+
+
+
+      componentDidMount() {
+
+      }
 
 
   render() {
@@ -49,8 +87,8 @@ export default class Register extends Component {
 
           <View style={{marginTop: 20}}>
              <TouchableOpacity
-                  style={[styles.buttonLargeContainer, styles.primaryButton]}
-                  onPress={() => this.props.navigation.navigate("Register")} >
+                  onPress={this.registerUser}
+                  style={[styles.buttonLargeContainer, styles.primaryButton]} >
                  <Text style={styles.buttonText}> Sign Up </Text>
             </TouchableOpacity>
           </View>
