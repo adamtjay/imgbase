@@ -26,11 +26,16 @@ export default class Register extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {  };
+    this.state = {
+        username: '',
+        password: '',
+        confirm_password: ''
+    };
 
 
     this.registerUser = this.registerUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     }
 
     registerUser() {
@@ -88,6 +93,12 @@ export default class Register extends Component {
 
             }
 
+            // handleChange(name, value) {
+            //     this.setState({
+            //       [name]: value
+            //     })
+            //     // .then( () => console.log(this.state.username) )
+            //   }
 
 
 
@@ -107,14 +118,16 @@ export default class Register extends Component {
         <Text style={styles.maintext}> Register New User </Text>
         <View style={ styles.bottomdividerline } />
 
-        <Text style={styles.secondarytext}> Username </Text>
-        <TextInput name="username" placeholder="Username" style={styles.inputbox} />
+        <Text> {this.state.confirm_password} Test </Text>
+
+        <Text style={styles.secondarytext} > Username </Text>
+        <TextInput name="username" onChangeText={(text) => this.setState({username: text})} placeholder="Username" style={styles.inputbox} />
 
         <Text style={styles.secondarytext}> Password </Text>
-        <TextInput name="password" secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
+        <TextInput name="password" onChangeText={(text) => this.setState({password: text})} secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
 
         <Text style={styles.secondarytext}> Confirm Password </Text>
-        <TextInput name="confirm_password" secureTextEntry={true} placeholder="Confirm Password" style={styles.inputbox} />
+        <TextInput name="confirm_password" onChangeText={(text) => this.setState({confirm_password: text})} secureTextEntry={true} placeholder="Confirm Password" style={styles.inputbox} />
 
           <View style={{marginTop: 20}}>
              <TouchableOpacity
