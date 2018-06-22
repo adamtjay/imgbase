@@ -30,11 +30,12 @@ export default class Register extends Component {
 
 
     this.registerUser = this.registerUser.bind(this);
+    this.loginUser = this.loginUser.bind(this);
     }
 
     registerUser() {
           let data = JSON.stringify({
-            username: 'new1234565543',
+            username: 'new1234565543224',
             password: '123imgbase123',
             confirm_password: '123imgbase123'
           })
@@ -45,18 +46,48 @@ export default class Register extends Component {
           }
        })
           .then((res) => {
-            console.log('Res Data: ', res.data)
-            AsyncStorage.setItem("@token", res.data.token)
-              .catch(err => console.log(err))
-        })
+            console.log('Registered User: ', res.data)
+            AsyncStorage.setItem("@username", res.data.username)
+              .catch(err => console.log('Register failed: ', err))
+              .then( () =>
+                AsyncStorage.getItem('@username')
+                .then(res => console.log('User storage: ', res))
+                  .catch(err => console.log(err))
+                );
+            })
             .catch(err => console.log(err))
         .then( () =>
-          AsyncStorage.getItem('@token')
-          .then(res => console.log(res))
-            .catch(err => console.log(err))
+          this.loginUser()
       );
 
         }
+
+
+        loginUser() {
+              let data = JSON.stringify({
+                username: 'imgbasemain',
+                password: '123imgbase123',
+              })
+
+          axios.post(`http://localhost:8000/api-token-auth/`, data, {
+              headers: {
+                "Content-Type": "application/json",
+              }
+           })
+              .then((res) => {
+                console.log('Login res Data: ', res.data)
+                AsyncStorage.setItem("@token", res.data.token)
+                  .catch(err => console.log(err))
+            })
+                .catch(err => console.log(err))
+            .then( () =>
+              AsyncStorage.getItem('@token')
+              .then(res => console.log('Token storage: ', res))
+                .catch(err => console.log(err))
+          );
+
+            }
+
 
 
 

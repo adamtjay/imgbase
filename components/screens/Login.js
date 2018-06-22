@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AsyncStorage,
   View,
   Text,
   TouchableHighlight,
@@ -14,6 +15,8 @@ import {
     } from 'react-native';
 import { Constants } from 'expo';
 
+import axios from 'axios';
+
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -24,7 +27,34 @@ export default class Login extends Component {
 
     this.state = {  };
 
+    this.loginUser = this.loginUser.bind(this);
     }
+
+
+    loginUser() {
+          let data = JSON.stringify({
+            username: 'imgbasemain',
+            password: '123imgbase123',
+          })
+
+          axios.post(`http://localhost:8000/api-token-auth/`, data, {
+              headers: {
+                "Content-Type": "application/json",
+              }
+           })
+              .then((res) => {
+                console.log('Login Data: ', res.data)
+                AsyncStorage.setItem("@token", res.data.token)
+                  .catch(err => console.log(err))
+            })
+                .catch(err => console.log(err))
+            .then( () =>
+              AsyncStorage.getItem('@token')
+              .then(res => console.log('Token storage: ', res))
+                .catch(err => console.log(err))
+          );
+
+        }
 
 
   render() {
@@ -47,8 +77,8 @@ export default class Login extends Component {
 
           <View style={{marginTop: 20}}>
               <TouchableOpacity
-                   style={[styles.buttonLargeContainer, styles.primaryButton]}
-                   onPress={() => this.props.navigation.navigate("MainMenu")} >
+                   onPress={this.loginUser}
+                   style={[styles.buttonLargeContainer, styles.primaryButton]} >
                   <Text style={styles.buttonText}> Login </Text>
              </TouchableOpacity>
 
