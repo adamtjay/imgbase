@@ -34,6 +34,7 @@ export default class CameraRollPhotosList extends Component {
       photos: null,
       activePhotos: [],
       multitag: null,
+      usertoken: ''
      };
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
@@ -91,16 +92,23 @@ export default class CameraRollPhotosList extends Component {
           uri: photo.uri
         })
 
-        axios.post(`https://imgbase-api.herokuapp.com/api/media/`, data, {
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTI5NjE2NTg1LCJqdGkiOiIxOTE2OTFkNTI0MWI0NDgxOWJlMTcwNzJjZDI4ODlmNiIsInVzZXJfaWQiOjN9.SPZFU06OwWY6LNVzfHrK6D83hB4Jemr3ZsCWHVIgE7U'
-            }
-         })
-          .then(res => {
-            // console.log(res);
-            console.log('Data:', res.data);
-          })
+
+        if (this.state.usertoken) {
+          let authStr = 'Bearer '.concat(JSON.parse(this.state.usertoken))
+          // let authStr = 'Bearer '.concat(this.state.usertoken)
+          console.log('Authstr: ', authStr)
+
+          axios.post(`https://imgbase-api.herokuapp.com/api/media/`, data, {
+              headers: {
+                Authorization: authStr,
+                "Content-Type": "application/json"
+              }
+           })
+            .then(res => {
+              // console.log(res);
+              console.log('Data:', res.data);
+            })
+        }
 
     }
 
@@ -159,7 +167,7 @@ export default class CameraRollPhotosList extends Component {
 
     for (let { node: photo } of photos.edges) {
 
-      console.log('** CameraRoll Photo data: **\n', photo);
+      // console.log('** CameraRoll Photo data: **\n', photo);
 
       images.push(
 
@@ -175,9 +183,23 @@ export default class CameraRollPhotosList extends Component {
 
 
   componentDidMount() {
+
+    AsyncStorage.getItem('@token')
+        .then(res => {
+            this.setState({
+              usertoken: JSON.stringify(res)
+            })
+            console.log('usertoken state: ', this.state.usertoken)
+        })
+          .catch(err => console.log(err));
+
+
       this._getPhotosAsync().catch(error => {
         console.error(error);
       });
+
+
+
   }
 
   async _getPhotosAsync() {

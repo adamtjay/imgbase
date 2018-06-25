@@ -76,14 +76,14 @@ export default class Register extends Component {
                 password: '123imgbase123',
               })
 
-          axios.post(`https://imgbase-api.herokuapp.com/api-token-auth/`, data, {
+          axios.post(`https://imgbase-api.herokuapp.com/api/token/`, data, {
               headers: {
                 "Content-Type": "application/json",
               }
            })
               .then((res) => {
                 console.log('Login res Data: ', res.data)
-                AsyncStorage.setItem("@token", res.data.token)
+                AsyncStorage.setItem("@token", res.data.access)
                   .catch(err => console.log(err))
                 // this.props.navigation.navigate("MainMenu")
             })

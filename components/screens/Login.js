@@ -41,14 +41,14 @@ export default class Login extends Component {
             password: this.state.password,
           })
 
-          axios.post(`https://imgbase-api.herokuapp.com/api-token-auth/`, data, {
+          axios.post(`https://imgbase-api.herokuapp.com/api/token/`, data, {
               headers: {
                 "Content-Type": "application/json",
               }
            })
               .then((res) => {
                 console.log('Login Data: ', res.data)
-                AsyncStorage.setItem("@token", res.data.token)
+                AsyncStorage.setItem("@token", res.data.access)
                   .catch(err => console.log(err))
             })
                 .catch(err => console.log(err))
