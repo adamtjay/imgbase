@@ -36,6 +36,7 @@ export default class Login extends Component {
 
     loginUser() {
           let data = JSON.stringify({
+            // username: this.state.username,
             username: this.state.username.toLowerCase(),
             password: this.state.password,
           })
@@ -55,7 +56,8 @@ export default class Login extends Component {
               AsyncStorage.getItem('@token')
               .then(res => console.log('Token storage: ', res))
                 .catch(err => console.log(err))
-          );
+          )
+          .then( () =>  this.props.navigation.navigate("MainMenu") );
 
         }
 

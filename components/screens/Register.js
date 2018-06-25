@@ -64,7 +64,8 @@ export default class Register extends Component {
             .catch(err => console.log(err))
         .then( () =>
           this.loginUser()
-      );
+      )
+        .then( () =>  this.props.navigation.navigate("MainMenu") );
 
         }
 
@@ -84,6 +85,7 @@ export default class Register extends Component {
                 console.log('Login res Data: ', res.data)
                 AsyncStorage.setItem("@token", res.data.token)
                   .catch(err => console.log(err))
+                // this.props.navigation.navigate("MainMenu")
             })
                 .catch(err => console.log(err))
             .then( () =>
