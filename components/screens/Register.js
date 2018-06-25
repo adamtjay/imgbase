@@ -16,7 +16,6 @@ import {
 import { Constants } from 'expo';
 
 import axios from 'axios';
-// import deviceStorage from '../../services/deviceStorage';
 
 
 export default class Register extends Component {
@@ -35,7 +34,6 @@ export default class Register extends Component {
 
     this.registerUser = this.registerUser.bind(this);
     this.loginUser = this.loginUser.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
     }
 
     registerUser() {
@@ -63,17 +61,17 @@ export default class Register extends Component {
             })
             .catch(err => console.log(err))
         .then( () =>
-          this.loginUser()
-      )
-        .then( () =>  this.props.navigation.navigate("MainMenu") );
+          this.loginUser(this.state.username, this.state.password)
+        )
 
         }
 
 
-        loginUser() {
+        loginUser(username, password) {
+
               let data = JSON.stringify({
-                username: 'imgbasemain',
-                password: '123imgbase123',
+                username: username,
+                password: password
               })
 
           axios.post(`https://imgbase-api.herokuapp.com/api/token/`, data, {
@@ -85,7 +83,7 @@ export default class Register extends Component {
                 console.log('Login res Data: ', res.data)
                 AsyncStorage.setItem("@token", res.data.access)
                   .catch(err => console.log(err))
-                // this.props.navigation.navigate("MainMenu")
+                  .then( () =>  this.props.navigation.navigate("MainMenu") );
             })
                 .catch(err => console.log(err))
             .then( () =>
@@ -96,18 +94,11 @@ export default class Register extends Component {
 
             }
 
-            // handleChange(name, value) {
-            //     this.setState({
-            //       [name]: value
-            //     })
-            //     // .then( () => console.log(this.state.username) )
-            //   }
-
-
 
       componentDidMount() {
 
       }
+
 
 
   render() {

@@ -36,8 +36,8 @@ export default class Login extends Component {
 
     loginUser() {
           let data = JSON.stringify({
-            // username: this.state.username,
-            username: this.state.username.toLowerCase(),
+            username: this.state.username,
+            // username: this.state.username.toLowerCase(),
             password: this.state.password,
           })
 
