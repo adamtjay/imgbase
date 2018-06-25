@@ -39,13 +39,14 @@ export default class Register extends Component {
     }
 
     registerUser() {
-          let data = JSON.stringify({
-            username: 'new1234565543224',
-            password: '123imgbase123',
-            confirm_password: '123imgbase123'
-          })
 
-      axios.post(`http://localhost:8000/api/users/`, data, {
+      let data = JSON.stringify({
+        username: this.state.username,
+        password: this.state.password,
+        confirm_password: this.state.confirm_password
+      })
+
+      axios.post(`https://imgbase-api.herokuapp.com/api/users/`, data, {
           headers: {
             "Content-Type": "application/json",
           }
@@ -74,7 +75,7 @@ export default class Register extends Component {
                 password: '123imgbase123',
               })
 
-          axios.post(`http://localhost:8000/api-token-auth/`, data, {
+          axios.post(`https://imgbase-api.herokuapp.com/api-token-auth/`, data, {
               headers: {
                 "Content-Type": "application/json",
               }
@@ -117,8 +118,6 @@ export default class Register extends Component {
         <View style={ styles.dividerline } />
         <Text style={styles.maintext}> Register New User </Text>
         <View style={ styles.bottomdividerline } />
-
-        <Text> {this.state.confirm_password} Test </Text>
 
         <Text style={styles.secondarytext} > Username </Text>
         <TextInput name="username" onChangeText={(text) => this.setState({username: text})} placeholder="Username" style={styles.inputbox} />

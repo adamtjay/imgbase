@@ -25,7 +25,10 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {  };
+    this.state = {
+        username: '',
+        password: ''
+     };
 
     this.loginUser = this.loginUser.bind(this);
     }
@@ -33,11 +36,11 @@ export default class Login extends Component {
 
     loginUser() {
           let data = JSON.stringify({
-            username: 'imgbasemain',
-            password: '123imgbase123',
+            username: this.state.username.toLowerCase(),
+            password: this.state.password,
           })
 
-          axios.post(`http://localhost:8000/api-token-auth/`, data, {
+          axios.post(`https://imgbase-api.herokuapp.com/api-token-auth/`, data, {
               headers: {
                 "Content-Type": "application/json",
               }
@@ -69,10 +72,10 @@ export default class Login extends Component {
         <View style={ styles.bottomdividerline } />
 
         <Text style={styles.secondarytext}> Username </Text>
-        <TextInput name="username" placeholder="Username" style={styles.inputbox} />
+        <TextInput name="username" onChangeText={(text) => this.setState({username: text})}placeholder="Username" style={styles.inputbox} />
 
         <Text style={styles.secondarytext}> Password </Text>
-        <TextInput name="password" secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
+        <TextInput name="password" onChangeText={(text) => this.setState({password: text})}secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
 
 
           <View style={{marginTop: 20}}>
