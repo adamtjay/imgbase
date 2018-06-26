@@ -34,7 +34,8 @@ export default class CameraRollPhotosList extends Component {
       photos: null,
       activePhotos: [],
       multitag: null,
-      usertoken: ''
+      usertoken: '',
+      tags: []
      };
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
@@ -75,7 +76,7 @@ export default class CameraRollPhotosList extends Component {
           filename: photo.image.filename,
           mediatype: 'Photo',
           uri: photo.image.uri,
-          tags: ['newthingy', 'newer', 'test']
+          tags: this.state.tags
         }
         this.postPhotoToImgBase(photoObj);
       })
@@ -95,8 +96,6 @@ export default class CameraRollPhotosList extends Component {
 
         if (this.state.usertoken) {
           let authStr = 'Bearer '.concat(JSON.parse(this.state.usertoken))
-          // let authStr = 'Bearer '.concat(this.state.usertoken)
-          console.log('Authstr: ', authStr)
 
           axios.post(`https://imgbase-api.herokuapp.com/api/media/`, data, {
               headers: {
@@ -105,7 +104,6 @@ export default class CameraRollPhotosList extends Component {
               }
            })
             .then(res => {
-              // console.log(res);
               console.log('Data:', res.data);
             })
         }
@@ -163,7 +161,6 @@ export default class CameraRollPhotosList extends Component {
 
   _renderPhotos(photos) {
     let images = [];
-    let testurl = { 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' };
 
     for (let { node: photo } of photos.edges) {
 

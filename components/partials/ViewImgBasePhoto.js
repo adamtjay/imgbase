@@ -55,9 +55,6 @@ export default class ViewImgBasePhoto extends Component {
 
 
   render() {
-    // let { photo } = this.props.resphoto;
-    // console.log('props: ', this.props.resphoto.fields)
-
 
     return (
 
@@ -74,18 +71,17 @@ export default class ViewImgBasePhoto extends Component {
                       style={ styles.resimg }
                     />
 
-
                     {this.props.activePhotos.map(statephoto => {
                       if (statephoto.filename === this.props.resphoto.fields.filename) { this.state.isActive = true }
                     }) }
 
-                    { this.state.isActive && !this.props.fromImgbase
+                    {/* { this.state.isActive && !this.props.fromImgbase
                       ? <Text name="removeactive" onPress={() => Alert.alert('Remove pressed') } style={ styles.removeactive } > X </Text>
-                      : this.state.isActive }
+                      : this.state.isActive } */}
 
 
                     { this.props.fromImgbase
-                      ? <TextInput name="edittags" value={this.state.filteredTags} placeholder={'Edit Tags'} style={ styles.tagsbox } numberOfLines={4}/>
+                      ? <TextInput name="edittags" value={this.state.filteredTags} onChangeText={(text) => this.setState({filteredTags: text})} placeholder={'Edit Tags'} style={ styles.tagsbox } numberOfLines={4}/>
                       : this.state.isActive }
 
 

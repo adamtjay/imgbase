@@ -39,9 +39,6 @@ export default class ViewPhoto extends Component {
 
 
   render() {
-    // console.log(this.props);
-    // let { photo } = this.props.resphoto;
-
 
     return (
 
@@ -74,9 +71,9 @@ export default class ViewPhoto extends Component {
                       ? <TextInput name="addtags" placeholder={'Add Tags'} style={ styles.tagsbox } numberOfLines={4}/>
                       : this.state.isActive }
 
-                    { this.props.fromImgbase
+                    {/* { this.props.fromImgbase
                       ? <TextInput name="edittags" placeholder={'Edit Tags'} style={ styles.tagsbox } numberOfLines={4}/>
-                      : this.state.isActive }
+                      : this.state.isActive } */}
 
 
 
