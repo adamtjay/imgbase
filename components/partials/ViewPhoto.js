@@ -21,7 +21,8 @@ export default class ViewPhoto extends Component {
     super(props);
 
     this.state = {
-      isActive: false
+      isActive: false,
+      addedTags: ''
      };
 
     this._onImgPress = this._onImgPress.bind(this);
@@ -64,17 +65,9 @@ export default class ViewPhoto extends Component {
                       ? <Text name="removeactive" onPress={() => Alert.alert('Remove pressed') } style={ styles.removeactive } > X </Text>
                       : this.state.isActive }
 
-
-
-
                     { this.state.isActive && !this.props.fromImgbase
-                      ? <TextInput name="addtags" placeholder={'Add Tags'} style={ styles.tagsbox } numberOfLines={4}/>
+                      ? <TextInput value={this.state.addedTags} name="addtags" onChangeText={(text) => this.setState({addedTags: text})}placeholder={'Add Tags'} style={ styles.tagsbox } numberOfLines={4}/>
                       : this.state.isActive }
-
-                    {/* { this.props.fromImgbase
-                      ? <TextInput name="edittags" placeholder={'Edit Tags'} style={ styles.tagsbox } numberOfLines={4}/>
-                      : this.state.isActive } */}
-
 
 
                 </View>
@@ -103,7 +96,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
-    fontSize: 18,
+    fontSize: 16,
     backgroundColor: 'white',
     height: 30,
   },
@@ -117,16 +110,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingBottom: 15,
   },
-  activeContiner: {
-    width: 400,
-    display: 'block',
-    display: 'flex',
-    marginTop: 20,
-    marginLeft: 4,
-    borderWidth: 1,
-    borderRadius: 20,
-    paddingBottom: 15,
-  },
+  // activeContiner: {
+  //   width: 400,
+  //   display: 'block',
+  //   display: 'flex',
+  //   marginTop: 20,
+  //   marginLeft: 4,
+  //   borderWidth: 1,
+  //   borderRadius: 20,
+  //   paddingBottom: 15,
+  // },
 
   touchable: {
     // backgroundColor: 'red',
