@@ -42,6 +42,7 @@ export default class CameraRollPhotosList extends Component {
     this.enableMultiTag = this.enableMultiTag.bind(this);
     this.uploadImgsToImgBase = this.uploadImgsToImgBase.bind(this);
     this.postPhotoToImgBase = this.postPhotoToImgBase.bind(this);
+    this.updateActiveArrTags = this.updateActiveArrTags.bind(this);
     this.findActiveIndex = this.findActiveIndex.bind(this);
 
     }
@@ -73,9 +74,7 @@ export default class CameraRollPhotosList extends Component {
     uploadImgsToImgBase() {
       //upload activephotos state to db
       this.state.activePhotos.forEach(photo => {
-
-        this.findActiveIndex(photo.image.filename)
-
+          this.updateActiveArrTags(photo.image.filename)
         const photoObj = {
           filename: photo.image.filename,
           mediatype: 'Photo',
@@ -83,6 +82,7 @@ export default class CameraRollPhotosList extends Component {
           tags: this.state.tags
         }
         this.postPhotoToImgBase(photoObj);
+
       })
     }
 
@@ -125,9 +125,12 @@ export default class CameraRollPhotosList extends Component {
       return -1;
     }
 
-    updateActiveArrTags(filename, tags) {
+    updateActiveArrTags(filename, newtags) {
       //when tag state changes in child, update it in the active arr - for just photo w that filename
-        // this.findActiveIndex('IMG_0004.JPG')
+        let index = this.findActiveIndex(filename)
+        // console.log('index: ', index)
+        let actives = this.state.activePhotos
+        console.log('Filename: ', actives[index].image.filename)
     }
 
 
