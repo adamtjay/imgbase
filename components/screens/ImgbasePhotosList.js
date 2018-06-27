@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  AsyncStorage,
   View,
   Text,
   TouchableHighlight,
@@ -16,6 +17,7 @@ import {
 import { Constants } from 'expo';
 
 import _ from 'lodash';
+import jwt_decode from 'jwt-decode';
 
 import ViewImgBasePhoto from '../partials/ViewImgBasePhoto';
 
@@ -30,13 +32,15 @@ export default class ImgbasePhotosList extends Component {
       photos: [],
       activePhotos: [],
       searchbar: '',
-      photo: null
+      photo: null,
+      userid: null
      };
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.searchForTags = _.debounce(this.searchForTags, 2000);
     this.queryBySearchTerms = this.queryBySearchTerms.bind(this);
+    this.getUserIdFromToken = this.getUserIdFromToken.bind(this);
     }
 
   handleChange(e) {
@@ -113,12 +117,10 @@ export default class ImgbasePhotosList extends Component {
 
 
     componentDidMount() {
-        // this.fetchPhotos();
         this.queryBySearchTerms();
 
-        // this._getPhotosAsync().catch(error => {
-        //   console.error(error);
-        // });
+        this.getUserIdFromToken();
+
     }
 
 
@@ -155,11 +157,24 @@ export default class ImgbasePhotosList extends Component {
     );
   }
 
+  getUserIdFromToken() {
+      let decoded;
+
+      AsyncStorage.getItem('@token')
+      .then(res => {
+          decoded = jwt_decode(res)
+          this.setState({
+            userid: decoded.user_id
+          })
+          console.log('User ID State: ', this.state.userid)
+      })
+        .catch(err => console.log(err))
+
+  }
+
   _renderPhotos(photos) {
     let images = [];
-    let testurl = { 'uri': 'assets-library://asset/asset.PNG?id=FCEBD138-770F-488A-8211-AAA87BE0BAA0&ext=PNG' };
 
-    // for (let { node: photo } of photos.edges) {
     photos.map(photo => {
 
       // console.log('** Photo data: **\n', photo);
