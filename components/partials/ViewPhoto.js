@@ -66,7 +66,7 @@ export default class ViewPhoto extends Component {
                       : this.state.isActive }
 
                     { this.state.isActive && !this.props.fromImgbase
-                      ? <TextInput value={this.state.addedTags} name="addtags" onChangeText={(text) => this.setState({addedTags: text})}placeholder={'Add Tags'} style={ styles.tagsbox } numberOfLines={4}/>
+                      ? <TextInput value={this.state.addedTags} name="addtags" onChangeText={(text) => {this.setState({addedTags: text}); this.props.updateTags(this.props.resphoto.image.filename, text)}} placeholder={'Add Tags'} style={ styles.tagsbox } numberOfLines={4}/>
                       : this.state.isActive }
 
 

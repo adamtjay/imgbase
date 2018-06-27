@@ -74,7 +74,6 @@ export default class CameraRollPhotosList extends Component {
     uploadImgsToImgBase() {
       //upload activephotos state to db
       this.state.activePhotos.forEach(photo => {
-          this.updateActiveArrTags(photo.image.filename)
         const photoObj = {
           filename: photo.image.filename,
           mediatype: 'Photo',
@@ -90,10 +89,12 @@ export default class CameraRollPhotosList extends Component {
       //called by uploadImgsToImgBase to post each new img
       console.log('** UPLOADING: **', photo)
 
+      let splitTags = photo.tags.split(" ")
+
         let data = JSON.stringify({
           filename: photo.filename,
           mediatype: photo.mediatype,
-          tags: photo.tags,
+          tags: splitTags,
           uri: photo.uri
         })
 
@@ -128,13 +129,13 @@ export default class CameraRollPhotosList extends Component {
     updateActiveArrTags(filename, newtags) {
       //when tag state changes in child, update it in the active arr - for just photo w that filename
         let index = this.findActiveIndex(filename)
-        // console.log('index: ', index)
         let actives = this.state.activePhotos
-        console.log('Filename: ', actives[index].image.filename)
-        actives[index].tags = 'TAGSTEST'
+        // console.log('Filename: ', actives[index].image.filename)
+        actives[index].tags = newtags
         this.setState({
           actives
         })
+        console.log('Updated: ', this.state.activePhotos[index].tags)
     }
 
 
@@ -196,6 +197,7 @@ export default class CameraRollPhotosList extends Component {
       images.push(
 
         <ViewPhoto
+          updateTags={this.updateActiveArrTags}
           resphoto={photo}
           activePhotos={this.state.activePhotos}
           updateActiveArr={this.updateActiveArr}
