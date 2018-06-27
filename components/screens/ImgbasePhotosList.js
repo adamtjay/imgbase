@@ -145,7 +145,7 @@ export default class ImgbasePhotosList extends Component {
 
         <View style={{flex: 1, marginTop: 25}}>
 
-          {photos
+          {photos && this.state.userid
             ? this._renderPhotos(photos)
             : <Text style={styles.paragraph}>Waiting for search...</Text>}
 
@@ -179,15 +179,18 @@ export default class ImgbasePhotosList extends Component {
 
       // console.log('** Photo data: **\n', photo);
 
-      images.push(
+      // filter out photos which don't match userid from state
+      if (photo.fields.user === this.state.userid) {
 
-        <ViewImgBasePhoto
-          fromImgbase={true}
-          resphoto={photo}
-          activePhotos={this.state.activePhotos}
-          updateActiveArr={this.updateActiveArr}
-          key={photo.fields.filename}/>
-        );
+        images.push(
+          <ViewImgBasePhoto
+            fromImgbase={true}
+            resphoto={photo}
+            activePhotos={this.state.activePhotos}
+            updateActiveArr={this.updateActiveArr}
+            key={photo.fields.filename}/>
+          );
+      }
     })
     return images;
   }
