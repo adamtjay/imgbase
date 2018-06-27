@@ -79,7 +79,7 @@ export default class CameraRollPhotosList extends Component {
           filename: photo.image.filename,
           mediatype: 'Photo',
           uri: photo.image.uri,
-          tags: this.state.tags
+          tags: photo.tags
         }
         this.postPhotoToImgBase(photoObj);
 
@@ -131,6 +131,10 @@ export default class CameraRollPhotosList extends Component {
         // console.log('index: ', index)
         let actives = this.state.activePhotos
         console.log('Filename: ', actives[index].image.filename)
+        actives[index].tags = 'TAGSTEST'
+        this.setState({
+          actives
+        })
     }
 
 
