@@ -261,7 +261,7 @@ buttonText: {
   },
   multitagsbox: {
     maxWidth: 300,
-    marginLeft: 40,
+    marginLeft: (Dimensions.get('window').width)/7,
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,

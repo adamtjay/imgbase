@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     width: 300,
-    marginLeft: 40,
+    marginLeft: (Dimensions.get('window').width)/7.5,
   },
 primaryButton: {
     backgroundColor: '#a6cbfc',
@@ -147,7 +147,7 @@ primaryButton: {
   },
   inputbox: {
     maxWidth: 300,
-    marginLeft: 40,
+    marginLeft: (Dimensions.get('window').width)/7.5,
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,

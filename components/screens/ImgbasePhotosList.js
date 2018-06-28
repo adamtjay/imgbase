@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     width: 350,
-    left: 15,
+    left: (Dimensions.get('window').width)/12,
     top: 10,
     height: 50,
     backgroundColor: 'white',
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   },
   textarea: {
     maxWidth: 320,
-    marginLeft: 35,
+    marginLeft: (Dimensions.get('window').width)/7.5,
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'center',
@@ -235,6 +235,7 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   imgContainer: {
+    marginLeft: (Dimensions.get('window').width)/2.5,
     width: 400,
     display: 'block',
     display: 'flex',

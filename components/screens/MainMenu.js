@@ -95,13 +95,13 @@ export default class MainMenu extends Component {
 
 const styles = StyleSheet.create({
   logout: {
-    marginTop: 320,
+    marginTop: (Dimensions.get('window').height)/2.8,
   },
   buttonLargeContainer: {
     alignItems: 'center',
     marginTop: 10,
     width: 300,
-    marginLeft: 40,
+    marginLeft: (Dimensions.get('window').width)/7,
   },
 primaryButton: {
     backgroundColor: '#a6cbfc',
@@ -141,8 +141,5 @@ buttonText: {
   },
   maincontainer: {
       top: 10,
-      // flex: 1,
-      // alignItems: 'center',
-      // justifyContent: 'center',
     }
 });

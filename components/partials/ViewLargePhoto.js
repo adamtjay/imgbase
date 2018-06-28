@@ -44,7 +44,7 @@ export default class ViewLargePhoto extends Component {
         ?
       <TouchableHighlight onPress={this._onImgPress} key={resphoto.filename} >
        <ScrollView style={ styles.imgContainer }>
-         
+
                <Image
                  key={resphoto.filename}
                  source={resphoto}

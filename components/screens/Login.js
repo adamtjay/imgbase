@@ -66,10 +66,9 @@ export default class Login extends Component {
                 .catch(err => console.log(err))
           )
           .then( () => {
-            // if login successful, reset state, navigate to mainmenu
+            // if login successful, reset state except username, navigate to mainmenu
             if (this.state.usertoken) {
               this.setState({
-                username: '',
                 password: '',
                 usertoken: null,
                 failedlogin: false
@@ -119,7 +118,13 @@ export default class Login extends Component {
 
              <TouchableOpacity
                   style={[styles.buttonLargeContainer, styles.primaryButton]}
-                  onPress={() => this.props.navigation.navigate("Register")} >
+                  onPress={() => {
+                    this.setState({
+                      password: '',
+                      usertoken: null,
+                      failedlogin: false
+                    })
+                    this.props.navigation.navigate("Register")}} >
                  <Text style={styles.buttonText}> Register New User </Text>
             </TouchableOpacity>
           </View>
@@ -134,7 +139,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     width: 300,
-    marginLeft: 40,
+    marginLeft: (Dimensions.get('window').width)/7.5,
   },
 primaryButton: {
     backgroundColor: '#a6cbfc',
@@ -148,7 +153,8 @@ buttonText: {
   },
   inputbox: {
     maxWidth: 300,
-    marginLeft: 40,
+    // marginLeft: 40,
+    marginLeft: (Dimensions.get('window').width)/7.5,
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
@@ -158,7 +164,7 @@ buttonText: {
   },
   inputfailedlogin: {
     maxWidth: 300,
-    marginLeft: 40,
+    marginLeft: (Dimensions.get('window').width)/7,
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
