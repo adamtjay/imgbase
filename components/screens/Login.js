@@ -37,17 +37,16 @@ export default class Login extends Component {
 
 
     loginUser() {
-
       //clear stored token, if there is one
       AsyncStorage.removeItem("@token")
         .catch(err => console.log(err))
 
-          let data = JSON.stringify({
+          let logindata = JSON.stringify({
             username: this.state.username,
             password: this.state.password,
           })
 
-          axios.post(`https://imgbase-api.herokuapp.com/api/token/`, data, {
+          axios.post(`https://imgbase-api.herokuapp.com/api/token/`, logindata, {
               headers: {
                 "Content-Type": "application/json",
               }
@@ -67,13 +66,24 @@ export default class Login extends Component {
                 .catch(err => console.log(err))
           )
           .then( () => {
+            // if login successful, reset state, navigate to mainmenu
             if (this.state.usertoken) {
+              this.setState({
+                username: '',
+                password: '',
+                usertoken: null,
+                failedlogin: false
+              })
              this.props.navigation.navigate("MainMenu")
            } else {
-             this.setState({ failedlogin: true })
+             // login not successful, update state to show failed login
+             this.setState({
+               failedlogin: true,
+               password: '',
+               usertoken: null
+              })
            }
            });
-
         }
 
 
@@ -85,19 +95,19 @@ export default class Login extends Component {
     <View style={ styles.maincontainer }>
 
         <View style={ styles.dividerline } />
-        <Text style={styles.maintext}> Login </Text>
+        <Text style={styles.maintext}> imgBase </Text>
         <View style={ styles.bottomdividerline } />
 
         <Text style={styles.secondarytext}> Username </Text>
         { this.state.failedlogin === false
-          ? <TextInput name="username" onChangeText={(text) => this.setState({username: text})} placeholder="Username" style={styles.inputbox} />
-          : <TextInput name="username" onChangeText={(text) => this.setState({username: text})} placeholder="Username" style={styles.inputfailedlogin} />
+          ? <TextInput name="username" value={this.state.username} onChangeText={(text) => this.setState({username: text})} placeholder="Username" style={styles.inputbox} />
+          : <TextInput name="username" value={this.state.username} onChangeText={(text) => this.setState({username: text})} placeholder="Username" style={styles.inputfailedlogin} />
         }
 
         <Text style={styles.secondarytext}> Password </Text>
         { this.state.failedlogin === false
-          ? <TextInput name="password" onChangeText={(text) => this.setState({password: text})} secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
-          : <TextInput name="password" onChangeText={(text) => this.setState({password: text})} secureTextEntry={true} placeholder="Password" style={styles.inputfailedlogin} />
+          ? <TextInput name="password" value={this.state.password} onChangeText={(text) => this.setState({password: text})} secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
+          : <TextInput name="password" value={this.state.password} onChangeText={(text) => this.setState({password: text})} secureTextEntry={true} placeholder="Password" style={styles.inputfailedlogin} />
         }
 
           <View style={{marginTop: 20}}>
@@ -110,7 +120,7 @@ export default class Login extends Component {
              <TouchableOpacity
                   style={[styles.buttonLargeContainer, styles.primaryButton]}
                   onPress={() => this.props.navigation.navigate("Register")} >
-                 <Text style={styles.buttonText}> Register </Text>
+                 <Text style={styles.buttonText}> Register New User </Text>
             </TouchableOpacity>
           </View>
 

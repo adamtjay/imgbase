@@ -71,6 +71,13 @@ export default class MainMenu extends Component {
                     </TouchableOpacity>
                     , key: '2' },
                   // { link: <Button title={'Logout'} onPress={()=> navigate('logout')} style={ styles.menubutton } />, key: '3' },
+                  { link:
+                    <TouchableOpacity
+                          style={[styles.buttonLargeContainer, styles.primaryButton, styles.logout]}
+                          onPress={() => navigate("Login")} >
+                         <Text style={styles.buttonText}> Logout </Text>
+                    </TouchableOpacity>
+                    , key: '3' },
 
                ]}
           renderItem={ ({item}) => <View> {item.link} </View>}
@@ -87,6 +94,9 @@ export default class MainMenu extends Component {
 }
 
 const styles = StyleSheet.create({
+  logout: {
+    marginTop: 320,
+  },
   buttonLargeContainer: {
     alignItems: 'center',
     marginTop: 10,
@@ -115,7 +125,7 @@ buttonText: {
     paddingBottom: 20,
   },
   footer: {
-    bottom: -420,
+    bottom: -40,
     // marginTop: 200,
     // flex: 1,
     alignItems: 'center',

@@ -69,12 +69,12 @@ export default class Register extends Component {
 
         loginUser(username, password) {
 
-              let data = JSON.stringify({
+              let newuserdata = JSON.stringify({
                 username: username,
                 password: password
               })
 
-          axios.post(`https://imgbase-api.herokuapp.com/api/token/`, data, {
+          axios.post(`https://imgbase-api.herokuapp.com/api/token/`, newuserdata, {
               headers: {
                 "Content-Type": "application/json",
               }
@@ -93,12 +93,6 @@ export default class Register extends Component {
           );
 
             }
-
-
-      componentDidMount() {
-
-      }
-
 
 
   render() {
