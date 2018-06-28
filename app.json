@@ -1,5 +1,16 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "name": "imgBase",
+    "icon": "./sample-icon.png",
+    "description": "Turn your photos into a searchable image database",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "ios": {
+      "bundleIdentifier": "com.AdamTJ.imgBase"
+    },
+    "android": {
+      "package": "com.AdamTJ.imgBase"
+    }
   }
 }
