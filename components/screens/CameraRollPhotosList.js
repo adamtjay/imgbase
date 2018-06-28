@@ -72,13 +72,13 @@ export default class CameraRollPhotosList extends Component {
     }
 
     uploadImgsToImgBase() {
-      //upload activephotos state to db
+      //upload activephotos with updated state, incl multitags, to db
       this.state.activePhotos.forEach(photo => {
         const photoObj = {
           filename: photo.image.filename,
           mediatype: 'Photo',
           uri: photo.image.uri,
-          tags: photo.tags
+          tags: photo.tags.concat(' ', this.state.multitag)
         }
         this.postPhotoToImgBase(photoObj);
 
