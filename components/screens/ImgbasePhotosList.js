@@ -196,28 +196,7 @@ export default class ImgbasePhotosList extends Component {
   }
 
 
-//   async _getPhotosAsync() {
-//     let photos = await CameraRoll.getPhotos({ first: 20 });
-//     this.setState({ photos });
-//   }
-
-
 } // * end Class
-
-// postTest() {
-//   fetch('https://imgbase-api.herokuapp.com/api/media?format=json', {
-//     method: 'POST',
-//     headers: {
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       firstParam: 'yourValue',
-//       secondParam: 'yourOtherValue',
-//     }),
-//   }).then(res => res.json())
-//   .then(data => console.log(data))
-// }
 
 
 const styles = StyleSheet.create({

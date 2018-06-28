@@ -27,7 +27,9 @@ export default class Login extends Component {
 
     this.state = {
         username: '',
-        password: ''
+        password: '',
+        usertoken: null,
+        failedlogin: false
      };
 
     this.loginUser = this.loginUser.bind(this);
@@ -35,9 +37,13 @@ export default class Login extends Component {
 
 
     loginUser() {
+
+      //clear stored token, if there is one
+      AsyncStorage.removeItem("@token")
+        .catch(err => console.log(err))
+
           let data = JSON.stringify({
             username: this.state.username,
-            // username: this.state.username.toLowerCase(),
             password: this.state.password,
           })
 
@@ -54,10 +60,19 @@ export default class Login extends Component {
                 .catch(err => console.log(err))
             .then( () =>
               AsyncStorage.getItem('@token')
-              .then(res => console.log('Token storage: ', res))
+              .then(res => {
+                this.setState({ usertoken: res })
+                console.log('Token state: ', this.state.usertoken)
+              })
                 .catch(err => console.log(err))
           )
-          .then( () =>  this.props.navigation.navigate("MainMenu") );
+          .then( () => {
+            if (this.state.usertoken) {
+             this.props.navigation.navigate("MainMenu")
+           } else {
+             this.setState({ failedlogin: true })
+           }
+           });
 
         }
 
@@ -74,11 +89,16 @@ export default class Login extends Component {
         <View style={ styles.bottomdividerline } />
 
         <Text style={styles.secondarytext}> Username </Text>
-        <TextInput name="username" onChangeText={(text) => this.setState({username: text})}placeholder="Username" style={styles.inputbox} />
+        { this.state.failedlogin === false
+          ? <TextInput name="username" onChangeText={(text) => this.setState({username: text})} placeholder="Username" style={styles.inputbox} />
+          : <TextInput name="username" onChangeText={(text) => this.setState({username: text})} placeholder="Username" style={styles.inputfailedlogin} />
+        }
 
         <Text style={styles.secondarytext}> Password </Text>
-        <TextInput name="password" onChangeText={(text) => this.setState({password: text})}secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
-
+        { this.state.failedlogin === false
+          ? <TextInput name="password" onChangeText={(text) => this.setState({password: text})} secureTextEntry={true} placeholder="Password" style={styles.inputbox} />
+          : <TextInput name="password" onChangeText={(text) => this.setState({password: text})} secureTextEntry={true} placeholder="Password" style={styles.inputfailedlogin} />
+        }
 
           <View style={{marginTop: 20}}>
               <TouchableOpacity
@@ -124,6 +144,16 @@ buttonText: {
     borderRadius: 20,
     fontSize: 16,
     backgroundColor: 'white',
+    height: 40,
+  },
+  inputfailedlogin: {
+    maxWidth: 300,
+    marginLeft: 40,
+    textAlign: 'center',
+    borderWidth: 1,
+    borderRadius: 20,
+    fontSize: 16,
+    backgroundColor: '#f9c3c0',
     height: 40,
   },
   maintext: {
