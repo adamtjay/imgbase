@@ -154,7 +154,7 @@ export default class CameraRollPhotosList extends Component {
           : <Button title="Multi-Tagging" onPress={this.enableMultiTag} style={ styles.multitagtext } /> }
 
         { this.state.multitag != null
-          ? <View><TextInput name="multitag" placeholder="Add Multi-Tag keywords" style={ styles.multitagsbox }/>
+          ? <View><TextInput value={this.state.multitag} name="multitag" onChangeText={(text) => this.setState({multitag: text})} placeholder="Add Multi-Tag keywords" style={ styles.multitagsbox }/>
                   <Text style={{textAlign:'center', top:5, fontSize:12}}>Tag(s) will be applied to all uploaded images</Text> </View>
           : this.state.multitag }
 
