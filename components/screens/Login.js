@@ -33,8 +33,8 @@ export default class Login extends Component {
      };
 
     this.loginUser = this.loginUser.bind(this);
+    this.getLastLoggedIn = this.getLastLoggedIn.bind(this);
     }
-
 
     loginUser() {
       //clear stored token, if there is one
@@ -55,6 +55,8 @@ export default class Login extends Component {
                 console.log('Login Data: ', res.data)
                 AsyncStorage.setItem("@token", res.data.access)
                   .catch(err => console.log(err))
+                AsyncStorage.setItem("@username", this.state.username)
+                .catch(err => console.log(err))
             })
                 .catch(err => console.log(err))
             .then( () =>
@@ -79,19 +81,30 @@ export default class Login extends Component {
              this.setState({
                failedlogin: true,
                password: '',
-               usertoken: null
+               usertoken: null,
+               loaded: true
               })
            }
            });
         }
 
+        getLastLoggedIn() {
+          AsyncStorage.getItem('@username')
+          .then(res => {
+            this.setState({ username: res })
+          })
+            .catch(err => console.log(err))
+        }
+
+  componentDidMount() {
+    this.getLastLoggedIn();
+      }
 
   render() {
 
     return (
 
-
-    <View style={ styles.maincontainer }>
+  <View style={ styles.maincontainer }>
 
         <View style={ styles.dividerline } />
         <Text style={styles.maintext}> imgBase </Text>
@@ -112,19 +125,21 @@ export default class Login extends Component {
           <View style={{marginTop: 20}}>
               <TouchableOpacity
                    onPress={this.loginUser}
-                   style={[styles.buttonLargeContainer, styles.primaryButton]} >
+                   style={[styles.buttonLargeContainer, styles.primaryButton] } >
                   <Text style={styles.buttonText}> Login </Text>
              </TouchableOpacity>
 
              <TouchableOpacity
                   style={[styles.buttonLargeContainer, styles.primaryButton]}
                   onPress={() => {
-                    this.setState({
-                      password: '',
-                      usertoken: null,
-                      failedlogin: false
-                    })
-                    this.props.navigation.navigate("Register")}} >
+                      this.setState({
+                        password: '',
+                        usertoken: null,
+                        failedlogin: false
+                      })
+                      this.setState({loaded:false})
+                      this.props.navigation.navigate("Register")} }
+                    loginReset={this.getLastLoggedIn} >
                  <Text style={styles.buttonText}> Register New User </Text>
             </TouchableOpacity>
           </View>

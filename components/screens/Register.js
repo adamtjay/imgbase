@@ -16,7 +16,7 @@ import {
 import { Constants } from 'expo';
 
 import axios from 'axios';
-
+import { NavigationActions } from 'react-navigation';
 
 export default class Register extends Component {
   static navigationOptions = {
@@ -83,7 +83,9 @@ export default class Register extends Component {
                 console.log('Login res Data: ', res.data)
                 AsyncStorage.setItem("@token", res.data.access)
                   .catch(err => console.log(err))
-                  .then( () =>  this.props.navigation.navigate("MainMenu") );
+                  .then( () =>  {
+                    this.props.navigation.navigate("MainMenu")
+                } );
             })
                 .catch(err => console.log(err))
             .then( () =>

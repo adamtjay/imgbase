@@ -157,9 +157,9 @@ export default class ImgbasePhotosList extends Component {
     );
   }
 
+  // get ID of logged in user by decoding token
   getUserIdFromToken() {
       let decoded;
-
       AsyncStorage.getItem('@token')
       .then(res => {
           decoded = jwt_decode(res)
@@ -169,7 +169,6 @@ export default class ImgbasePhotosList extends Component {
           console.log('User ID State: ', this.state.userid)
       })
         .catch(err => console.log(err))
-
   }
 
   _renderPhotos(photos) {
@@ -235,7 +234,6 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   imgContainer: {
-    marginLeft: (Dimensions.get('window').width)/2.5,
     width: 400,
     display: 'block',
     display: 'flex',
