@@ -140,8 +140,8 @@ const styles = StyleSheet.create({
   buttonLargeContainer: {
     alignItems: 'center',
     marginTop: 10,
-    width: 300,
-    marginLeft: (Dimensions.get('window').width)/7.5,
+    width: wp('80%'),
+    marginLeft: wp('10.7%'),
   },
 primaryButton: {
     backgroundColor: '#a6cbfc',
@@ -154,8 +154,8 @@ primaryButton: {
     padding: 10,
   },
   inputbox: {
-    maxWidth: 300,
-    marginLeft: (Dimensions.get('window').width)/7.5,
+    maxWidth: wp('80%'),
+    marginLeft: wp('10.7%'),
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,

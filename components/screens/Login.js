@@ -188,8 +188,8 @@ buttonText: {
     height: 40,
   },
   inputfailedlogin: {
-    maxWidth: 300,
-    marginLeft: (Dimensions.get('window').width)/7,
+    maxWidth: wp('80%'),
+    marginLeft: wp('10.7%'),
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
@@ -209,10 +209,6 @@ buttonText: {
     paddingTop: 20,
     paddingBottom: 10,
   },
-  menubutton: {
-    // fontSize: 45,
-    padding: 50,
-  },
   dividerline: {
     borderBottomColor: 'black',
     borderBottomWidth: 1,
@@ -226,7 +222,5 @@ buttonText: {
   },
   maincontainer: {
       top: 10,
-      // flex: 1,
-      // alignItems: 'center',
     }
 });

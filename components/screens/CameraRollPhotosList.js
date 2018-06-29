@@ -311,6 +311,7 @@ buttonText: {
   container: {
     flex: 1,
     backgroundColor: '#ecf0f1',
+    marginLeft: wp('-5%'),
   },
   paragraph: {
     margin: 24,
