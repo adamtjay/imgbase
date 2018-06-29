@@ -138,8 +138,7 @@ export default class Login extends Component {
                         failedlogin: false
                       })
                       this.setState({loaded:false})
-                      this.props.navigation.navigate("Register")} }
-                    loginReset={this.getLastLoggedIn} >
+                      this.props.navigation.navigate("Register", {resetLoginUser: this.getLastLoggedIn})} } >
                  <Text style={styles.buttonText}> Register New User </Text>
             </TouchableOpacity>
           </View>

@@ -84,10 +84,14 @@ export default class Register extends Component {
                 AsyncStorage.setItem("@token", res.data.access)
                   .catch(err => console.log(err))
                   .then( () =>  {
+                    this.props.navigation.state.params.resetLoginUser();
                     this.props.navigation.navigate("MainMenu")
                 } );
             })
-                .catch(err => console.log(err))
+                .catch(err => {
+                  this.props.navigation.state.params.resetLoginUser();
+                  console.log(err)
+                })
             .then( () =>
               AsyncStorage.getItem('@token')
               .then(res => console.log('Token storage: ', res))

@@ -21,9 +21,6 @@ import Register from './screens/Register';
 import CameraRollPhotosList from './screens/CameraRollPhotosList';
 import ImgbasePhotosList from './screens/ImgbasePhotosList';
 
-import ViewLargePhoto from './partials/ViewLargePhoto';
-
-
 const AppNavigator = createStackNavigator({
   Login: { screen: Login },
   Register: { screen: Register },
