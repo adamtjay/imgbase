@@ -131,7 +131,7 @@ export default class ImgbasePhotosList extends Component {
 
     return (
 
-      <ScrollView style={styles.container}>
+      <ScrollView style={ (wp('100%') > 395) ? styles.containerLg : styles.container }>
 
         <View style={ styles.dividerline } />
 
@@ -139,7 +139,7 @@ export default class ImgbasePhotosList extends Component {
         <TextInput name={"searchbar"}
              onChangeText={this.handleChange}
              placeholder={'Enter Search Keywords'}
-             style={ styles.searchbox }/>
+             style={ (wp('100%') > 395) ? styles.searchboxLg : styles.searchbox }/>
 
          <View style={ styles.bottomdividerline } />
 
@@ -151,7 +151,6 @@ export default class ImgbasePhotosList extends Component {
             : <Text style={styles.paragraph}>Waiting for search...</Text>}
 
         </View>
-
 
       </ScrollView>
 
@@ -201,12 +200,22 @@ export default class ImgbasePhotosList extends Component {
 
 const styles = StyleSheet.create({
   searchbox: {
-    // top: 20,
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
     width: wp('93%'),
     left: wp('8.3%'),
+    top: 10,
+    height: 50,
+    backgroundColor: 'white',
+    fontSize: 18,
+  },
+  searchboxLg: {
+    textAlign: 'center',
+    borderWidth: 1,
+    borderRadius: 20,
+    width: wp('93%'),
+    left: wp('3.3%'),
     top: 10,
     height: 50,
     backgroundColor: 'white',
@@ -254,7 +263,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ecf0f1',
-    marginLeft: wp('-5%'),
+    marginLeft: wp('-5.5%'),
+  },
+  containerLg: {
+    flex: 1,
+    backgroundColor: '#ecf0f1',
+    marginLeft: wp('-0.5%'),
   },
   paragraph: {
     margin: 24,

@@ -156,13 +156,12 @@ export default class CameraRollPhotosList extends Component {
           : <Button title="Multi-Tagging" onPress={this.enableMultiTag} style={ styles.multitagtext } /> }
 
         { this.state.multitag != null
-          ? <View><TextInput value={this.state.multitag} name="multitag" onChangeText={(text) => this.setState({multitag: text})} placeholder="Add Multi-Tag keywords" style={ styles.multitagsbox }/>
+          ? <View><TextInput value={this.state.multitag} style={ (wp('100%') > 395) ? styles.multitagsboxLg : styles.multitagsbox } name="multitag" onChangeText={(text) => this.setState({multitag: text})} placeholder="Add Multi-Tag keywords" />
                   <Text style={{textAlign:'center', top:5, fontSize:12}}>Tag(s) will be applied to all uploaded images</Text> </View>
           : this.state.multitag }
 
         <View style={{flex: 1, marginTop: 25}}>
           <Text style={{textAlign:'center', fontSize:20, fontWeight:'bold'}}> Photos Selected: {this.state.activePhotos.length} </Text>
-
 
           { this.state.activePhotos.length > 0
             ?              <TouchableOpacity
@@ -174,8 +173,6 @@ export default class CameraRollPhotosList extends Component {
             : this.state.activePhotos }
 
             <View style={ styles.dividerline } />
-
-            {/* <Text style={{ marginLeft: 50 }}> {wp('100%')} </Text> */}
 
           {photos
             ? this._renderPhotos(photos)
@@ -261,8 +258,18 @@ buttonText: {
     fontSize: 25,
   },
   multitagsbox: {
-    width: wp('80%'),
-    marginLeft: wp('14.5%'),
+    width: wp('82%'),
+    marginLeft: wp('12%'),
+    textAlign: 'center',
+    borderWidth: 1,
+    borderRadius: 20,
+    fontSize: 16,
+    backgroundColor: 'white',
+    height: 40,
+  },
+  multitagsboxLg: {
+    width: wp('82%'),
+    marginLeft: wp('8.5%'),
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
