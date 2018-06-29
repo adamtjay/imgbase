@@ -14,7 +14,7 @@ import {
   TextInput,
     } from 'react-native';
 import { Constants } from 'expo';
-
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default class ViewPhoto extends Component {
   constructor(props) {

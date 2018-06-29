@@ -16,12 +16,14 @@ import {
   TouchableOpacity,
     } from 'react-native';
 import { Constants } from 'expo';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+import ViewPhoto from '../partials/ViewPhoto';
 
 import $ from 'jquery';
 import axios from 'axios';
 // import { Spinner } from 'react-native-material-kit';
 
-import ViewPhoto from '../partials/ViewPhoto';
 
 export default class CameraRollPhotosList extends Component {
   static navigationOptions = {

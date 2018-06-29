@@ -14,9 +14,11 @@ import {
   TouchableOpacity,
     } from 'react-native';
 import { Constants } from 'expo';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import axios from 'axios';
 import { NavigationActions } from 'react-navigation';
+
 
 export default class Register extends Component {
   static navigationOptions = {

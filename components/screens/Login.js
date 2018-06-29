@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
     } from 'react-native';
 import { Constants } from 'expo';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import axios from 'axios';
 
@@ -143,17 +144,28 @@ export default class Login extends Component {
             </TouchableOpacity>
           </View>
 
+          <View style={styles.footer}>
+            <Text>Created by Adam Julier</Text>
+            <Text> &laquo; adamtj.com &raquo; </Text>
+          </View>
+
      </View>
 
 )}
 }
 
 const styles = StyleSheet.create({
+  footer: {
+    bottom: wp('-70%'),
+    // marginTop: 200,
+    // flex: 1,
+    alignItems: 'center',
+  },
   buttonLargeContainer: {
     alignItems: 'center',
     marginTop: 10,
-    width: 300,
-    marginLeft: (Dimensions.get('window').width)/7.5,
+    width: wp('80%'),
+    marginLeft: wp('10.7%'),
   },
 primaryButton: {
     backgroundColor: '#a6cbfc',
@@ -166,9 +178,8 @@ buttonText: {
     padding: 10,
   },
   inputbox: {
-    maxWidth: 300,
-    // marginLeft: 40,
-    marginLeft: (Dimensions.get('window').width)/7.5,
+    maxWidth: wp('80%'),
+    marginLeft: wp('10.7%'),
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,

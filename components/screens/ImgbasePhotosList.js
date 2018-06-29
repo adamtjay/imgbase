@@ -15,6 +15,7 @@ import {
   TextInput,
     } from 'react-native';
 import { Constants } from 'expo';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import _ from 'lodash';
 import jwt_decode from 'jwt-decode';
@@ -204,8 +205,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
-    width: 350,
-    left: (Dimensions.get('window').width)/12,
+    width: wp('93%'),
+    left: wp('4%'),
     top: 10,
     height: 50,
     backgroundColor: 'white',
