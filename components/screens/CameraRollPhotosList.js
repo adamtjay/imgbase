@@ -148,7 +148,7 @@ export default class CameraRollPhotosList extends Component {
 
     return (
 
-      <ScrollView style={styles.container}>
+      <ScrollView style={ (wp('100%') > 395) ? styles.containerLg : styles.container }>
         <View style={ styles.dividerline } />
 
         { this.state.multitag === null
@@ -175,7 +175,7 @@ export default class CameraRollPhotosList extends Component {
 
             <View style={ styles.dividerline } />
 
-
+            {/* <Text style={{ marginLeft: 50 }}> {wp('100%')} </Text> */}
 
           {photos
             ? this._renderPhotos(photos)
@@ -185,7 +185,6 @@ export default class CameraRollPhotosList extends Component {
 
 
       </ScrollView>
-
     );
   }
 
@@ -240,8 +239,8 @@ const styles = StyleSheet.create({
   buttonLargeContainer: {
     alignItems: 'center',
     marginTop: 10,
-    width: 300,
-    marginLeft: 40,
+    width: wp('80%'),
+    marginLeft: wp('18%'),
   },
 primaryButton: {
     backgroundColor: '#a6cbfc',
@@ -262,8 +261,8 @@ buttonText: {
     fontSize: 25,
   },
   multitagsbox: {
-    maxWidth: 300,
-    marginLeft: (Dimensions.get('window').width)/7,
+    width: wp('80%'),
+    marginLeft: wp('14.5%'),
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
@@ -287,11 +286,9 @@ buttonText: {
     borderRadius: 20,
   },
   imgContainer: {
-    width: 400,
-    display: 'block',
-    display: 'flex',
+    width: wp('80%'),
+    // display: 'flex',
     marginTop: 20,
-    marginLeft: 4,
     borderWidth: 1,
     borderRadius: 20,
   },
@@ -300,8 +297,8 @@ buttonText: {
 
   },
   resimg: {
-    height: 320,
-    width: 250,
+    height: hp('50%'),
+    width: wp('30%'),
     resizeMode: 'contain',
     display: 'flex',
     marginTop: 10,
@@ -311,7 +308,12 @@ buttonText: {
   container: {
     flex: 1,
     backgroundColor: '#ecf0f1',
-    marginLeft: wp('-5%'),
+    marginLeft: wp('-5.5%'),
+  },
+  containerLg: {
+    flex: 1,
+    backgroundColor: '#ecf0f1',
+    marginLeft: wp('0%'),
   },
   paragraph: {
     margin: 24,
