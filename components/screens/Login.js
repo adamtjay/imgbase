@@ -156,7 +156,7 @@ export default class Login extends Component {
 
 const styles = StyleSheet.create({
   footer: {
-    bottom: wp('-70%'),
+    bottom: wp('-15%'),
     // marginTop: 200,
     // flex: 1,
     alignItems: 'center',

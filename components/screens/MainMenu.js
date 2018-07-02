@@ -81,12 +81,21 @@ export default class MainMenu extends Component {
           renderItem={ ({item}) => <View> {item.link} </View>}
         />
 
+        <View style={styles.footer}>
+          <Text>Created by Adam Julier</Text>
+          <Text> &laquo; adamtj.com &raquo; </Text>
+        </View>
+
    </View>
 
 )}
 }
 
 const styles = StyleSheet.create({
+  footer: {
+    bottom: wp('-15%'),
+    alignItems: 'center',
+  },
   logout: {
     marginTop: wp('30%'),
   },
@@ -94,7 +103,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     width: wp('80%'),
-    marginLeft: wp('10.7%'),
+    marginLeft: wp('10.9%'),
   },
 primaryButton: {
     backgroundColor: '#a6cbfc',
