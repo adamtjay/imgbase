@@ -181,7 +181,8 @@ export default class CameraRollPhotosList extends Component {
 
           { this.state.activePhotos.length > 0
             ?              <TouchableOpacity
-                              style={[styles.buttonLargeContainer, styles.primaryButton]}
+                              // style={[styles.buttonLargeContainer, styles.primaryButton]}
+                              style={(wp('100%') > 395) ? styles.uploadButtonLg : styles.uploadButton}
                               onPress={this.uploadImgsToImgBase}>
                              <Text style={styles.buttonText}> Upload to imgBase </Text>
                         </TouchableOpacity>
@@ -250,16 +251,22 @@ export default class CameraRollPhotosList extends Component {
 }
 
 const styles = StyleSheet.create({
-  buttonLargeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    width: wp('80%'),
-    marginLeft: wp('18%'),
-  },
-primaryButton: {
-    backgroundColor: '#a6cbfc',
-    borderRadius: 20,
-  },
+uploadButton: {
+  alignItems: 'center',
+  marginTop: 10,
+  width: wp('80%'),
+  marginLeft: wp('13%'),
+  backgroundColor: '#a6cbfc',
+  borderRadius: 20,
+},
+uploadButtonLg: {
+  alignItems: 'center',
+  marginTop: 10,
+  width: wp('80%'),
+  marginLeft: wp('9%'),
+  backgroundColor: '#a6cbfc',
+  borderRadius: 20,
+},
 buttonText: {
     color: 'black',
     fontSize: 20,
