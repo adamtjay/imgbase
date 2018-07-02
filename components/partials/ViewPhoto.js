@@ -26,11 +26,23 @@ export default class ViewPhoto extends Component {
      };
 
     this._onImgPress = this._onImgPress.bind(this);
+    this.removeActive = this.removeActive.bind(this);
     }
 
   _onImgPress() {
       // add img objs to active array in PhotosList state
       this.props.updateActiveArr(this.props.resphoto);
+    }
+
+    removeActive() {
+      // clear active state and tags, run props func to rm from active array
+      console.log('Remove clicked')
+      this.setState({
+        isActive: false,
+        addedTags: ''
+      })
+      // props func to rm from activePhotos
+      this.props.removeFromActiveArr(this.props.resphoto.image.filename)
     }
 
   renderLargeView() {
@@ -61,7 +73,7 @@ export default class ViewPhoto extends Component {
                     }) }
 
                     { this.state.isActive && !this.props.fromImgbase
-                      ? <Text name="removeactive" onPress={() => console.log('Remove pressed') } style={ styles.removeactive } > X </Text>
+                      ? <Text name="removeactive" onPress={this.removeActive} style={ styles.removeactive } > X </Text>
                       : this.state.isActive }
 
                     { this.state.isActive && !this.props.fromImgbase

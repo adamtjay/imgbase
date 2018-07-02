@@ -46,7 +46,7 @@ export default class CameraRollPhotosList extends Component {
     this.postPhotoToImgBase = this.postPhotoToImgBase.bind(this);
     this.updateActiveArrTags = this.updateActiveArrTags.bind(this);
     this.findActiveIndex = this.findActiveIndex.bind(this);
-
+    this.removeFromActiveArr = this.removeFromActiveArr.bind(this);
     }
 
 
@@ -145,6 +145,17 @@ export default class CameraRollPhotosList extends Component {
         console.log('Updated: ', this.state.activePhotos[index].tags)
     }
 
+    removeFromActiveArr(filename) {
+        let index = this.findActiveIndex(filename)
+        let actives = this.state.activePhotos
+        updActives = actives.splice(index, 1);
+        this.setState({
+          updActives
+        })
+        console.log('Active after rm: ', this.state.activePhotos)
+
+    }
+
 
 
 
@@ -204,6 +215,7 @@ export default class CameraRollPhotosList extends Component {
           resphoto={photo}
           activePhotos={this.state.activePhotos}
           updateActiveArr={this.updateActiveArr}
+          removeFromActiveArr={this.removeFromActiveArr}
           key={photo.image.filename}/>
         );
     }
