@@ -89,7 +89,8 @@ export default class CameraRollPhotosList extends Component {
         }
         this.postPhotoToImgBase(photoObj);
 
-      })
+      }) // end forEach
+        this.props.navigation.navigate("MainMenu")
     }
 
     postPhotoToImgBase(photo) {
