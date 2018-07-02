@@ -164,7 +164,7 @@ export default class CameraRollPhotosList extends Component {
 
     return (
 
-      <ScrollView style={ (wp('100%') > 395) ? styles.containerLg : styles.container }>
+      <ScrollView style={ styles.container }>
         <View style={ styles.dividerline } />
 
         { this.state.multitag === null
@@ -182,7 +182,7 @@ export default class CameraRollPhotosList extends Component {
           { this.state.activePhotos.length > 0
             ?              <TouchableOpacity
                               // style={[styles.buttonLargeContainer, styles.primaryButton]}
-                              style={(wp('100%') > 395) ? styles.uploadButtonLg : styles.uploadButton}
+                              style={ (wp('100%') > 395) ? styles.uploadButtonLg : styles.uploadButton}
                               onPress={this.uploadImgsToImgBase}>
                              <Text style={styles.buttonText}> Upload to imgBase </Text>
                         </TouchableOpacity>
@@ -191,9 +191,13 @@ export default class CameraRollPhotosList extends Component {
 
             <View style={ styles.dividerline } />
 
-          {photos
-            ? this._renderPhotos(photos)
-            : <Text style={styles.paragraph}></Text>}
+            <ScrollView style={ (wp('100%') > 395) ? styles.photoListLg : styles.photoList } >
+
+              {photos
+                ? this._renderPhotos(photos)
+                : <Text style={styles.paragraph}></Text>}
+
+            </ScrollView>
 
         </View>
 
@@ -251,11 +255,17 @@ export default class CameraRollPhotosList extends Component {
 }
 
 const styles = StyleSheet.create({
+photoList: {
+  marginLeft: wp('-4.32%'),
+},
+photoListLg: {
+    marginLeft: wp('1%'),
+  },
 uploadButton: {
   alignItems: 'center',
   marginTop: 10,
   width: wp('80%'),
-  marginLeft: wp('13%'),
+  marginLeft: wp('12%'),
   backgroundColor: '#a6cbfc',
   borderRadius: 20,
 },
@@ -263,7 +273,7 @@ uploadButtonLg: {
   alignItems: 'center',
   marginTop: 10,
   width: wp('80%'),
-  marginLeft: wp('9%'),
+  marginLeft: wp('12%'),
   backgroundColor: '#a6cbfc',
   borderRadius: 20,
 },
@@ -283,7 +293,7 @@ buttonText: {
   },
   multitagsbox: {
     width: wp('82%'),
-    marginLeft: wp('12%'),
+    marginLeft: wp('10%'),
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
@@ -293,7 +303,7 @@ buttonText: {
   },
   multitagsboxLg: {
     width: wp('82%'),
-    marginLeft: wp('8.5%'),
+    marginLeft: wp('10%'),
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
@@ -339,12 +349,7 @@ buttonText: {
   container: {
     flex: 1,
     backgroundColor: '#ecf0f1',
-    marginLeft: wp('-5.5%'),
-  },
-  containerLg: {
-    flex: 1,
-    backgroundColor: '#ecf0f1',
-    marginLeft: wp('0%'),
+    marginLeft: wp('-1.5%'),
   },
   paragraph: {
     margin: 24,

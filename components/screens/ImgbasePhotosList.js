@@ -131,7 +131,7 @@ export default class ImgbasePhotosList extends Component {
 
     return (
 
-      <ScrollView style={ (wp('100%') > 395) ? styles.containerLg : styles.container }>
+      <ScrollView style={ styles.container }>
 
         <View style={ styles.dividerline } />
 
@@ -146,9 +146,13 @@ export default class ImgbasePhotosList extends Component {
 
         <View style={{flex: 1, marginTop: 25}}>
 
-          {photos && this.state.userid
-            ? this._renderPhotos(photos)
-            : <Text style={styles.paragraph}>Waiting for search...</Text>}
+          <ScrollView style={ (wp('100%') > 395) ? styles.photoListLg : styles.photoList} >
+
+            {photos && this.state.userid
+              ? this._renderPhotos(photos)
+              : <Text style={styles.paragraph}>Waiting for search...</Text>}
+
+          </ScrollView>
 
         </View>
 
@@ -199,12 +203,18 @@ export default class ImgbasePhotosList extends Component {
 
 
 const styles = StyleSheet.create({
+  photoList: {
+    marginLeft: wp('-5.15%'),
+  },
+photoListLg: {
+    marginLeft: wp('0%'),
+  },
   searchbox: {
     textAlign: 'center',
     borderWidth: 1,
     borderRadius: 20,
     width: wp('93%'),
-    left: wp('8.3%'),
+    left: wp('3.6%'),
     top: 10,
     height: 50,
     backgroundColor: 'white',
@@ -263,12 +273,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ecf0f1',
-    marginLeft: wp('-5.5%'),
-  },
-  containerLg: {
-    flex: 1,
-    backgroundColor: '#ecf0f1',
-    marginLeft: wp('-0.5%'),
   },
   paragraph: {
     margin: 24,
