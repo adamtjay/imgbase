@@ -62,7 +62,7 @@ export default class ViewImgBasePhoto extends Component {
         onPress={this._onImgPress}
         key={this.props.resphoto.fields.filename} >
 
-            <View style={ this.state.isActive ? styles.activeContainer : styles.imgContainer } >
+        <View style={ styles.imgContainer } >
 
                     <Image
                       key={this.props.resphoto.fields.filename}
@@ -78,7 +78,6 @@ export default class ViewImgBasePhoto extends Component {
                     {/* { this.state.isActive && !this.props.fromImgbase
                       ? <Text name="removeactive" onPress={() => Alert.alert('Remove pressed') } style={ styles.removeactive } > X </Text>
                       : this.state.isActive } */}
-
 
                     { this.props.fromImgbase
                       ? <TextInput name="edittags" value={this.state.filteredTags} onChangeText={(text) => this.setState({filteredTags: text})} placeholder={'Edit Tags'} style={ styles.tagsbox } numberOfLines={4}/>
@@ -126,17 +125,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingBottom: 15,
   },
-  activeContiner: {
-    width: 400,
-    display: 'block',
-    display: 'flex',
-    marginTop: 20,
-    marginLeft: 4,
-    borderWidth: 1,
-    borderRadius: 20,
-    paddingBottom: 15,
-  },
-
   touchable: {
     // backgroundColor: 'red',
 

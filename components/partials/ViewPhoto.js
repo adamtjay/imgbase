@@ -31,7 +31,6 @@ export default class ViewPhoto extends Component {
   _onImgPress() {
       // add img objs to active array in PhotosList state
       this.props.updateActiveArr(this.props.resphoto);
-      // Alert.alert(`Touchable working (${this.props.resphoto.image.uri})`);
     }
 
   renderLargeView() {
@@ -47,7 +46,7 @@ export default class ViewPhoto extends Component {
         onPress={this._onImgPress}
         key={this.props.resphoto.image.filename} >
 
-            <View style={ this.state.isActive ? styles.activeContainer : styles.imgContainer } >
+            <View style={ styles.imgContainer } >
 
                     <Image
                       key={this.props.resphoto.image.filename}
@@ -62,7 +61,7 @@ export default class ViewPhoto extends Component {
                     }) }
 
                     { this.state.isActive && !this.props.fromImgbase
-                      ? <Text name="removeactive" onPress={() => Alert.alert('Remove pressed') } style={ styles.removeactive } > X </Text>
+                      ? <Text name="removeactive" onPress={() => console.log('Remove pressed') } style={ styles.removeactive } > X </Text>
                       : this.state.isActive }
 
                     { this.state.isActive && !this.props.fromImgbase
@@ -102,25 +101,14 @@ const styles = StyleSheet.create({
   },
   imgContainer: {
     width: 360,
-    display: 'block',
-    display: 'flex',
+    // display: 'block',
+    // display: 'flex',
     marginTop: 20,
-    marginLeft: (Dimensions.get('window').width)/13.5,
+    marginLeft: wp('8%'),
     borderWidth: 1,
     borderRadius: 20,
     paddingBottom: 15,
   },
-  // activeContiner: {
-  //   width: 400,
-  //   display: 'block',
-  //   display: 'flex',
-  //   marginTop: 20,
-  //   marginLeft: 4,
-  //   borderWidth: 1,
-  //   borderRadius: 20,
-  //   paddingBottom: 15,
-  // },
-
   touchable: {
     // backgroundColor: 'red',
 
@@ -129,13 +117,13 @@ const styles = StyleSheet.create({
     height: 320,
     width: 250,
     resizeMode: 'contain',
-    display: 'flex',
+    // display: 'flex',
     marginTop: 10,
     marginLeft: 0,
     padding: '50%',
   },
   container: {
-    flex: 1,
+    // flex: 1,
     paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
   },
