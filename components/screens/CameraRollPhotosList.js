@@ -74,13 +74,18 @@ export default class CameraRollPhotosList extends Component {
     }
 
     uploadImgsToImgBase() {
-      //upload activephotos with updated state, incl multitags, to db
+      //upload activephotos with updated tags state to db
       this.state.activePhotos.forEach(photo => {
         const photoObj = {
           filename: photo.image.filename,
           mediatype: 'Photo',
           uri: photo.image.uri,
-          tags: photo.tags.concat(' ', this.state.multitag)
+        }
+        //include tags based on whether or not multitag was used
+        if (this.state.multitag != null) {
+          photoObj.tags = photo.tags.concat(' ', this.state.multitag)
+        } else {
+          photoObj.tags = photo.tags
         }
         this.postPhotoToImgBase(photoObj);
 
@@ -284,7 +289,7 @@ buttonText: {
     paddingBottom: 15,
   },
   textarea: {
-    maxWidth: 320,
+    // maxWidth: 320,
     marginLeft: 35,
     marginTop: 10,
     marginBottom: 10,
@@ -306,11 +311,11 @@ buttonText: {
   resimg: {
     height: hp('50%'),
     width: wp('30%'),
-    resizeMode: 'contain',
-    display: 'flex',
+    // resizeMode: 'contain',
+    // display: 'flex',
     marginTop: 10,
     marginLeft: 0,
-    padding: '50%',
+    // padding: '50%',
   },
   container: {
     flex: 1,
