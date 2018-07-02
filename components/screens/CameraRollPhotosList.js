@@ -96,7 +96,11 @@ export default class CameraRollPhotosList extends Component {
       //called by uploadImgsToImgBase to post each new img
       console.log('** UPLOADING: **', photo)
 
-      let splitTags = photo.tags.toLowerCase().split(" ");
+      let splitTags = [];
+
+      if (photo.tags) {
+        splitTags = photo.tags.toLowerCase().split(" ");
+      }
 
         let data = JSON.stringify({
           filename: photo.filename,
