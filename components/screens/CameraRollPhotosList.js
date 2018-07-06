@@ -166,6 +166,7 @@ export default class CameraRollPhotosList extends Component {
 
   render() {
     let { photos } = this.state;
+    
 
     return (
 
