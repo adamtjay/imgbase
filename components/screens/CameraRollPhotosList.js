@@ -22,8 +22,6 @@ import ViewPhoto from '../partials/ViewPhoto';
 
 import $ from 'jquery';
 import axios from 'axios';
-// import { Spinner } from 'react-native-material-kit';
-
 
 export default class CameraRollPhotosList extends Component {
   static navigationOptions = {
@@ -157,16 +155,14 @@ export default class CameraRollPhotosList extends Component {
         this.setState({
           updActives
         })
-        console.log('Active after rm: ', this.state.activePhotos)
-
+        // console.log('Active after rm: ', this.state.activePhotos)
     }
-
 
 
 
   render() {
     let { photos } = this.state;
-    
+
 
     return (
 
@@ -187,7 +183,6 @@ export default class CameraRollPhotosList extends Component {
 
           { this.state.activePhotos.length > 0
             ?              <TouchableOpacity
-                              // style={[styles.buttonLargeContainer, styles.primaryButton]}
                               style={ (wp('100%') > 395) ? styles.uploadButtonLg : styles.uploadButton}
                               onPress={this.uploadImgsToImgBase}>
                              <Text style={styles.buttonText}> Upload to imgBase </Text>
@@ -249,7 +244,6 @@ export default class CameraRollPhotosList extends Component {
       this._getPhotosAsync().catch(error => {
         console.error(error);
       });
-
 
 
   }
@@ -341,7 +335,6 @@ buttonText: {
   },
   touchable: {
     // backgroundColor: 'red',
-
   },
   resimg: {
     height: hp('50%'),
