@@ -195,7 +195,7 @@ export default class ImgbasePhotosList extends Component {
           );
       }
     })
-    return images;
+    return images.reverse();
   }
 
 
