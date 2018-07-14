@@ -127,7 +127,6 @@ export default class ImgbasePhotosList extends Component {
       console.log('authStr: ', authStr)
 
       axios.get(`https://imgbase-api.herokuapp.com/api/media/`, {
-        withCredentials: true,
           headers: {
             Authorization: authStr,
             "Content-Type": "application/json"
@@ -153,8 +152,6 @@ export default class ImgbasePhotosList extends Component {
         this.queryBySearchTerms();
 
         this.getUserIdFromToken();
-
-        // this.getTagsList();
 
     }
 
@@ -184,10 +181,8 @@ export default class ImgbasePhotosList extends Component {
 
             {photos && this.state.userid
               ? this._renderPhotos(photos)
-              : <Text style={styles.paragraph}>{`
-                Waiting for search...
-
-                Recommended tags: ${this.state.tagslist}`}</Text>}
+              : <View><Text style={styles.paragraph}>{`Recommended Tags:`}</Text>
+                <Text style={styles.tagslist}>{`${this.state.tagslist}`}</Text></View>}
 
           </ScrollView>
 
@@ -313,11 +308,22 @@ photoListLg: {
     flex: 1,
     backgroundColor: '#ecf0f1',
   },
-  paragraph: {
-    margin: 24,
+  tagslist: {
+    // display: 'flex',
+    // justifyContent: 'center',
+    marginLeft: wp('43%'),
     fontSize: 18,
     fontWeight: 'bold',
-    textAlign: 'center',
+    // textAlign: 'center',
+    color: '#34495e',
+  },
+  paragraph: {
+    // display: 'flex',
+    // justifyContent: 'center',
+    marginLeft: wp('28%'),
+    fontSize: 18,
+    fontWeight: 'bold',
+    // textAlign: 'center',
     color: '#34495e',
   },
 });
