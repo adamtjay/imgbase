@@ -143,7 +143,21 @@ export default class ImgbasePhotosList extends Component {
     })
       console.log('tagslist state: ', this.state.tagslist)
     })
-    .catch(err => console.log(err))
+      .catch(err => console.log(err))
+    .then( () => {
+      // filter tag state based on number of times it's used
+      let hashtable = {};
+      this.state.tagslist.forEach(tag => {
+        if (!hashtable[tag]) {
+        // If char does not exist already in the hash array, create a key-value showing that it appeared 1 time
+           hashtable[tag] = 1
+         } else {
+          // If it is already existing, increment its value by 1 to account for duplicate letters
+           hashtable[tag]++
+         }
+      })
+      console.log('hashtable: ', hashtable)
+    })
   }
 }
 
