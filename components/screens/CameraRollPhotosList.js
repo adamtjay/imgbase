@@ -81,7 +81,12 @@ export default class CameraRollPhotosList extends Component {
         }
         //include tags based on whether or not multitag was used
         if (this.state.multitag != null) {
+          //if photo has no tag (it really should, though)
+          if (!photo.tags) {
+            photoObj.tags = this.state.multitag;
+          } else {
           photoObj.tags = photo.tags.concat(' ', this.state.multitag)
+          }
         } else {
           photoObj.tags = photo.tags
         }
