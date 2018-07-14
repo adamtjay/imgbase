@@ -19,6 +19,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 import _ from 'lodash';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 import ViewImgBasePhoto from '../partials/ViewImgBasePhoto';
 
@@ -34,7 +35,9 @@ export default class ImgbasePhotosList extends Component {
       activePhotos: [],
       searchbar: '',
       photo: null,
-      userid: null
+      userid: null,
+      usertoken: null,
+      tagslist: []
      };
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
@@ -42,6 +45,7 @@ export default class ImgbasePhotosList extends Component {
     this.searchForTags = _.debounce(this.searchForTags, 2000);
     this.queryBySearchTerms = this.queryBySearchTerms.bind(this);
     this.getUserIdFromToken = this.getUserIdFromToken.bind(this);
+    this.getTagsList = this.getTagsList.bind(this);
     }
 
   handleChange(e) {
@@ -116,11 +120,41 @@ export default class ImgbasePhotosList extends Component {
     } // end if(terms)
   }
 
+  getTagsList() {
+    // get list of recommended tag searches, filter results based on usertoken
+    if (this.state.usertoken) {
+      let authStr = 'Bearer '.concat(this.state.usertoken)
+      console.log('authStr: ', authStr)
+
+      axios.get(`https://imgbase-api.herokuapp.com/api/media/`, {
+        withCredentials: true,
+          headers: {
+            Authorization: authStr,
+            "Content-Type": "application/json"
+          }
+       })
+    .then(res => {
+      //get each individual tag from each obj, push to state a single array
+      res.data.forEach(obj => {
+        obj.tags.join(" ").split(" ").forEach(tag => {
+          this.setState({
+            taglist: this.state.tagslist.push('\n'.concat(tag))
+            })
+        })
+    })
+      console.log('tagslist state: ', this.state.tagslist)
+    })
+    .catch(err => console.log(err))
+  }
+}
+
 
     componentDidMount() {
         this.queryBySearchTerms();
 
         this.getUserIdFromToken();
+
+        // this.getTagsList();
 
     }
 
@@ -150,7 +184,10 @@ export default class ImgbasePhotosList extends Component {
 
             {photos && this.state.userid
               ? this._renderPhotos(photos)
-              : <Text style={styles.paragraph}>Waiting for search...</Text>}
+              : <Text style={styles.paragraph}>{`
+                Waiting for search...
+
+                Recommended tags: ${this.state.tagslist}`}</Text>}
 
           </ScrollView>
 
@@ -168,9 +205,11 @@ export default class ImgbasePhotosList extends Component {
       .then(res => {
           decoded = jwt_decode(res)
           this.setState({
-            userid: decoded.user_id
+            userid: decoded.user_id,
+            usertoken: res
           })
-          console.log('User ID State: ', this.state.userid)
+          console.log('User ID State: ', this.state.userid, ' -- User token: ', this.state.usertoken)
+          this.getTagsList();
       })
         .catch(err => console.log(err))
   }

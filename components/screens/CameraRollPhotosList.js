@@ -20,7 +20,6 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 import ViewPhoto from '../partials/ViewPhoto';
 
-import $ from 'jquery';
 import axios from 'axios';
 
 export default class CameraRollPhotosList extends Component {
