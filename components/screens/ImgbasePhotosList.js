@@ -134,30 +134,41 @@ export default class ImgbasePhotosList extends Component {
        })
     .then(res => {
       //get each individual tag from each obj, push to state a single array
+      let hashtable = {};
+
       res.data.forEach(obj => {
         obj.tags.join(" ").split(" ").forEach(tag => {
-          this.setState({
-            taglist: this.state.tagslist.push('\n'.concat(tag))
-            })
+          // this.setState({
+          //   taglist: this.state.tagslist.push('\n'.concat(tag))
+          //   })
+          if (!hashtable[tag]) {
+          // If char does not exist already in the hash array, create a key-value showing that it appeared 1 time
+             hashtable[tag] = 1
+           } else {
+            // If it is already existing, increment its value by 1 to account for duplicate letters
+             hashtable[tag]++
+           }
         })
     })
-      console.log('tagslist state: ', this.state.tagslist)
+    console.log('hashtable: ', hashtable)
+    // move hashtable into array, which will then be sorted by frequency
+    let sortedtags = [];
+    for (let i in hashtable) { sortedtags.push([i, hashtable[i] ]) }
+    sortedtags.sort(function(a, b) {
+      return b[1] - a[1];
+      });
+    // iterate through sorted arr, push to state (if valid tag)
+    sortedtags.forEach(tag => {
+    if (tag[0] != '' && tag[0] != 'null') {
+    this.setState({
+      taglist: this.state.tagslist.push(`\n ${tag[0]} (${tag[1]})`)
+          })
+        }
+      })
+      console.log('tagslist sorted: ', sortedtags)
     })
       .catch(err => console.log(err))
-    .then( () => {
-      // filter tag state based on number of times it's used
-      let hashtable = {};
-      this.state.tagslist.forEach(tag => {
-        if (!hashtable[tag]) {
-        // If char does not exist already in the hash array, create a key-value showing that it appeared 1 time
-           hashtable[tag] = 1
-         } else {
-          // If it is already existing, increment its value by 1 to account for duplicate letters
-           hashtable[tag]++
-         }
-      })
-      console.log('hashtable: ', hashtable)
-    })
+
   }
 }
 
@@ -195,7 +206,7 @@ export default class ImgbasePhotosList extends Component {
 
             {photos && this.state.userid
               ? this._renderPhotos(photos)
-              : <View><Text style={styles.paragraph}>{`Recommended Tags:`}</Text>
+              : <View><Text style={styles.paragraph}>{`Tags List:`}</Text>
                 <Text style={styles.tagslist}>{`${this.state.tagslist}`}</Text></View>}
 
           </ScrollView>
@@ -323,21 +334,14 @@ photoListLg: {
     backgroundColor: '#ecf0f1',
   },
   tagslist: {
-    // display: 'flex',
-    // justifyContent: 'center',
-    marginLeft: wp('43%'),
-    fontSize: 18,
-    fontWeight: 'bold',
-    // textAlign: 'center',
+    marginLeft: wp('32%'),
+    fontSize: 20,
     color: '#34495e',
   },
   paragraph: {
-    // display: 'flex',
-    // justifyContent: 'center',
-    marginLeft: wp('28%'),
-    fontSize: 18,
+    marginLeft: wp('37%'),
+    fontSize: 21,
     fontWeight: 'bold',
-    // textAlign: 'center',
     color: '#34495e',
   },
 });
