@@ -34,7 +34,8 @@ export default class CameraRollPhotosList extends Component {
       activePhotos: [],
       multitag: null,
       usertoken: '',
-      tags: []
+      tags: [],
+      uploadedFilenames: []
      };
 
     this.updateActiveArr = this.updateActiveArr.bind(this);
@@ -44,6 +45,7 @@ export default class CameraRollPhotosList extends Component {
     this.updateActiveArrTags = this.updateActiveArrTags.bind(this);
     this.findActiveIndex = this.findActiveIndex.bind(this);
     this.removeFromActiveArr = this.removeFromActiveArr.bind(this);
+    this.getUploadedFilenames = this.getUploadedFilenames.bind(this);
     }
 
 
@@ -114,7 +116,7 @@ export default class CameraRollPhotosList extends Component {
 
 
         if (this.state.usertoken) {
-          let authStr = 'Bearer '.concat(JSON.parse(this.state.usertoken))
+          let authStr = 'Bearer '.concat(this.state.usertoken)
 
           axios.post(`https://imgbase-api.herokuapp.com/api/media/`, data, {
               headers: {
@@ -161,6 +163,30 @@ export default class CameraRollPhotosList extends Component {
         })
         // console.log('Active after rm: ', this.state.activePhotos)
     }
+
+    getUploadedFilenames() {
+      // get list of recommended tag searches, filter results based on usertoken
+      if (this.state.usertoken) {
+        let authStr = 'Bearer '.concat(this.state.usertoken)
+        console.log('authStr: ', authStr)
+
+        axios.get(`https://imgbase-api.herokuapp.com/api/media/`, {
+            headers: {
+              Authorization: authStr,
+              "Content-Type": "application/json"
+            }
+         })
+      .then(res => {
+        res.data.forEach(obj => {
+          this.setState({
+            uploadedFilenames: this.state.uploadedFilenames.concat(obj.filename)
+                })
+            })
+      })
+        .catch(err => console.log(err))
+        .then( () => console.log('uploaded filenames: ', this.state.uploadedFilenames))
+    }
+  }
 
 
 
@@ -238,17 +264,17 @@ export default class CameraRollPhotosList extends Component {
     AsyncStorage.getItem('@token')
         .then(res => {
             this.setState({
-              usertoken: JSON.stringify(res)
+              usertoken: res
             })
             console.log('usertoken state: ', this.state.usertoken)
         })
-          .catch(err => console.log(err));
+            .catch(err => console.log(err))
+          .then( () => this.getUploadedFilenames())
 
 
       this._getPhotosAsync().catch(error => {
         console.error(error);
       });
-
 
   }
 

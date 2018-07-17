@@ -165,7 +165,6 @@ export default class ImgbasePhotosList extends Component {
       console.log('tagslist sorted: ', sortedtags)
     })
       .catch(err => console.log(err))
-
   }
 }
 
