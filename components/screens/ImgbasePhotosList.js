@@ -25,7 +25,7 @@ import ViewImgBasePhoto from '../partials/ViewImgBasePhoto';
 
 export default class ImgbasePhotosList extends Component {
   static navigationOptions = {
-    title: 'imgBase Search',
+    title: 'Search',
   }
   constructor(props) {
     super(props);
@@ -138,16 +138,13 @@ export default class ImgbasePhotosList extends Component {
 
       res.data.forEach(obj => {
         obj.tags.join(" ").split(" ").forEach(tag => {
-          // this.setState({
-          //   taglist: this.state.tagslist.push('\n'.concat(tag))
-          //   })
           if (!hashtable[tag]) {
           // If char does not exist already in the hash array, create a key-value showing that it appeared 1 time
              hashtable[tag] = 1
-           } else {
-            // If it is already existing, increment its value by 1 to account for duplicate letters
-             hashtable[tag]++
-           }
+         } else {
+          // If it is already existing, increment its value by 1 to account for duplicate letters
+           hashtable[tag]++
+         }
         })
     })
     console.log('hashtable: ', hashtable)
@@ -161,7 +158,7 @@ export default class ImgbasePhotosList extends Component {
     sortedtags.forEach(tag => {
     if (tag[0] != '' && tag[0] != 'null') {
     this.setState({
-      taglist: this.state.tagslist.push(`\n ${tag[0]} (${tag[1]})`)
+      taglist: this.state.tagslist.push(`\n - ${tag[0]}   -   (${tag[1]})`)
           })
         }
       })
@@ -191,7 +188,7 @@ export default class ImgbasePhotosList extends Component {
 
         <View style={ styles.dividerline } />
 
-        <Text style={{textAlign:'center', fontSize:20, fontWeight:'bold'}}>Search By Tags</Text>
+        <Text style={{textAlign:'center', fontSize:20, fontWeight:'bold'}}>imgBase Search</Text>
         <TextInput name={"searchbar"}
              onChangeText={this.handleChange}
              placeholder={'Enter Search Keywords'}
@@ -206,8 +203,8 @@ export default class ImgbasePhotosList extends Component {
 
             {photos && this.state.userid
               ? this._renderPhotos(photos)
-              : <View><Text style={styles.paragraph}>{`Tags List:`}</Text>
-                <Text style={styles.tagslist}>{`${this.state.tagslist}`}</Text></View>}
+              : <View><Text style={styles.paragraph}>{`My Tags:`}</Text>
+                <Text style={styles.tagslist}>{`${this.state.tagslist.join("")}`}</Text></View>}
 
           </ScrollView>
 
@@ -229,6 +226,7 @@ export default class ImgbasePhotosList extends Component {
             usertoken: res
           })
           console.log('User ID State: ', this.state.userid, ' -- User token: ', this.state.usertoken)
+          // after identifying the user id, get list of their tags
           this.getTagsList();
       })
         .catch(err => console.log(err))
@@ -254,6 +252,7 @@ export default class ImgbasePhotosList extends Component {
           );
       }
     })
+    // return in ascending newest first order
     return images.reverse();
   }
 
@@ -334,13 +333,20 @@ photoListLg: {
     backgroundColor: '#ecf0f1',
   },
   tagslist: {
-    marginLeft: wp('32%'),
-    fontSize: 20,
+    paddingBottom: wp('8%'),
+    paddingLeft: wp('2%'),
+    paddingRight: wp('2%'),
+    marginLeft: wp('2.3%'),
+    width: wp('95%'),
+    fontSize: 23,
     color: '#34495e',
+    borderWidth: 1,
+    borderRadius: 20,
   },
   paragraph: {
     marginLeft: wp('37%'),
-    fontSize: 21,
+    marginBottom: hp('2%'),
+    fontSize: 25,
     fontWeight: 'bold',
     color: '#34495e',
   },
